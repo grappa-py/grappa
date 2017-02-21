@@ -1,6 +1,6 @@
-# grappa
+<img src="https://i.imgur.com/YPwA7pP.png" width="100%" alt="grappa-logo">
 
-<img src="http://i.imgur.com/oYBoAcF.jpg" width="100%" alt="grappa-logo">
+WORK IN PROGRESS...
 
 ## License
 
