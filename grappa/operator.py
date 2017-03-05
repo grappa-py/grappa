@@ -126,18 +126,18 @@ class Operator(object):
         def observer(self, subject, *expected, **kw):
             # Trigger before hook, if present
             if hasattr(self, 'before'):
-                self.before(subject, *expected, *kw)
+                self.before(subject, *expected, **kw)
 
             # Trigger matcher method
             result = matcher(self, subject, *expected, **kw)
 
             # After error hook
             if not result and hasattr(self, 'after_error'):
-                self.after_error(result, subject, *expected, *kw)
+                self.after_error(result, subject, *expected, **kw)
 
             # After success hook
             if result and hasattr(self, 'after_success'):
-                self.after_success(subject, *expected, *kw)
+                self.after_success(subject, *expected, **kw)
 
             return result
         return observer

@@ -14,6 +14,7 @@ sudo: false
 
 install:
   - pip install -r requirements-dev.txt
+  - pip install -r requirements.txt
 
 script:
   - make lint

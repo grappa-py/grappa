@@ -44,7 +44,7 @@ class OperatorResolver(object):
             def assertion(subject):
                 operator.ctx.subject = subject
                 operator.ctx.expected = expected
-                return operator.run(subject, *expected, *kw)
+                return operator.run(subject, *expected, **kw)
 
             # Register assertion function
             self.test._engine.add_assertion(assertion)
