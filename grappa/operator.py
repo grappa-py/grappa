@@ -71,6 +71,9 @@ class Operator(object):
     # Stores optional suboperators (not supported yet)
     suboperators = []
 
+    # Stores optionally yielded operator result value
+    value = empty
+
     # Stores operator assertion expectation
     expected = empty
 
@@ -132,11 +135,11 @@ class Operator(object):
             result = matcher(self, subject, *expected, **kw)
 
             # After error hook
-            if not result and hasattr(self, 'after_error'):
+            if result is not True and hasattr(self, 'after_error'):
                 self.after_error(result, subject, *expected, **kw)
 
             # After success hook
-            if result and hasattr(self, 'after_success'):
+            if result is True and hasattr(self, 'after_success'):
                 self.after_success(subject, *expected, **kw)
 
             return result
@@ -166,6 +169,7 @@ class Operator(object):
         except Exception as error:
             return self._make_error(error=error)
 
+        reasons = []
         if isinstance(result, tuple):
             result, reasons = result
 

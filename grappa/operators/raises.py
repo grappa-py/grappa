@@ -41,26 +41,15 @@ class RaisesOperator(Operator):
     # Operaror chain aliases
     aliases = ('to', 'that', 'are', 'instance', 'of')
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
         'a value that contains "{value}"',
         'a value that does not contains "{value}"',
     )
+
+    # Subject template message
     subject_message = Operator.Dsl.Message(
         'an value of type "{type}" with content "{value}"',
-    )
-
-    information = (
-        Operator.Dsl.Help(
-            Operator.Dsl.Description(
-                '"None" is a built-in constant in Python that represents the',
-                'absence of a value, as when default arguments are not passed',
-                'to a function. The sole value of the type NoneType.',
-            ),
-            Operator.Dsl.Reference(
-                'https://docs.python.org/3/library/constants.html#None'
-            ),
-        ),
     )
 
     def match(self, fn, *errors):

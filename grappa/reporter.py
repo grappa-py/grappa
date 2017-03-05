@@ -38,7 +38,8 @@ class BaseReporter(object):
     def from_operator(self, name, defaults=None):
         if not hasattr(self.error, 'operator'):
             return defaults
-        return getattr(self.error.operator, name, defaults)
+        value = getattr(self.error.operator, name, defaults)
+        return defaults if value is empty else value
 
     def render_tmpl(self, tmpl, value):
         placeholders = {}
@@ -77,9 +78,13 @@ class AssertionReporter(BaseReporter):
 
         # Expected value
         expected = self.from_operator('expected', self.ctx.expected)
-        if isinstance(expected, tuple) and len(expected) == 1:
-            expected = expected[0]
+        if isinstance(expected, tuple):
+            if len(expected) == 0:
+                expected = empty
+            if len(expected) == 1:
+                expected = expected[0]
 
+        # Add expected value template, if needed
         if expected is not empty:
             if isinstance(expected, (tuple, list)):
                 expected = ', '.join(str(i) for i in expected)
@@ -103,6 +108,9 @@ class SubjectMessageReporter(BaseReporter):
         value = getattr(self.ctx, self.attribute, None)
 
         # Value should not be empty
+        if value is None or value is empty:
+            value = self.from_operator(self.attribute, value)
+
         if value is None:
             return None if self.attribute == 'expected' else 'None'
 

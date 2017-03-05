@@ -1,5 +1,5 @@
 import pytest
-from grappa.test import Test
+from grappa.test import Test as GrappaTest
 from grappa import should, expect
 
 
@@ -7,9 +7,9 @@ from grappa import should, expect
     'to', 'has', 'have', 'include', 'do'
 ))
 def test_assertion_attributes(operator):
-    assert isinstance(getattr(should, operator), Test)
+    assert isinstance(getattr(should, operator), GrappaTest)
     assert getattr(should, operator)._ctx.negate is False
-    assert isinstance(getattr(expect, operator), Test)
+    assert isinstance(getattr(expect, operator), GrappaTest)
     assert getattr(expect, operator)._ctx.negate is False
 
 
@@ -17,10 +17,10 @@ def test_assertion_attributes(operator):
     'which', 'that'
 ))
 def test_chain_attributes(operator):
-    assert isinstance(getattr(should, operator), Test)
+    assert isinstance(getattr(should, operator), GrappaTest)
     assert getattr(expect, operator)._ctx.reset is True
     assert getattr(expect, operator)._ctx.negate is False
-    assert isinstance(getattr(expect, operator), Test)
+    assert isinstance(getattr(expect, operator), GrappaTest)
     assert getattr(expect, operator)._ctx.reset is True
     assert getattr(expect, operator)._ctx.negate is False
 
@@ -30,7 +30,7 @@ def test_chain_attributes(operator):
     'not_have', 'not_has', 'have_not', 'has_not', 'dont'
 ))
 def test_negation_attributes(operator):
-    assert isinstance(getattr(should, operator), Test)
+    assert isinstance(getattr(should, operator), GrappaTest)
     assert getattr(should, operator)._ctx.negate
-    assert isinstance(getattr(expect, operator), Test)
+    assert isinstance(getattr(expect, operator), GrappaTest)
     assert getattr(expect, operator)._ctx.negate

@@ -127,7 +127,7 @@ You can define ``N`` number of composed assertions.
 Composing assertions
 --------------------
 
-Using ``which``/``that`` attribute operators for chained assertions.
+Using ``which``/``that`` attribute operators for chained assertions:
 
 .. code-block:: python
 
@@ -135,7 +135,16 @@ Using ``which``/``that`` attribute operators for chained assertions.
 
     {'foo': True} | expect.to.have.key('foo').that.expect.to.be.true
 
-Using ``|`` for multiple assertions composition.
+Using ``>`` operator for chained assertion instead of ``which``/``that`` operators:
+
+.. code-block:: python
+
+    {'foo': True} | should.have.key('foo') > should.be.true
+
+    {'foo': True} | expect.to.have.key('foo') > expect.to.be.true
+
+
+Using ``|`` for multiple assertions composition (equivalent to ``all``/``and`` composition):
 
 .. code-block:: python
 

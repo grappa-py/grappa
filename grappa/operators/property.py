@@ -54,18 +54,16 @@ class PropertyOperator(Operator):
     )
 
     def after_success(self, obj, *keys):
-        if not self.ctx.negate:
-            self.ctx.value = [getattr(obj, x) for x in keys]
+        if self.ctx.negate:
+            return
+
+        # Get attribute keys
+        self.ctx.value = [getattr(obj, x) for x in keys]
 
         if len(keys) == 1:
             self.ctx.value = self.ctx.value[0]
 
-    def match(self, subject, *keys, **kw):
-        return self._match(subject, (keys, kw))
-
-    def _match(self, subject, expected):
-        args, kwargs = expected
-
+    def match(self, subject, *args, **kwargs):
         success_reasons = []
         for name in args:
             has_property, reason = self._has_property(subject, name)

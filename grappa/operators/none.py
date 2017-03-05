@@ -48,5 +48,5 @@ class NoneOperator(Operator):
         ),
     )
 
-    def match(self, value):
-        return value is None
+    def match(self, subject):
+        return subject is None, []

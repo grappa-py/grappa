@@ -50,18 +50,5 @@ class EqualOperator(Operator):
         'an value of type "{type}" with data "{value}"',
     )
 
-    information = (
-        Operator.Dsl.Help(
-            Operator.Dsl.Description(
-                '"None" is a built-in constant in Python that represents the',
-                'absence of a value, as when default arguments are not passed',
-                'to a function. The sole value of the type NoneType.',
-            ),
-            Operator.Dsl.Reference(
-                'https://docs.python.org/3/library/constants.html#None'
-            ),
-        ),
-    )
-
     def match(self, subject, expected):
         return subject == expected, []

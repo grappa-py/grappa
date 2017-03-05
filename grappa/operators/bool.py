@@ -26,9 +26,6 @@ class TrueOperator(Operator):
     # Operator keywords
     operators = ('true',)
 
-    # Expected
-    expected = 'a "True" boolean value'
-
     # Error message templates
     expected_message = Operator.Dsl.Message(
         'a value that is "True"',
@@ -72,9 +69,6 @@ class FalseOperator(TrueOperator):
         'a value that is "False"',
         'a value that is not "False"',
     )
-
-    # Expected
-    expected = 'a "False" boolean value'
 
     def match(self, subject):
         if not self.ctx.negate and not isinstance(subject, bool):

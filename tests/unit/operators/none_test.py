@@ -10,9 +10,6 @@ def test_should_none():
         False | should.be.none
 
     with pytest.raises(AssertionError):
-        None | should.be.none
-
-    with pytest.raises(AssertionError):
         'foo' | should.be.none
 
     with pytest.raises(AssertionError):
@@ -20,24 +17,18 @@ def test_should_none():
 
 
 def test_expect_none():
-    None | expect.be.none
+    None | expect.to.be.none
 
     with pytest.raises(AssertionError):
-        False | expect.be.none
+        False | expect.to.be.none
 
     with pytest.raises(AssertionError):
-        None | expect.be.none
+        'foo' | expect.to.be.none
 
     with pytest.raises(AssertionError):
-        'foo' | expect.be.none
-
-    with pytest.raises(AssertionError):
-        [1, 2, 3] | expect.be.none
+        [1, 2, 3] | expect.to.be.none
 
 
 def test_none_operator(ctx):
-    assert NoneOperator(ctx).match(True) == (True, [])
-    assert NoneOperator(ctx).match(False) == (False, [])
-
-    assert NoneOperator(ctx).match(0) == (False,
-                                          ['subject is not a bool type'])
+    assert NoneOperator(ctx).match(None) == (True, [])
+    assert NoneOperator(ctx).match(1) == (False, [])

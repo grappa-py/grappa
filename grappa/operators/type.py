@@ -109,7 +109,7 @@ class TypeOperator(Operator):
 
     # Subject message
     subject_message = Operator.Dsl.Message(
-        'an object which is a "{type}" type'
+        'an object that is a "{type}" type'
     )
 
     # Error message templates
@@ -118,13 +118,11 @@ class TypeOperator(Operator):
     )
 
     def match(self, value, expected):
-        # Custom expectations messages
-        self.expected = 'an object that is a "{}" type'.format(expected)
+        # Custom expectations yielded values
         self.value = type(value).__name__
 
         # Get type alias
         if type(expected) is str:
-            self.expected = 'an object that is a {} type'.format(expected)
             _expected = MAPPINGS.get(expected)
 
             if not _expected:
