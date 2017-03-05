@@ -32,6 +32,11 @@ class TrueOperator(Operator):
         'a value that is not "True"',
     )
 
+    # Subject message template
+    subject_message = Operator.Dsl.Message(
+        'a value of type "{type}" with content "{value}"',
+    )
+
     def match(self, subject):
         if not self.ctx.negate and not isinstance(subject, bool):
             return False, ['subject is not a bool type']

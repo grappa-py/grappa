@@ -30,7 +30,7 @@ class TestProxy(object):
         if inspect.ismethod(_test):
             return _test
 
-        _test._style = self._style
+        _test._ctx.style = self._style
         return _test
 
     def __call__(self, *args, **kw):

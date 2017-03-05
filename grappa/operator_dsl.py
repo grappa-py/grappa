@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from colorama import Fore, Style
 
 
@@ -13,7 +14,7 @@ class Message(object):
 
 class Description(object):
 
-    ARROW = u'\u25B8'
+    ARROW = '\u25B8'
 
     def __init__(self, *text):
         self.value = text
@@ -25,7 +26,7 @@ class Description(object):
 
 class Reference(object):
 
-    TOKEN = u'\u2014'
+    TOKEN = '\u2014'
     TEXT = 'Reference'
 
     def __init__(self, url=None):

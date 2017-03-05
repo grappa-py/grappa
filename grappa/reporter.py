@@ -120,11 +120,13 @@ class SubjectMessageReporter(BaseReporter):
 
         # Get expectation message, if present in the operator
         attribute = '{}_message'.format(self.attribute)
-        text_message = getattr(error.operator, attribute, None)
+        text_message = self.from_operator(attribute, None)
         if text_message:
             if isinstance(text_message, Message):
                 attr = 'negation' if self.ctx.negate else 'allowance'
                 text_message = getattr(text_message, attr, '')
+
+            # Render template
             text_message = self.render_tmpl(text_message, value)
 
         return text_message or self.normalize(value)
@@ -180,6 +182,18 @@ class UnexpectedError(BaseReporter):
         return str(err)
 
 
+class Trace(object):
+    """
+    Python < 3.4 traceback compatibility wrapper for Python +3.5
+    """
+
+    def __init__(self, trace):
+        self.name = trace[2]
+        self.line = trace[-1]
+        self.lineno = trace[1]
+        self.filename = trace[0]
+
+
 class CodeReporter(BaseReporter):
     """
     CodeReporter matches and renders the fragment of the code
@@ -205,6 +219,10 @@ class CodeReporter(BaseReporter):
         trace_list.reverse()
 
         for trace in trace_list:
+            # Normalize traceback in old Python versions
+            if isinstance(trace, tuple):
+                trace = Trace(trace)
+            # Match code line
             if self.match_line(trace.line):
                 return trace
 
