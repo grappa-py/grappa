@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -34,13 +35,13 @@ class LengthOperator(Operator):
     # Operator keywords
     operators = ('length', 'size')
 
-    # Chain aliases
+    # Operator chain aliases
     aliases = ('equal', 'to', 'of')
 
     # Error message templates
     expected_message = Operator.Dsl.Message(
-        'an object that can be length measured and its length '
-        'is equal to {value}'
+        'an object that its length is equal to {value}',
+        'an object that its length is not equal to {value}',
     )
 
     # Subject template message
@@ -51,11 +52,11 @@ class LengthOperator(Operator):
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(
-                'Length is "len(x)"',
-                'built-in function. Most built-in types and objects in Python',
-                'can be tested that way, such as str, list, generator...',
-                'as well as any object that implements "__len__()" method',
-                'and returns "0" as length.'
+                'Object length is measured by using "len()" built-in',
+                'Python function or consuming an lazy iterable, such as a'
+                'generator. Most built-in types and objects in Python',
+                'can be tested that way, such as str, list, tuple, dict...',
+                'as well as any object that implements "__len__()" method.'
             ),
             Operator.Dsl.Reference(
                 'https://docs.python.org/3/library/functions.html#len'

@@ -1,6 +1,12 @@
 Tutorial
 ========
 
+Installing grappa
+-----------------
+
+Please, see installation_ section.
+
+
 Importing grappa
 ----------------
 
@@ -62,6 +68,17 @@ Measure length:
 
     iter([1, 2, 3]) | expect.to.have.length.of(3)
 
+Custom message errors
+---------------------
+
+.. code-block:: python
+
+    [1, 2, 3] | should.have.length.of(2, msg='list must have 2 items')
+
+.. code-block:: python
+
+    'hello world!' | should.have.contain.word('planet', msg='planet word is mandatory')
+
 Negation assertions
 -------------------
 
@@ -105,6 +122,7 @@ Conditional assertions
 ----------------------
 
 ``all`` assertion composition, equivalent to ``and`` operator.
+
 You can define ``N`` number of composed assertions.
 
 .. code-block:: python
@@ -135,6 +153,18 @@ Using ``which``/``that`` attribute operators for chained assertions:
 
     {'foo': True} | expect.to.have.key('foo').that.expect.to.be.true
 
+Using ``|`` for multiple assertions composition (equivalent to ``all``/``and`` composition):
+
+.. code-block:: python
+
+    {'foo': True} | should.be.a('dict') | should.have.key('foo') | should.have.length.of(1)
+
+    {'foo': True} | expect.to.be.a('dict') | expect.to.have.key('foo') | expect.to.have.length.of(1)
+
+
+Chained assertions
+------------------
+
 Using ``>`` operator for chained assertion instead of ``which``/``that`` operators:
 
 .. code-block:: python
@@ -144,10 +174,23 @@ Using ``>`` operator for chained assertion instead of ``which``/``that`` operato
     {'foo': True} | expect.to.have.key('foo') > expect.to.be.true
 
 
-Using ``|`` for multiple assertions composition (equivalent to ``all``/``and`` composition):
+More complex chained assertions:
 
 .. code-block:: python
 
-    {'foo': True} | should.be.a('dict') | should.have.key('foo') | should.have.length.of(1)
+    (object
+        | should.have.property('foo')
+        > should.be.a('tuple')
+        > should.have.length.of(3)
+        > should.be.equal.to(('foo', 'bar', 'baz')))
 
-    {'foo': True} | expect.to.be.a('dict') | expect.to.have.key('foo') | expect.to.have.length.of(1)
+.. code-block:: python
+
+    (dictionary
+        | should.have.key('foo')
+        > should.be.a('list')
+        > should.have.length.of(3)
+        > should.be.equal.to(['foo', 'bar', 'baz']))
+
+
+.. _installation: http://grappa.readthedocs.io/en/latest/intro.html#installation

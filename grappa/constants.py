@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 
 # True if running Python 2.x

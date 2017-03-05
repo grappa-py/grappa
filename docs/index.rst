@@ -21,7 +21,7 @@ Contents
    history
 
 
-.. include:: ../README.rst
+.. include:: intro.rst
 
 
 Indices and tables

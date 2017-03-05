@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -27,18 +28,18 @@ class CallableOperator(Operator):
     # Operator keywords
     operators = ('callable',)
 
-    # Parent operators
-    parent = []
-
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a callable object, such as a function or method'
+        'a callable object, such as a function or method',
+        'a non callable object, such as a function or method'
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
         'an object which is a "{type}" type'
     )
 
+    # Assertion information
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(

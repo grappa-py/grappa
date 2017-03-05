@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Import test module
 from .test import Test, TestProxy
 # Expose plugin module as part of the public API

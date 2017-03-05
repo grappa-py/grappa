@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -26,15 +27,18 @@ class NoneOperator(Operator):
     # Operator keywords
     operators = ('none',)
 
-    # Error message templates
+    # Expected message templates
     expected_message = Operator.Dsl.Message(
         'a value that is exactly equal to "None"',
         'a value that is not equal to "None"',
     )
+
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an object with type "{type}"',
+        'an object with type "{type}" with value "{value}"',
     )
 
+    # Assertion information
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(

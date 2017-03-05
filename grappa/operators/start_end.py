@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 import collections
+
 from ..operator import Operator
 from ..constants import STR_TYPES
 
@@ -64,17 +66,17 @@ class StartWithOperator(StarEndBaseOpeartor):
     """
 
     # Operator keywords
-    operators = (
-        'start_with', 'starts_with',
+    operators = ('start_with', 'starts_with')
+
+    # Expected template message
+    expected_message = Operator.Dsl.Message(
+        'an object that starts with items "{value}"',
+        'an object that does not start with items "{value}"',
     )
 
-    # Error message templates
-    expected_message = Operator.Dsl.Message(
-        'a value that is not "None" and "len(x)" is higher than zero'
-    )
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an object with type "{type}" which its length '
-        'cannot be measured via "len(x)"'
+        'an object of type "{type}" with value "{value}"',
     )
 
     def matches(self, subject, *expected):
@@ -127,13 +129,15 @@ class EndWithOperator(StarEndBaseOpeartor):
     # Operator keywords
     operators = ('end_with', 'ends_with')
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a value that is not "None" and "len(x)" is higher than zero'
+        'an object that ends with items "{value}"',
+        'an object that does not end with items "{value}"',
     )
+
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an object with type "{type}" which its length '
-        'cannot be measured via "len(x)"'
+        'an object of type "{type}" with value "{value}"',
     )
 
     def matches(self, subject, *expected):

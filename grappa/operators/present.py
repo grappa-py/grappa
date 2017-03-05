@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -5,6 +6,8 @@ class PresentOperator(Operator):
     """
     Asserts if a given subject is not ``None`` or a negative value
     if evaluated via logical unary operator.
+
+    This operator is the opposite of ``empty``.
 
     Example::
 
@@ -30,28 +33,18 @@ class PresentOperator(Operator):
     # Expected
     expected = 'a value which is not None and has data'
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a "True" value'
+        'a value that is not None and its length is not "0"',
+        'a value that is None or its length is "0"'
     )
 
-    subject_message = Operator.Dsl.Message(
-        'a "True" value',
-        'a value which is not "True"',
-    )
-
+    # Assertion information
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(
-                'An empty object is typically tested via "len(x)"',
-                'built-in function. Most built-in types and objects in Python',
-                'can be tested that way, such as str, list, generator...',
-                'as well as any object that implements "__len__()" method',
-                'and returns "0" as length.'
-            ),
-            Operator.Dsl.Reference(
-                'https://docs.python.org/3/library/functions.html#len'
-            ),
+                'An present object is the oposite of an empty object.'
+            )
         ),
     )
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 import linecache
 import traceback
@@ -16,7 +17,7 @@ class BaseReporter(object):
         self.ctx = ctx
         self.error = error
 
-    def cut(self, value, size=30):
+    def cut(self, value, size=50):
         text = str(value)
         return text[0:size] + ' ...' if len(text) > size else text
 

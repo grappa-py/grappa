@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import inspect
 import functools
 
@@ -9,7 +10,7 @@ from .exceptions import GrappaAssertionError
 
 class OperatorTypes(object):
     """
-    OperatorType is used as struct to store the operator types flags.
+    OperatorTypes is used as struct to store the operator types flags.
     """
     # Attribute operators have no validation logic and only defines chained
     # API DSL keywords, typically for test declaration purposes.

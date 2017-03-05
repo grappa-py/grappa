@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import collections
 from ..operator import Operator
 
@@ -36,21 +37,21 @@ class ContainOperator(Operator):
     # Operator keywords
     operators = ('contain', 'contains', 'includes')
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = ('value', 'item', 'string', 'text', 'expression', 'data')
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
         'a value that contains "{value}"',
         'a value that does not contains "{value}"',
     )
+
+    # Subject template message
     subject_message = Operator.Dsl.Message(
         'an value of type "{type}" with content "{value}"',
     )
 
-    def after_error(self, error, value, expected=None):
-        pass
-
+    # Stores types to normalize before the assertion
     NORMALIZE_TYPES = (
         collections.Iterator,
         collections.MappingView,
@@ -74,27 +75,26 @@ class ContainOperator(Operator):
 
         for expected_item in expected:
             matches_any, reason = self._matches_any(expected_item, subject)
+            reasons.append(reason)
 
             if not matches_any:
                 return False, [reason]
-            else:
-                reasons.append(reason)
 
         return True, reasons
 
     def _matches_any(self, expected, subject):
+        print(':::: subject ->', subject)
         if len(subject) == 0:
-            return False, 'is empty'
+            return False, 'empty item'
 
         if isinstance(subject, str):
             if expected in subject:
                 return True, 'item {0!r} found'.format(expected)
             return False, 'item {0!r} not found'.format(expected)
 
-        # expected = default_matcher(expected)
         for item in subject:
-            matches, _ = expected._match(item)
-            if matches:
+            print('::::', item, expected, item == expected)
+            if item == expected:
                 return True, 'item {0!r} found'.format(expected)
 
         return False, 'item {0!r} not found'.format(expected)

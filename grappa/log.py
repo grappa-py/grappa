@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import logging
 from colorama import Fore, Style
@@ -7,7 +8,7 @@ log = logging.getLogger('grappa')
 
 # Custom log message formatter with colored output
 formatter = logging.Formatter(
-    u'{}\u25B8{} {}[grappa]{} {}%(asctime)s{} | %(message)s'.format(
+    u'{}=>{} {}[grappa]{} {}%(asctime)s{} | %(message)s'.format(
         Fore.GREEN,
         Style.RESET_ALL,
         Fore.MAGENTA,

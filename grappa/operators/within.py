@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -37,17 +38,15 @@ class WithinOperator(Operator):
     # Operator keywords
     aliases = ('to', 'numbers', 'range')
 
-    # Expected
-    expected = 'a "True" boolean value'
-
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a number value'
+        'a number that is within range {value}',
+        'a number that is not within range {value}'
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'a "True" value',
-        'a value which is not "True"',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, start, end):

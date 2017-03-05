@@ -121,3 +121,40 @@ Into this:
         282|          should.have.type('string')
         283|
         284|      with should('foo'):
+
+
+Dependency injection using fixtures
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to minimize boilerplate across tests, you can create a ``pytest`` fixture
+that would be automatically injected via across test functions/methods in your test suites:
+
+First, create a ``conftest.py`` file in the directory where your test files lives with the following content:
+
+.. code-block:: python
+
+    # tests/conftest.py
+    import pytest
+    from grappa import should as _should, expect as _expect
+
+    @pytest.fixture
+    def should():
+        return _should
+
+
+    @pytest.fixture
+    def expect():
+        return _expect
+
+Then, from a test file module, you can simply declare a test function that accepts a fixture argument, such as:
+
+.. code-block:: python
+
+    # tests/sample_test.py
+
+    def test_should_fixture(should):
+        'foo' | should.have.length.of(3) | should.be.equal.to('foo')
+
+
+    def test_expect_fixture(expect):
+        'foo' | expect.to.have.length.of(3) | expect.to.be.equal.to('foo')

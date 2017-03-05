@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 import functools
+
 
 # List of unsupported binary operators
 unsupported_operators = (

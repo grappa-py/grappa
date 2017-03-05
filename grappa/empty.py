@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class Empty(object):
     """
     Empty object represents emptyness state in `grappa`.

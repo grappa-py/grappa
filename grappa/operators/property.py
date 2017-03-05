@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -38,19 +39,20 @@ class PropertyOperator(Operator):
     kind = Operator.Type.MATCHER
 
     # Operator keywords
-    operators = ('properties', 'property')
+    operators = ('properties', 'property', 'attribute', 'attributes')
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = ('present', 'equal', 'to')
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a property with name "{value}"',
-        'a number that is within the given range',
+        'an object that has the following properties "{value}"',
+        'an object that has not the following properties "{value}"',
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an unexpected range number {value}',
+        'an object of type "{type}" with data "{value}"',
     )
 
     def after_success(self, obj, *keys):

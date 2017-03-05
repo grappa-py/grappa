@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import collections
 
 from ..operator import Operator
@@ -32,17 +33,18 @@ class KeysOperator(Operator):
     # Operator keywords
     operators = ('keys', 'key',)
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = ('present', 'equal', 'to')
 
-    # Error message templates
+    # Expected message templates
     expected_message = Operator.Dsl.Message(
-        'a number that is within the given range',
-        'a number that is within the given range',
+        'a dictionary-like object that has the key(s) "{value}"',
+        'a dictionary-like object that has not the key(s) "{value}"',
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an unexpected range number {value}',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def after_success(self, obj, *keys):

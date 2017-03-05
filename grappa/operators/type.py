@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import types
 import inspect
 from array import array
@@ -104,25 +105,28 @@ class TypeOperator(Operator):
     # Operator keywords
     operators = ('type', 'types', 'a', 'an', 'instance')
 
-    # Chain alias keywords
+    # Operator chain aliases
     aliases = ('type', 'types', 'of', 'equal', 'to')
 
-    # Subject message
-    subject_message = Operator.Dsl.Message(
-        'an object that is a "{type}" type'
+    # Subject message template
+    expected_message = Operator.Dsl.Message(
+        'an object that is a "{value}" type',
+        'an object that is not a "{value}" type'
     )
 
-    # Error message templates
-    expected_message = Operator.Dsl.Message(
-        'an object that is a "{type}" type'
+    # Subject template message
+    subject_message = Operator.Dsl.Message(
+        'an object of type "{type}" with value "{value}"'
     )
 
     def match(self, value, expected):
         # Custom expectations yielded values
         self.value = type(value).__name__
+        self.expected = type(expected).__name__
 
         # Get type alias
         if type(expected) is str:
+            self.expected = expected
             _expected = MAPPINGS.get(expected)
 
             if not _expected:

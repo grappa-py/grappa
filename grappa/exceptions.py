@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class GrappaAssertionError(AssertionError):
     """
     GrappaAssertionError represents an internal grappa assertion error

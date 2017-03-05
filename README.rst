@@ -10,19 +10,21 @@ About
 -----
 
 ``grappa`` is a behavior-oriented, self-declarative, expressive and developer-friendly
-lightweight assertion library for Python that aims to be easy to use, adopt and hack.
+lightweight assertion library for Python_.
 
-``grappa`` comes with two flavors: ``expect`` and ``should`` declarative assertion styles.
-It also comes with a gentle, human-friendly and frictionless error reporting built-in.
+``grappa`` comes with two declarative `assertion styles`_: ``expect`` and ``should``.
 
-To get started, take a look to the `documentation`_.
+It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction
+and improve human agility while testing and fixing software.
+
+To get started, take a look to the `documentation`_ and `tutorial`_.
 
 Status
 ------
 
-``grappa`` is currently beta quality software and under active development and improvements.
+``grappa`` is currently **beta quality** software and under active development and improvements.
 
-API is not stable yet and prone to introduce breaking changes.
+API is not stable yet and still prone to introduce breaking changes.
 
 Why grappa?
 -----------
@@ -79,6 +81,9 @@ Or install the latest sources from Github:
 
 .. _Python: http://python.org
 .. _`documentation`: http://grappa.readthedocs.io
+.. _`tutorial`: http://grappa.readthedocs.io/en/latest/tutorial.html
+.. _`error reporting`: http://grappa.readthedocs.io/en/latest/errors.html
+.. _`assertion styles`: http://grappa.readthedocs.io/en/latest/style.html
 
 .. |Build Status| image:: https://travis-ci.org/grappa-python/grappa.svg?branch=master
    :target: https://travis-ci.org/grappa-python/grappa

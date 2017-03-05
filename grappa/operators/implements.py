@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import inspect
 import functools
 from ..operator import Operator
@@ -50,27 +51,31 @@ class ImplementsOperator(Operator):
     # Operator keywords
     operators = ('implements', 'implement', 'satisfies', 'satisfy')
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = ('interface', 'methods', 'method')
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a value that contains "{value}"',
-        'a value that does not contains "{value}"',
-    )
-    subject_message = Operator.Dsl.Message(
-        'an value of type "{type}" with content "{value}"',
+        'an object that implements the following members "{value}"',
+        'an object that does not implement the following members "{value}"',
     )
 
+    # Subject template message
+    subject_message = Operator.Dsl.Message(
+        'an object of type "{type}" with content "{value}"',
+    )
+
+    # Assertion information
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(
-                '"None" is a built-in constant in Python that represents the',
-                'absence of a value, as when default arguments are not passed',
-                'to a function. The sole value of the type NoneType.',
+                'Object interface implementation is verified by using the',
+                'Python built-in function "hasattr" along with',
+                '"inspect.ismethod()" function in order to infer if a given',
+                'object implements the required methods.'
             ),
             Operator.Dsl.Reference(
-                'https://docs.python.org/3/library/constants.html#None'
+                'https://docs.python.org/3.6/library/functions.html#hasattr'
             ),
         ),
     )

@@ -1,6 +1,9 @@
 Errors
 ======
 
+``grappa`` comes with a built-in detailed, human-friendly `error reporting`_ system
+that aims to reduce friction and improve human agility while testing and fixing software.
+
 Errors Reporting
 ----------------
 

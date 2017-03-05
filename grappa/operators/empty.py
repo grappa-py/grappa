@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import numbers
 from ..operator import Operator
 
 
@@ -29,26 +31,24 @@ class EmptyOperator(Operator):
     # Operator keywords
     operators = ('empty',)
 
-    # Parent operators
-    parent = []
-
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a value that is not "None" and "len(x)" is higher than zero'
-    )
-    subject_message = Operator.Dsl.Message(
-        'an object with type "{type}" which its length '
-        'cannot be measured via "len(x)"'
+        'a value that is not "None" and its length is higher than zero'
     )
 
+    # Subject template message
+    subject_message = Operator.Dsl.Message(
+        'an object with type "{type}" which its length cannot be measured'
+    )
+
+    # Assertion information
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(
-                'An empty object is typically tested via "len(x)"',
-                'built-in function. Most built-in types and objects in Python',
-                'can be tested that way, such as str, list, generator...',
-                'as well as any object that implements "__len__()" method',
-                'and returns "0" as length.'
+                'An empty object can be "None", "0" or "len(x) == 0".',
+                'Most objects in Python can be tested via "len(x)"',
+                'such as str, list, tuple, dict, generator...',
+                'as well as any object that implements "__len__()" method.',
             ),
             Operator.Dsl.Reference(
                 'https://docs.python.org/3/library/functions.html#len'
@@ -57,11 +57,14 @@ class EmptyOperator(Operator):
     )
 
     def match(self, subject):
-        if subject is None:
+        if subject is None or subject is 0:
             return True
 
-        if subject == 0:
-            return True
+        if subject in (True, False):
+            return False
+
+        if isinstance(subject, numbers.Number) and subject != 0:
+            return False
 
         try:
             return len(subject) == 0
@@ -69,5 +72,7 @@ class EmptyOperator(Operator):
             try:
                 next(subject)
             except StopIteration:
+                return True
+            except Exception:
                 return True
         return False

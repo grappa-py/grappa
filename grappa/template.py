@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import functools
 from colorama import Fore, Style
 
@@ -28,12 +29,13 @@ class ErrorTemplate(object):
         return Style.RESET_ALL if config.use_colors else ''
 
     def map_iterable(self, content):
+        margin = ' ' * 4
         if type(content[0]) is str:
-            return ('\n' + (' ' * 4)).join(
-                u'\u25B8 ' + item for item in content if item
+            return ('\n' + margin).join(
+                '> ' + item for item in content if item
             )
 
-        return ('\n\n' + (' ' * 4)).join(
+        return ('\n\n' + margin).join(
             item.render(ErrorTemplate.separator)
             for item in content
             if hasattr(item, 'render')

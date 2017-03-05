@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 from ..operator import Operator
@@ -36,20 +37,21 @@ class MatchOperator(Operator):
     # Operator keywords
     operators = ('match', 'matches')
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = (
         'value', 'string', 'expression', 'token',
         'to', 'regex', 'regexp', 'word', 'phrase'
     )
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a property with name "{value}"',
-        'a number that is within the given range',
+        'a string that matches the expression "{value}"',
+        'a string that does not match the expression "{value}"',
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an unexpected range number {value}',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, expected, *args):
@@ -63,7 +65,4 @@ class MatchOperator(Operator):
                     type(expected))
             ]
 
-        return self._matches(subject, expected, *args), []
-
-    def _matches(self, subject, expected, *args):
-        return re.search(expected, subject, *args) is not None
+        return re.search(expected, subject, *args) is not None, []

@@ -325,11 +325,16 @@ Asserts if a given subject is ``None``.
     'foo' | expect.to_not.be.none
 
 
+exists
+^^^^^^
+
 present
 ^^^^^^^
 
 Asserts if a given subject is not ``None`` or a negative value
 if evaluated via logical unary operator.
+
+This operator is the opposite of empty_.
 
 =======================  ========================
  **Type**                accessor
@@ -805,6 +810,12 @@ property
 ^^^^^^^^^
 
 properties
+^^^^^^^^^^
+
+attribute
+^^^^^^^^^
+
+attributes
 ^^^^^^^^^^
 
 Asserts if a given object has property or properties.

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -49,17 +50,15 @@ class BelowOperator(Operator):
     # Operator keywords
     aliases = ('of', 'to', 'number', 'than')
 
-    # Expected
-    expected = 'a "True" boolean value'
-
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a number value'
+        'a number that is below to {value}',
+        'a number that is not below to {value}'
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'a "True" value',
-        'a value which is not "True"',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, expected):
@@ -120,14 +119,15 @@ class AboveOperator(BelowOperator):
     # Expected
     expected = 'a "True" boolean value'
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a number value'
+        'a number that is above to {value}',
+        'a number that is not above to {value}'
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'a "True" value',
-        'a value which is not "True"',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, expected):
@@ -192,14 +192,15 @@ class AboveOrEqualOperator(BelowOperator):
     # Expected
     expected = 'a "True" boolean value'
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a number value'
+        'a number that is higher or equal to {value}',
+        'a number that is not higher or equal to {value}'
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'a "True" value',
-        'a value which is not "True"',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, expected):
@@ -264,14 +265,15 @@ class BelowOrEqualOperator(BelowOperator):
     # Expected
     expected = 'a "True" boolean value'
 
-    # Error message templates
+    # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a number value'
+        'a number that is below or equal to {value}',
+        'a number that is not below or equal to {value}'
     )
 
+    # Subject template message
     subject_message = Operator.Dsl.Message(
-        'a "True" value',
-        'a value which is not "True"',
+        'an object of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, expected):

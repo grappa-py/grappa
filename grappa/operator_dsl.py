@@ -14,7 +14,7 @@ class Message(object):
 
 class Description(object):
 
-    ARROW = '\u25B8'
+    ARROW = '>'
 
     def __init__(self, *text):
         self.value = text
@@ -26,7 +26,7 @@ class Description(object):
 
 class Reference(object):
 
-    TOKEN = '\u2014'
+    TOKEN = '=>'
     TEXT = 'Reference'
 
     def __init__(self, url=None):

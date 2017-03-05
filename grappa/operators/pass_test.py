@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import inspect
 from ..operator import Operator
 
@@ -31,26 +32,15 @@ class PassTestOperator(Operator):
     # Operator keywords
     operators = ('pass_test', 'pass_function')
 
-    # Error message templates
+    # Expected message template
     expected_message = Operator.Dsl.Message(
-        'a value that contains "{value}"',
-        'a value that does not contains "{value}"',
-    )
-    subject_message = Operator.Dsl.Message(
-        'an value of type "{type}" with content "{value}"',
+        'a value that passes the test function',
+        'a value that does not pass the test function',
     )
 
-    information = (
-        Operator.Dsl.Help(
-            Operator.Dsl.Description(
-                '"None" is a built-in constant in Python that represents the',
-                'absence of a value, as when default arguments are not passed',
-                'to a function. The sole value of the type NoneType.',
-            ),
-            Operator.Dsl.Reference(
-                'https://docs.python.org/3/library/constants.html#None'
-            ),
-        ),
+    # Subject template message
+    subject_message = Operator.Dsl.Message(
+        'an value of type "{type}" with value "{value}"',
     )
 
     def match(self, subject, fn):

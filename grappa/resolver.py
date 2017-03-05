@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .empty import empty
 from .assertion import AssertionProxy
 

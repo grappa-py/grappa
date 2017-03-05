@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ..operator import Operator
 
 
@@ -36,7 +37,7 @@ class EqualOperator(Operator):
     # Operator keywords
     operators = ('equal', 'same')
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = ('value', 'data', 'to', 'of', 'as')
 
     # Error message templates

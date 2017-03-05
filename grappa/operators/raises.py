@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import inspect
 from ..operator import Operator
 
@@ -38,18 +39,18 @@ class RaisesOperator(Operator):
     # Operator keywords
     operators = ('raises', 'raise_error', 'raise_errors')
 
-    # Operaror chain aliases
+    # Operator chain aliases
     aliases = ('to', 'that', 'are', 'instance', 'of')
 
     # Expected template message
     expected_message = Operator.Dsl.Message(
-        'a value that contains "{value}"',
-        'a value that does not contains "{value}"',
+        'a callable object that raises the exception(s) "{value}"',
+        'a callable object that do not raise the exception(s) "{value}"',
     )
 
     # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an value of type "{type}" with content "{value}"',
+        'an object of type "{type}" with reference "{value}"',
     )
 
     def match(self, fn, *errors):

@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import inspect
 import functools
 from .engine import Engine
 from .operator import Operator
+
 
 # Explicit module members to export
 __all__ = (
