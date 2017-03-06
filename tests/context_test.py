@@ -21,5 +21,6 @@ def test_context(should):
     ctx.has('foo') | should.be.true
     ctx.has('baz') | should.be.false
 
-    ctx.__repr__() | should.be.equal.to(
-        "{'negate': False, 'foo': 'bar', 'bar': True}")
+    ctx.__repr__() | should.contain("'negate': False")
+    ctx.__repr__() | should.contain("'foo': 'bar'")
+    ctx.__repr__() | should.contain("'bar': True")

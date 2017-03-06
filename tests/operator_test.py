@@ -17,7 +17,7 @@ def test_operator_types(should):
 def test_operator(should):
     Operator | should.be.a('class')
 
-    Operator | should.have.property('run') > should.be.a('method')
+    Operator | should.have.property('run')
     Operator | should.have.property('Type') > should.be.equal.to(OperatorTypes)
 
     (Operator

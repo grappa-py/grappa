@@ -44,9 +44,9 @@ The Zen of grappa
 - Frictionless testing: introducing self-declarative behavior testing patterns can make testing more fun for test writers and more enjoyable for test readers.
 - Expressivity is paramount: humans should easily understand what the code is doing.
 - Human time is expensive: any modern software should assist people to identify and understand errors easily.
-- Make error reporting great again: feedback in testing is key, let's make it more handy and less frustration as possible.
+- Make error reporting great again: feedback during testing is key, let's make it more handy and less frustrating.
 - Testing patterns consolidation: software expectations are limited to the boundaries of language data types and structures.
-- Less hurt feelings: seeing errors is not a good thing, but it can be less frustrating if things are told you in a more gentle way.
+- Do not hurt feelings: seeing errors is not a nice thing, but it can be painless if details are showed you in a more gentle way.
 
 
 Features
