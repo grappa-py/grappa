@@ -6,6 +6,12 @@ def test_expect_keys(should):
     {'foo': 'bar'} | should.have.key('foo') > should.be.equal.to('bar')
     'bar' | should.be.equal.to('bar')
 
+    ({'foo': {'bar': True}}
+        | should.have.key('foo')
+        > should.be.a('dict')
+        > should.have.key('bar')
+        > should.be.equal.to({'bar': True}))
+
     should({'foo': 'bar'}).have.key('foo') > should.be.equal.to('bar')
     should({'foo': 'bar'}).have.key('foo').which.should.be.equal.to('bar')
 
