@@ -47,4 +47,8 @@ release: clean publish
 	@tar czf $(filename) grappa setup.py README.rst LICENSE
 
 publish:
-	@python setup.py sdist register upload
+	@echo "$(OK_COLOR)==> Releasing package $(version)...$(NO_COLOR)"
+	@python setup.py register
+	@python setup.py sdist upload
+	@python setup.py bdist_wheel --universal upload
+	@rm -fr build dist .egg pook.egg-info
