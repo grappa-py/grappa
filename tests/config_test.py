@@ -22,9 +22,9 @@ def test_config(should):
         > should.be.equal.to(grappa.config.defaults))
 
     # Test define properties
-    conf.debug = True
+    conf.debug = False
     conf.show_code = True
-    conf | should.have.property('debug') > should.be.true
+    conf | should.have.property('debug') > should.be.false
     conf | should.have.property('show_code') > should.be.true
 
     # Invalid config option should raise an error
