@@ -17,7 +17,7 @@ lightweight assertion library for Python_.
 It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction
 and improve human agility while testing and fixing software.
 
-To get started, take a look to the `documentation`_ and `tutorial`_.
+To get started, take a look to the `documentation`_, `tutorial`_ and `assertion operators`_.
 
 Status
 ------
@@ -84,6 +84,7 @@ Or install the latest sources from Github:
 .. _`tutorial`: http://grappa.readthedocs.io/en/latest/tutorial.html
 .. _`error reporting`: http://grappa.readthedocs.io/en/latest/errors.html
 .. _`assertion styles`: http://grappa.readthedocs.io/en/latest/style.html
+.. _`assertion operators`: http://grappa.readthedocs.io/en/latest/operators.html
 
 .. |Build Status| image:: https://travis-ci.org/grappa-python/grappa.svg?branch=master
    :target: https://travis-ci.org/grappa-python/grappa

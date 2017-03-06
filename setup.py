@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """
 grappa
-====
-Expressive and extensible BDD style assertions for Python.
+======
+Behavior-oriented, expressive assertion library for Python.
 
-:copyright: (c) 2016 Tomas Aparicio
+:copyright: (c) 2017 Tomas Aparicio
 :license: MIT
 """
 
