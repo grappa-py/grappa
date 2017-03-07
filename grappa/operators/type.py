@@ -56,7 +56,7 @@ class TypeOperator(Operator):
         (1, 2, 3) | should.be.a('tuple')
         (1, 2, 3) | should.have.type.of(tuple)
         (lamdba x: x) | should.be.a('lambda')
-        'foo' | should.be.instance.of('str')
+        'foo' | should.be.instance.of('string')
 
         # Should style - negation form
         1 | should.not_be.an('int')
@@ -83,6 +83,7 @@ class TypeOperator(Operator):
         (1, 2, 3) | expect.to.be.a('tuple')
         (1, 2, 3) | expect.to.have.type.of(tuple)
         (lamdba x: x) | expect.to.be.a('lambda')
+        'foo' | expect.to.be.instance.of('string')
 
         # Expect style - negation form
         1 | expect.to_not.be.an('int')
@@ -96,7 +97,7 @@ class TypeOperator(Operator):
         (1, 2, 3) | expect.to_not.be.a('tuple')
         (1, 2, 3) | expect.to_not.have.type.of(tuple)
         (lamdba x: x) | expect.to_not.be.a('lambda')
-        'foo' | expect.to.be.instance.of('str')
+        'foo' | expect.to_not.be.instance.of('string')
     """
 
     # Is the operator a keyword

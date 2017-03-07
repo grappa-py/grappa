@@ -481,7 +481,8 @@ Supported type aliases:
     (1, 2, 3) | should.be.a('tuple')
     (1, 2, 3) | should.have.type.of(tuple)
     (lamdba x: x) | should.be.a('lambda')
-    'foo' | should.be.instance.of('str')
+    'foo' | should.be.instance.of('string')
+    'foo' | expect.be.types('string', 'int')
 
 .. code-block:: python
 
@@ -496,7 +497,8 @@ Supported type aliases:
     (1, 2, 3) | expect.to.be.a('tuple')
     (1, 2, 3) | expect.to.have.type.of(tuple)
     (lamdba x: x) | expect.to.be.a('lambda')
-    'foo' | expect.to.be.instance.of('str')
+    'foo' | expect.to.be.instance.of('string')
+    'foo' | expect.to.be.types('string', 'int')
 
 **Negation form**:
 
@@ -513,6 +515,8 @@ Supported type aliases:
     (1, 2, 3) | should.not_be.a('tuple')
     (1, 2, 3) | should.have_not.type.of(tuple)
     (lamdba x: x) | should.not_be.a('lambda')
+    'foo' | should.not_to.be.instance.of('string')
+    'foo' | should.not_to.be.types('string', 'int')
 
 .. code-block:: python
 
@@ -527,6 +531,8 @@ Supported type aliases:
     (1, 2, 3) | expect.to_not.be.a('tuple')
     (1, 2, 3) | expect.to_not.have.type.of(tuple)
     (lamdba x: x) | expect.to_not.be.a('lambda')
+    'foo' | expect.to.not_to.be.instance.of('string')
+    'foo' | expect.to.not_to.be.types('string', 'int')
 
 
 contain
