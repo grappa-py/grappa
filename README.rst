@@ -4,7 +4,7 @@
    :align: center
 
 
-|Build Status| |PyPI| |Coverage Status| |Documentation Status| |Stability| |Quality| |Versions|
+|Build Status| |PyPI| |Coverage Status| |Documentation Status| |Stability| |Quality| |Versions| |SayThanks|
 
 About
 -----
@@ -103,3 +103,6 @@ Or install the latest sources from Github:
 .. |Versions| image:: https://img.shields.io/pypi/pyversions/grappa.svg
    :target: https://pypi.python.org/pypi/grappa
    :alt: Python Versions
+.. |SayThanks| image:: https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg
+   :target: https://saythanks.io/to/h2non
+   :alt: Say Thanks
