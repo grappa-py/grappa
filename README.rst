@@ -89,10 +89,10 @@ Or install the latest sources from Github:
 .. |Build Status| image:: https://travis-ci.org/grappa-python/grappa.svg?branch=master
    :target: https://travis-ci.org/grappa-python/grappa
 .. |PyPI| image:: https://img.shields.io/pypi/v/grappa.svg?maxAge=2592000?style=flat-square
-   :target: https://pypi.python.org/pypi/paco
+   :target: https://pypi.python.org/pypi/grappa
 .. |Coverage Status| image:: https://coveralls.io/repos/github/grappa-python/grappa/badge.svg?branch=master
    :target: https://coveralls.io/github/grappa-python/grappa?branch=master
-.. |Documentation Status| image:: https://readthedocs.org/projects/paco/badge/?version=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/grappa/badge/?version=latest
    :target: http://grappa.readthedocs.io/en/latest/?badge=latest
 .. |Quality| image:: https://codeclimate.com/github/grappa-python/grappa/badges/gpa.svg
    :target: https://codeclimate.com/github/grappa-python/grappa
