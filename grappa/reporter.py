@@ -106,11 +106,8 @@ class SubjectMessageReporter(BaseReporter):
             return None
 
         # Custom value human-friendly message
-        value = getattr(self.ctx, self.attribute, None)
-
-        # Value should not be empty
-        if value is None or value is empty:
-            value = self.from_operator(self.attribute, value)
+        value = self.from_operator(self.attribute,
+                                   getattr(self.ctx, self.attribute, None))
 
         if value is None:
             return None if self.attribute == 'expected' else 'None'
