@@ -146,6 +146,10 @@ class Test(BaseTest):
             self._root._engine.reset()
 
             # Update yielded value from asserion
+            if self._ctx.yielded not in (None, empty):
+                self._ctx.subject = self._ctx.yielded
+
+            # Update yielded value from asserion
             if self._ctx.value not in (None, empty):
                 self._ctx.subject = self._ctx.value
 

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
+import os
+import difflib
 import linecache
 import traceback
 import functools
@@ -21,14 +23,22 @@ class BaseReporter(object):
         text = str(value)
         return text[0:size] + ' ...' if len(text) > size else text
 
+    def linefy(self, value):
+        return str(value).replace(os.linesep, r'\n')
+
     def normalize(self, value, size=20):
         if value is None:
             return value
 
+        try:
+            value = str(value)
+        except:
+            value = value
+
         if not hasattr(value, '__len__'):
             return value
 
-        return self.cut(value)
+        return self.linefy(self.cut(value))
 
     def safe_length(self, value):
         try:
@@ -79,6 +89,7 @@ class AssertionReporter(BaseReporter):
 
         # Expected value
         expected = self.from_operator('expected', self.ctx.expected)
+
         if isinstance(expected, tuple):
             if len(expected) == 0:
                 expected = empty
@@ -278,6 +289,40 @@ class CodeReporter(BaseReporter):
         return self.render_code(trace) if trace else None
 
 
+class DiffReporter(BaseReporter):
+    """
+    Outputs the comparison differences result between the
+    subject/expected objects.
+    """
+
+    title = 'Difference comparison'
+
+    def run(self, error):
+        # Ensure operator enables diff reporter, otherwise just exit
+        show_diff = all([
+            not self.ctx.show_diff, not self.from_operator('show_diff', False)
+        ])
+        if not show_diff:
+            return
+
+        # Match if the given operator implements a custom differ
+        differ = self.from_operator('differ', None)
+        if differ:
+            return error.operator.differ()
+
+        # Obtain subject/expected values
+        subject = str(self.from_operator('subject', self.ctx.subject))
+        expected = str(self.from_operator('expected', self.ctx.expected))
+
+        # Diff subject and expected values
+        data = list(difflib.ndiff([subject], [expected]))
+
+        # Remove trailing line feed
+        data[-1] = data[-1].replace(os.linesep, '')
+
+        return data
+
+
 class ErrorReporter(object):
     """
     ErrorReporter renders the current error code.
@@ -293,6 +338,7 @@ class ErrorReporter(object):
         ExpectedMessageReporter,
         SubjectMessageReporter,
         InformationReporter,
+        DiffReporter,
         CodeReporter,
     ]
 
