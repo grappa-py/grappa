@@ -118,7 +118,10 @@ class SubjectMessageReporter(BaseReporter):
 
         # Custom value human-friendly message
         value = self.from_operator(self.attribute,
-                                   getattr(self.ctx, self.attribute, None))
+                                   getattr(self.ctx, self.attribute, empty))
+
+        if value is empty:
+            return None
 
         if value is None:
             return None if self.attribute == 'expected' else 'None'
@@ -314,6 +317,10 @@ class DiffReporter(BaseReporter):
         # Obtain subject/expected values
         subject = str(self.from_operator('subject', self.ctx.subject))
         expected = str(self.from_operator('expected', self.ctx.expected))
+
+        # Expected results
+        if isinstance(expected, tuple) and len(expected) == 1:
+            expected = expected[0]
 
         # Diff subject and expected values
         data = list(difflib.ndiff([subject], [expected]))
