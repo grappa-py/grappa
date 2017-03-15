@@ -26,6 +26,30 @@ Status
 
 API is not stable yet and still prone to introduce breaking changes.
 
+In a nutshell
+-------------
+
+Just a small example of `grappa` capabilities:
+
+.. code-block:: python
+
+    from grappa import should
+
+    True | should.be.true
+    'bar' | should.be.equal.to('foo')
+    13.14 | should.be.higher.than(13)
+
+    {'foo': True} | should.be.a('dict')
+    [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
+    (lambda x: x) | should.not_be.have.type.of('lambda')
+
+    {'foo': 'bar'} | should.have.key('foo') > should.be.equal('bar')
+
+    an_object | should.have.properties('foo', 'bar', 'baz')
+    an_object | should.implement.methods('foo', 'bar', 'baz')
+
+See `documentation`_ for more examples.
+
 Why grappa?
 -----------
 
