@@ -299,8 +299,9 @@ class DiffReporter(BaseReporter):
 
     def run(self, error):
         # Ensure operator enables diff reporter, otherwise just exit
-        show_diff = all([
-            not self.ctx.show_diff, not self.from_operator('show_diff', False)
+        show_diff = any([
+            self.ctx.show_diff,
+            self.from_operator('show_diff', False)
         ])
         if not show_diff:
             return
