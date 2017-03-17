@@ -1,4 +1,4 @@
-.. image:: http://i.imgur.com/BIcvhtP.jpg
+.. image:: http://i.imgur.com/kKZPYut.jpg
    :width: 100%
    :alt: grappa logo
    :align: center
