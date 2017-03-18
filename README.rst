@@ -70,7 +70,7 @@ The Zen of grappa
 - Human time is expensive: any modern software should assist people to identify and understand errors easily.
 - Make error reporting great again: feedback during testing is key, let's make it more handy and less frustrating.
 - Testing patterns consolidation: software expectations are limited to the boundaries of language data types and structures.
-- Do not hurt feelings: seeing errors is not a nice thing, but it can be painless if details are showed you in a more gentle way.
+- Hurt less feelings: seeing errors is not a nice thing, but it can be painless if details are showed you in a more gentle way.
 
 
 Features
@@ -100,7 +100,7 @@ Or install the latest sources from Github:
 
 .. code-block:: bash
 
-    pip install -e git+git://github.com/grappa-python/grappa.git#egg=grappa
+    pip install -e git+git://github.com/grappa-py/grappa.git#egg=grappa
 
 
 .. _Python: http://python.org
@@ -110,16 +110,16 @@ Or install the latest sources from Github:
 .. _`assertion styles`: http://grappa.readthedocs.io/en/latest/style.html
 .. _`assertion operators`: http://grappa.readthedocs.io/en/latest/operators.html
 
-.. |Build Status| image:: https://travis-ci.org/grappa-python/grappa.svg?branch=master
-   :target: https://travis-ci.org/grappa-python/grappa
+.. |Build Status| image:: https://travis-ci.org/grappa-py/grappa.svg?branch=master
+   :target: https://travis-ci.org/grappa-py/grappa
 .. |PyPI| image:: https://img.shields.io/pypi/v/grappa.svg?maxAge=2592000?style=flat-square
    :target: https://pypi.python.org/pypi/grappa
-.. |Coverage Status| image:: https://coveralls.io/repos/github/grappa-python/grappa/badge.svg?branch=master
-   :target: https://coveralls.io/github/grappa-python/grappa?branch=master
+.. |Coverage Status| image:: https://coveralls.io/repos/github/grappa-py/grappa/badge.svg?branch=master
+   :target: https://coveralls.io/github/grappa-py/grappa?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/grappa/badge/?version=latest
    :target: http://grappa.readthedocs.io/en/latest/?badge=latest
-.. |Quality| image:: https://codeclimate.com/github/grappa-python/grappa/badges/gpa.svg
-   :target: https://codeclimate.com/github/grappa-python/grappa
+.. |Quality| image:: https://codeclimate.com/github/grappa-py/grappa/badges/gpa.svg
+   :target: https://codeclimate.com/github/grappa-py/grappa
    :alt: Code Climate
 .. |Stability| image:: https://img.shields.io/pypi/status/grappa.svg
    :target: https://pypi.python.org/pypi/grappa
