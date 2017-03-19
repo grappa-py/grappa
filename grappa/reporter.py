@@ -127,8 +127,8 @@ class SubjectMessageReporter(BaseReporter):
             return None if self.attribute == 'expected' else 'None'
 
         # Get first argument, if needed
-        if self.attribute == 'expected' and len(value) == 1:
-            value = value[0]
+        if self.attribute == 'expected' and isinstance(value, (list, tuple)):
+            value = value[0] if len(value) == 1 else value
 
         # Get expectation message, if present in the operator
         attribute = '{}_message'.format(self.attribute)

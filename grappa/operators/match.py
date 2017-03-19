@@ -56,12 +56,12 @@ class MatchOperator(Operator):
 
     def match(self, subject, expected, *args):
         if not isinstance(subject, str):
-            return False, ['subject must be an string, but got "{}"'.format(
+            return False, ['subject must be a string, but got "{}"'.format(
                 type(subject))]
 
         if not isinstance(expected, str):
             return False, [
-                'value to match must be an string, but got "{}"'.format(
+                'value to match must be a string, but got "{}"'.format(
                     type(expected))
             ]
 

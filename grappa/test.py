@@ -119,7 +119,6 @@ class Test(BaseTest):
         if self._global:
             # If using context manager, use context defined subject
             subject = self._context_subject if self._context else empty
-
             # Create new test and proxy attribute call
             return Test(subject).__getattr__(name)
 

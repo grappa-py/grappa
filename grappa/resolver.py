@@ -56,7 +56,7 @@ class OperatorResolver(object):
 
             return self.test
 
-        return AssertionProxy(self.test, operator, wrapper)
+        return AssertionProxy(self, operator, wrapper)
 
     def resolve(self, name):
         # Find an assertion operator by name

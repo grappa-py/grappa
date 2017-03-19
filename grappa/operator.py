@@ -143,6 +143,13 @@ class Operator(object):
             if result is True and hasattr(self, 'after_success'):
                 self.after_success(subject, *expected, **kw)
 
+            # Enable diff comparison on error, if needed
+            if not hasattr(self, 'show_diff'):
+                self.show_diff = all([
+                    isinstance(subject, str),
+                    all([isinstance(x, str) for x in expected]),
+                ])
+
             return result
         return observer
 
