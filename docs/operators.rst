@@ -42,6 +42,9 @@ include
 do
 ^^
 
+_is
+^^^
+
 Semantic chainable attributes that defines non-negative assertions.
 
 Typically, you will use them implicitly in order to semantically describe your assertions.
@@ -129,6 +132,9 @@ has_not
 
 not_has
 ^^^^^^^
+
+is_not
+^^^^^^
 
 _not
 ^^^^

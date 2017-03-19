@@ -2,7 +2,7 @@
 from ..decorators import attribute
 
 
-@attribute(operators=('to', 'has', 'have', 'include', 'do'))
+@attribute(operators=('to', 'has', 'have', 'include', 'do', '_is'))
 def be(ctx):
     """
     Semantic attributes providing chainable declarative DSL
@@ -22,7 +22,7 @@ def which(ctx):
 
 @attribute(operators=(
     'not_to', 'to_not', 'does_not', 'do_not', '_not',
-    'not_have', 'not_has', 'have_not', 'has_not', 'dont'
+    'not_have', 'not_has', 'have_not', 'has_not', 'dont', 'is_not',
 ))
 def not_be(ctx):
     """
