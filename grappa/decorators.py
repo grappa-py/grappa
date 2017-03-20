@@ -9,7 +9,6 @@ from .operator import Operator
 __all__ = (
     'operator',
     'attribute',
-    'accessor',
     'register'
 )
 
@@ -59,20 +58,6 @@ def attribute(*args, **kw):
         function
     """
     return operator(kind=Operator.Type.ATTRIBUTE, *args, **kw)
-
-
-def accessor(*args, **kw):
-    """
-    Registers a new keyword only operator function in the test engine.
-
-    Arguments:
-        *args: variadic arguments.
-        **kw: variadic keyword arguments.
-
-    Returns:
-        function
-    """
-    return operator(kind=Operator.Type.ACCESSOR, *args, **kw)
 
 
 def register(operator):

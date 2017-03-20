@@ -19,9 +19,9 @@ class SubjectMessageReporter(BaseReporter):
         value = self.from_operator(self.attribute,
                                    getattr(self.ctx, self.attribute, empty))
 
+        # If value empty, return its value accordingly
         if value is empty:
             return None
-
         if value is None:
             return None if self.attribute == 'expected' else 'None'
 
@@ -40,4 +40,5 @@ class SubjectMessageReporter(BaseReporter):
             # Render template
             text_message = self.render_tmpl(text_message, value)
 
+        # Return template text message
         return text_message or self.normalize(value)

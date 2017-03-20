@@ -12,7 +12,7 @@ class AssertionReporter(BaseReporter):
     def run(self, error):
         # Assertion expression value
         subject = self.normalize(
-            self.from_operator('subject', self.ctx.subject))
+            self.from_operator('subject', self.ctx.subject), use_raw=False)
 
         # List of keyword operators DSL
         operators = ' '.join(self.ctx.keywords).replace('_', ' ')
@@ -33,6 +33,7 @@ class AssertionReporter(BaseReporter):
         if expected is not empty:
             if isinstance(expected, (tuple, list)):
                 expected = ', '.join(str(i) for i in expected)
-            assertion += ' "{}"'.format(self.normalize(expected))
+            assertion += ' "{}"'.format(
+                self.normalize(expected, use_raw=False))
 
         return assertion

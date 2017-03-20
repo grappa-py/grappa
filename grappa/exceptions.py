@@ -15,5 +15,5 @@ class GrappaAssertionError(AssertionError):
 
     def __init__(self, error=None, reasons=None, operator=None):
         self.error = error
-        self.reasons = reasons
+        self.reasons = reasons or getattr(error, 'reasons', None)
         self.operator = operator

@@ -9,14 +9,21 @@ class BaseReporter(object):
         self.ctx = ctx
         self.error = error
 
-    def cut(self, value, size=50):
+    def cut(self, value, size=40):
         text = str(value)
         return text[0:size] + ' ...' if len(text) > size else text
 
     def linefy(self, value):
         return str(value).replace(os.linesep, r'\n')
 
-    def normalize(self, value, size=20):
+    def indentify(self, value):
+        if not isinstance(value, str):
+            return value
+
+        lines = value.split(os.linesep)
+        return '\n    '.join(lines)
+
+    def normalize(self, value, size=20, use_raw=True):
         if value is None:
             return value
 
@@ -28,7 +35,10 @@ class BaseReporter(object):
         if not hasattr(value, '__len__'):
             return value
 
-        return self.linefy(self.cut(value))
+        if use_raw and self.from_operator('raw_mode'):
+            return self.indentify(value)
+        else:
+            return self.linefy(self.cut(value))
 
     def safe_length(self, value):
         try:

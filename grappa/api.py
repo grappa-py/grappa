@@ -36,6 +36,5 @@ __all__ = (
     'Operator',
     'attribute',
     'operator',
-    'accessor',
     'register'
 )
