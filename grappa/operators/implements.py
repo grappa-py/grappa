@@ -49,7 +49,7 @@ class ImplementsOperator(Operator):
     kind = Operator.Type.MATCHER
 
     # Operator keywords
-    operators = ('implements', 'implement', 'satisfies', 'satisfy')
+    operators = ('implements', 'implement', 'interface')
 
     # Operator chain aliases
     aliases = ('interface', 'methods', 'method')

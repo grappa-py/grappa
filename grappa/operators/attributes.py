@@ -2,7 +2,11 @@
 from ..decorators import attribute
 
 
-@attribute(operators=('to', 'has', 'have', 'include', 'do', '_is'))
+@attribute(
+    operators=(
+        'to', 'has', 'have', 'satisfy', 'satisfies', 'include', 'do', '_is'
+    )
+)
 def be(ctx):
     """
     Semantic attributes providing chainable declarative DSL

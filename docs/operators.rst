@@ -36,11 +36,17 @@ has
 have
 ^^^^
 
+do
+^^
+
 include
 ^^^^^^^
 
-do
-^^
+satisfy
+^^^^^^^
+
+satisfies
+^^^^^^^^^
 
 _is
 ^^^
@@ -595,11 +601,8 @@ implements
 implement
 ^^^^^^^^^
 
-satisfies
+interface
 ^^^^^^^^^
-
-satisfy
-^^^^^^^
 
 Asserts if a given object implements an interface of methods.
 
