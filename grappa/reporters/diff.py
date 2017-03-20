@@ -28,8 +28,15 @@ class DiffReporter(BaseReporter):
             return error.operator.differ()
 
         # Obtain subject/expected values
-        subject = str(self.from_operator('subject', self.ctx.subject))
-        expected = str(self.from_operator('expected', self.ctx.expected))
+        subject = str(
+            self.from_operator(
+                'diff_subject',
+                self.from_operator('subject', self.ctx.subject)))
+
+        expected = str(
+            self.from_operator(
+                'diff_expected',
+                self.from_operator('expected', self.ctx.expected)))
 
         # Expected results
         if isinstance(expected, tuple) and len(expected) == 1:
