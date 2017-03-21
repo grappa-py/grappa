@@ -27,6 +27,9 @@ class NoneOperator(Operator):
     # Operator keywords
     operators = ('none',)
 
+    # Disable chanined calls
+    chainable = False
+
     # Expected message templates
     expected_message = Operator.Dsl.Message(
         'a value that is exactly equal to "None"',

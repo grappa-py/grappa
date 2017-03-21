@@ -63,6 +63,12 @@ class OperatorResolver(object):
         return AssertionProxy(self, operator, wrapper)
 
     def resolve(self, name):
+        # Check if should stop the call chain
+        if self.ctx.stop_chain:
+            raise RuntimeError(
+                'grappa: test operator "{}" does not allow '
+                'chained calls.'.format(self.ctx.stop_chain.operator_name))
+
         # Find an assertion operator by name
         operator = self.engine.find_operator(name)
         if not operator:
@@ -76,6 +82,10 @@ class OperatorResolver(object):
 
         # Create operator instance with current context
         operator = operator(context=self.ctx, operator_name=name)
+
+        # Check chainable operator logic is enabled
+        if getattr(operator, 'chainable', True) is False:
+            self.ctx.stop_chain = operator
 
         # Reset context sequence
         if self.ctx.reset:

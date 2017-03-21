@@ -6,6 +6,9 @@ def test_should_none(should):
     None | should.be.none
     'foo' | should.not_be.none
 
+    with pytest.raises(RuntimeError):
+        'foo' | should.not_be.none.to.be.equal(None)
+
     with pytest.raises(AssertionError):
         False | should.be.none
 

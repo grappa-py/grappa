@@ -60,6 +60,9 @@ class Operator(object):
     # Chain alias keywords
     aliases = tuple()
 
+    # Enable/disable operator chaining
+    chainable = True
+
     # Stores assertion error tips
     information = []
 

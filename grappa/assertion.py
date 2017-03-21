@@ -66,19 +66,20 @@ class AssertionProxy(BaseTest):
         Overloads attribute accessor in order to load the assertion
         operator dynamically.
         """
-        # Match chain aliases
+        # Match operator aliases for chaining
         if self._match_alias(name):
             self._test._engine.add_keyword(name)
             return self
 
-        # Match suboperator
+        # Trigger operator on_access operator event method, if available
+        if self.is_on_access():
+            self._on_access()
+
+        # Match suboperator, if needed
         suboperator = self._match_suboperator(name)
         if suboperator:
+            # Register keyword for suboperator
             self._test._engine.add_keyword(name)
-
-            # Trigger operator on_access event method, if available
-            if self.is_on_access():
-                self._on_access()
 
             # Trigger suboperator on_access event method, if available
             if suboperator.is_on_access():
@@ -87,11 +88,7 @@ class AssertionProxy(BaseTest):
             # Return suboperator proxy
             return suboperator
 
-        # Trigger operator on_access operator event method, if available
-        if hasattr(self._op, 'on_access') and not self._accessed:
-            self._on_access()
-
-        # Fallback to parent assertions
+        # Delegate access to global assertion instance
         return getattr(self._test, name)
 
     def __ror__(self, value):

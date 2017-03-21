@@ -34,7 +34,7 @@ class AssertionReporter(BaseReporter):
         subject = self.normalize(
             self.from_operator('subject', self.ctx.subject), use_raw=False)
 
-        # List of keyword operators DSL
+        # List of used keyword operators
         keywords = []
         for keyword in self.ctx.keywords:
             if type(keyword) is dict and 'operator' in keyword:
@@ -50,20 +50,5 @@ class AssertionReporter(BaseReporter):
         # Assertion expression value
         assertion = self.template.format(subject, self.ctx.style, operators)
 
-        # # Expected value
-        # expected = self.from_operator('expected', self.ctx.expected)
-        #
-        # if isinstance(expected, tuple):
-        #     if len(expected) == 0:
-        #         expected = empty
-        #     if len(expected) == 1:
-        #         expected = expected[0]
-        #
-        # # Add expected value template, if needed
-        # if expected is not empty:
-        #     if isinstance(expected, (tuple, list)):
-        #         expected = ', '.join(str(i) for i in expected)
-        #     assertion += ' "{}"'.format(
-        #         self.normalize(expected, use_raw=False))
-
+        # Return assertion formatted sentence
         return assertion
