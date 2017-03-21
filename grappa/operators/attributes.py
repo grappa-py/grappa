@@ -4,7 +4,8 @@ from ..decorators import attribute
 
 @attribute(
     operators=(
-        'to', 'has', 'have', 'satisfy', 'satisfies', 'include', 'do', '_is'
+        'to', 'has', 'have', 'satisfy',
+        'satisfies', 'include', 'do', '_is'
     )
 )
 def be(ctx):

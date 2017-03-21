@@ -12,6 +12,7 @@ operators = (
     ('type',        'TypeOperator'),
     ('none',        'NoneOperator'),
     ('keys',        'KeysOperator'),
+    ('index',       'IndexOperator'),
     ('match',       'MatchOperator'),
     ('length',      'LengthOperator'),
     ('empty',       'EmptyOperator'),

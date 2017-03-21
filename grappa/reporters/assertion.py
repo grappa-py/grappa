@@ -9,19 +9,9 @@ class AssertionReporter(BaseReporter):
 
     template = 'subject "{}" {} {}'
 
-    def run(self, error):
-        # Assertion expression value
-        subject = self.normalize(
-            self.from_operator('subject', self.ctx.subject), use_raw=False)
-
-        # List of keyword operators DSL
-        operators = ' '.join(self.ctx.keywords).replace('_', ' ')
-
-        # Assertion expression value
-        assertion = self.template.format(subject, self.ctx.style, operators)
-
+    def get_expected(self, operator=None, defaults=None):
         # Expected value
-        expected = self.from_operator('expected', self.ctx.expected)
+        expected = self.from_operator('expected', defaults, operator=operator)
 
         if isinstance(expected, tuple):
             if len(expected) == 0:
@@ -33,7 +23,47 @@ class AssertionReporter(BaseReporter):
         if expected is not empty:
             if isinstance(expected, (tuple, list)):
                 expected = ', '.join(str(i) for i in expected)
-            assertion += ' "{}"'.format(
-                self.normalize(expected, use_raw=False))
+
+            if isinstance(expected, (int, float)):
+                return '{}'.format(expected)
+
+            return '"{}"'.format(self.normalize(expected, use_raw=False))
+
+    def run(self, error):
+        # Assertion expression value
+        subject = self.normalize(
+            self.from_operator('subject', self.ctx.subject), use_raw=False)
+
+        # List of keyword operators DSL
+        keywords = []
+        for keyword in self.ctx.keywords:
+            if type(keyword) is dict and 'operator' in keyword:
+                expected = self.get_expected(
+                    keyword['operator'], keyword['call'])
+                keywords.append(expected or '"Empty"')
+            else:
+                keywords.append(keyword)
+
+        # Compose assertion sentence
+        operators = ' '.join(keywords).replace('_', ' ')
+
+        # Assertion expression value
+        assertion = self.template.format(subject, self.ctx.style, operators)
+
+        # # Expected value
+        # expected = self.from_operator('expected', self.ctx.expected)
+        #
+        # if isinstance(expected, tuple):
+        #     if len(expected) == 0:
+        #         expected = empty
+        #     if len(expected) == 1:
+        #         expected = expected[0]
+        #
+        # # Add expected value template, if needed
+        # if expected is not empty:
+        #     if isinstance(expected, (tuple, list)):
+        #         expected = ', '.join(str(i) for i in expected)
+        #     assertion += ' "{}"'.format(
+        #         self.normalize(expected, use_raw=False))
 
         return assertion

@@ -46,10 +46,12 @@ class BaseReporter(object):
         except:
             return '"unmeasurable"'
 
-    def from_operator(self, name, defaults=None):
-        if not hasattr(self.error, 'operator'):
+    def from_operator(self, name, defaults=None, operator=None):
+        operator = operator or getattr(self.error, 'operator', None)
+        if not operator:
             return defaults
-        value = getattr(self.error.operator, name, defaults)
+
+        value = getattr(operator, name, defaults)
         return defaults if value is empty else value
 
     def render_tmpl(self, tmpl, value):

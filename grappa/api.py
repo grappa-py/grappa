@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 # Import test module
-from .test import Test, TestProxy
+from .test import Test
+# Import test proxy used for style delegation
+from .test_proxy import TestProxy
 # Expose plugin module as part of the public API
 from .plugin import use
 # Expose config module as part of the public API

@@ -23,8 +23,16 @@ class Runner(object):
     def run_assertions(self, ctx):
         # Trigger assertion functions
         for assertion in self.engine.assertions:
+            # Store current subject
+            subject = ctx.subject
+
             # Run assertion with the given subject
             result = assertion(ctx.subject)
+
+            # Check if the subject changed during operator execution
+            if subject is not ctx.subject:
+                # Register previous subject
+                ctx.subjects.append(subject)
 
             # If assertion passed, just continue with it
             if result is True:

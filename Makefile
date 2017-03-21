@@ -20,7 +20,7 @@ lint:
 
 test: lint
 	@printf "$(OK_COLOR)==> Runnings tests...$(NO_COLOR)\n"
-	@pytest -s -v --tb=native --capture=sys --cov grappa --cov-report term-missing
+	@pytest -s -v --tb=native --capture=sys --cov grappa --cov-report term-missing tests
 
 coverage:
 	@coverage run --source grappa -m py.test

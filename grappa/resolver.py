@@ -5,7 +5,7 @@ from .assertion import AssertionProxy
 
 class OperatorResolver(object):
     """
-    Resolves and triggers an operator based on its name.
+    Resolves and triggers an operator based on its name identifier.
 
     This class is highly-coupled to `grappa.Test` and consumes `grappa.Engine`
     and `grappa.Context` in order to trigger operator resolution logic.
@@ -37,12 +37,16 @@ class OperatorResolver(object):
     def run_matcher(self, operator):
         # Process assert operators
         def wrapper(*expected, **kw):
+            # Register keyword call
+            self.engine.add_keyword({'call': expected, 'operator': operator})
+
             # Retrieve optional custom assertion message
             if 'msg' in kw:
                 # Set user-defined message
                 self.ctx.message = kw.pop('msg')
 
             def assertion(subject):
+                # Register call subjects
                 operator.ctx.subject = subject
                 operator.ctx.expected = expected
                 return operator.run(subject, *expected, **kw)
@@ -77,7 +81,7 @@ class OperatorResolver(object):
         if self.ctx.reset:
             self.engine.reset_keywords()
             self.ctx.reset = False
-            self.ctx.reverse = True
+            # self.ctx.reverse = True
 
         # Dynamically retrieve operator
         method_name = 'run_{}'.format(operator.kind)
