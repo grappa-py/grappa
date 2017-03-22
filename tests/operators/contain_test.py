@@ -9,6 +9,8 @@ def test_should_contain(should):
     ('foo', 'bar', 123) | should.contain('bar') | should.contain(123)
     [{'foo': 1}] | should.contain({'foo': 1})
 
+    [{'foo': 1}] | should.contain({'foo': 2})
+
     with pytest.raises(AssertionError):
         'hello world' | should.contain('planet')
 
