@@ -49,10 +49,10 @@ class KeysOperator(Operator):
 
     def after_success(self, obj, *keys):
         if not self.ctx.negate:
-            self.ctx.value = [obj[x] for x in obj if x in keys]
+            self.ctx.subject = [obj[x] for x in obj if x in keys]
 
-        if len(keys) == 1:
-            self.ctx.value = self.ctx.value[0]
+        if len(keys) == 1 and len(self.ctx.subject):
+            self.ctx.subject = self.ctx.subject[0]
 
     def match(self, subject, *keys, **kw):
         if self._not_a_dict(subject):

@@ -5,7 +5,7 @@ from ..decorators import attribute
 @attribute(
     operators=(
         'to', 'has', 'have', 'satisfy',
-        'satisfies', 'include', 'do', '_is'
+        'satisfies', 'include', 'do', '_is', 'that', 'which'
     )
 )
 def be(ctx):
@@ -16,13 +16,13 @@ def be(ctx):
     ctx.negate = False
 
 
-@attribute(operators=('that',))
-def which(ctx):
-    """
-    Semantic attributes providing chainable declarative DSL
-    for assertions chaning.
-    """
-    ctx.reset = True
+# @attribute(operators=('that',))
+# def which(ctx):
+#     """
+#     Semantic attributes providing chainable declarative DSL
+#     for assertions chaning.
+#     """
+#     ctx.reset = True
 
 
 @attribute(operators=(

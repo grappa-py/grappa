@@ -691,6 +691,51 @@ Asserts that a given dictionary has a key or keys.
     {'baz': True, 'bar': False} | expect.to_not.have.keys('bar', 'foo')
 
 
+index
+^^^^^
+
+Asserts that a given iterable has an item in a specific index.
+
+=======================  ========================
+ **Type**                matcher
+-----------------------  ------------------------
+ **Chained aliases**     ``present`` ``exists`` ``at``
+-----------------------  ------------------------
+ **Related operators**   property_ key_ contain_
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    [1, 2, 3] | should.have.index(2)
+    [1, 2, 3] | should.have.index(1)
+    [1, 2, 3] | should.have.index.at(1)
+    [1, 2, 3] | should.have.index.present(1)
+    [1, 2, 3] | should.have.index.at(1).equal.to(2)
+
+.. code-block:: python
+
+    [1, 2, 3] | expect.to.have.index(2)
+    [1, 2, 3] | expect.to.have.index.at(1)
+    [1, 2, 3] | expect.to.have.index.at(1).equal.to(2)
+
+**Negation form**:
+
+.. code-block:: python
+
+    [1, 2, 3] | should.not_have.index(4)
+    [1, 2, 3] | should.not_have.index.at(4)
+    [1, 2, 3] | should.have.index.at(1).to_not.equal.to(5)
+
+.. code-block:: python
+
+    [1, 2, 3] | expect.to_not.have.index(2)
+    [1, 2, 3] | expect.to_not.have.index.at(1)
+    [1, 2, 3] | expect.to_not.have.index.at(1).equal.to(2)
+    {'foo': True} | should.have.key('foo')
+    {'foo': True, 'bar': False} | should.have.keys('bar', 'foo')
+
 length
 ^^^^^^
 

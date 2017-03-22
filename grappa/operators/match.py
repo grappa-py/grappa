@@ -43,6 +43,9 @@ class MatchOperator(Operator):
         'to', 'regex', 'regexp', 'word', 'phrase'
     )
 
+    # Disable diff report
+    show_diff = False
+
     # Expected template message
     expected_message = Operator.Dsl.Message(
         'a string that matches the expression "{value}"',

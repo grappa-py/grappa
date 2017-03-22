@@ -38,6 +38,9 @@ class PropertyOperator(Operator):
     # Is the operator a keyword
     kind = Operator.Type.MATCHER
 
+    # Disable diff report
+    show_diff = False
+
     # Operator keywords
     operators = ('properties', 'property', 'attribute', 'attributes')
 
@@ -60,10 +63,10 @@ class PropertyOperator(Operator):
             return
 
         # Get attribute keys
-        self.ctx.value = [getattr(obj, x) for x in keys]
+        self.ctx.subject = [getattr(obj, x) for x in keys]
 
-        if len(keys) == 1:
-            self.ctx.value = self.ctx.value[0]
+        if len(keys) == 1 and len(self.ctx.subject):
+            self.ctx.subject = self.ctx.subject[0]
 
     def match(self, subject, *args, **kwargs):
         success_reasons = []

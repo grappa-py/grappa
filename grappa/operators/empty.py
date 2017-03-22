@@ -28,6 +28,9 @@ class EmptyOperator(Operator):
     # Is the operator a keyword
     kind = Operator.Type.ACCESSOR
 
+    # Disable diff report
+    show_diff = False
+
     # Operator keywords
     operators = ('empty',)
 

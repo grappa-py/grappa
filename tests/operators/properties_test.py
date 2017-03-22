@@ -5,6 +5,9 @@ def test_expect_properties(should):
     class foo(object):
         foo = 'bar'
 
+        class baz(object):
+            foo = 'bar'
+
         def bar(self):
             pass
 
@@ -15,14 +18,25 @@ def test_expect_properties(should):
     should(foo()).have.property('foo').which.should.be.equal.to('bar')
 
     should(foo()).have.property('bar').which.should.be.a('method')
-
     should(foo()).have.properties('bar', 'foo')
 
-    with pytest.raises(AssertionError):
-        should(foo()).have.property('baz')
+    (foo()
+        | should.have.property('foo')
+        > should.be.a('string')
+        > should.have.length.of(3)
+        > should.be.equal.to('bar'))
+
+    (foo()
+        | should.have.property('baz')
+        > should.be.an('object')
+        > should.have.property('foo')
+        > should.be.equal.to('bar'))
 
     with pytest.raises(AssertionError):
-        should(foo()).have.property('baz')
+        should(foo()).have.property('boo')
+
+    with pytest.raises(AssertionError):
+        should(foo()).have.property('boo')
 
     with pytest.raises(AssertionError):
         should(foo()).have.property('foo') > should.be.equal.to('foo')

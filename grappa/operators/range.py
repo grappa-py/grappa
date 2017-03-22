@@ -44,6 +44,9 @@ class BelowOperator(Operator):
     # Is the operator a keyword
     kind = Operator.Type.MATCHER
 
+    # Disable diff report
+    show_diff = False
+
     # Operator keywords
     operators = ('below', 'lower', 'less')
 

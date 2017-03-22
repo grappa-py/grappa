@@ -9,8 +9,9 @@ def test_expect_keys(should):
     ({'foo': {'bar': True}}
         | should.have.key('foo')
         > should.be.a('dict')
+        > should.have.length.of(1)
         > should.have.key('bar')
-        > should.be.equal.to({'bar': True}))
+        > should.be.true)
 
     should({'foo': 'bar'}).have.key('foo') > should.be.equal.to('bar')
     should({'foo': 'bar'}).have.key('foo').which.should.be.equal.to('bar')
