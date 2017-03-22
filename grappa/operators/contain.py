@@ -34,6 +34,9 @@ class ContainOperator(Operator):
     # Is the operator a keyword
     kind = Operator.Type.MATCHER
 
+    # Enable diff report
+    show_diff = True
+
     # Operator keywords
     operators = ('contain', 'contains', 'includes')
 
@@ -83,7 +86,6 @@ class ContainOperator(Operator):
         return True, reasons
 
     def _matches_any(self, expected, subject):
-        print(':::: subject ->', subject)
         if len(subject) == 0:
             return False, 'empty item'
 
@@ -93,7 +95,6 @@ class ContainOperator(Operator):
             return False, 'item {0!r} not found'.format(expected)
 
         for item in subject:
-            print('::::', item, expected, item == expected)
             if item == expected:
                 return True, 'item {0!r} found'.format(expected)
 
