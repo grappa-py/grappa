@@ -14,6 +14,7 @@ class IndexOperator(Operator):
         [1, 2, 3] | should.have.index.at(1)
         [1, 2, 3] | should.have.index.present(1)
         [1, 2, 3] | should.have.index.at(1).equal.to(2)
+        [1, 2, 3] | should.have.index.at(1) > should.be.equal.to(2)
 
         # Should style - negation form
         [1, 2, 3] | should.not_have.index(4)
@@ -24,6 +25,7 @@ class IndexOperator(Operator):
         [1, 2, 3] | expect.to.have.index(2)
         [1, 2, 3] | expect.to.have.index.at(1)
         [1, 2, 3] | expect.to.have.index.at(1).equal.to(2)
+        [1, 2, 3] | expect.to.have.index.at(1) > expect.be.equal.to(2)
 
         # Expect style - negation form
         [1, 2, 3] | expect.to_not.have.index(2)
