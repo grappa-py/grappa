@@ -43,7 +43,15 @@ Just a small example of `grappa` capabilities:
     [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
     (lambda x: x) | should.not_be.have.type.of('lambda')
 
-    {'foo': 'bar'} | should.have.key('foo') > should.be.equal('bar')
+    {'foo': 'bar'} | should.have.key('foo').that.should.be.equal.to('bar')
+
+    ({'bar': [1, 2, 3]}
+        | should.have.key('bar')
+        > should.be.a('list')
+        > should.have.length.of(3)
+        > should.contain.item(3)
+        > should.have.index.at(1)
+        > should.be.equal.to(2))
 
     an_object | should.have.properties('foo', 'bar', 'baz')
     an_object | should.implement.methods('foo', 'bar', 'baz')
@@ -76,15 +84,18 @@ The Zen of grappa
 Features
 --------
 
--  Behavior-oriented expressive Pythonic fluent API.
--  Provides both ``expect`` and ``should`` assertion styles.
--  Full-featured built-in assertions.
--  Human-friendly and frustration-less error reporting.
--  Composable assertions chaining.
+-  Behavior-oriented expressive fluent API.
+-  Built-in assertion DSL with English semantics.
+-  Supports both ``expect`` and ``should`` assertion styles.
+-  Full-featured built-in `assertion operators`_.
+-  Human-friendly and detailed error reporting with embedded failing code.
+-  Built-in expectations difference comparison on error.
 -  Extensible assertions based on third-party plugins.
--  Testing framework agnostic. Works with ``unittest``, ``nosetests``, ``pytest`` ...
+-  Assertion chaining and composition.
+-  Composable assertion via logical operators such as ``and`` & ``or``.
+-  Testing framework agnostic. Works with ``unittest``, ``nosetests``, ``pytest``, ``behave`` ...
 -  Lightweight and (almost) dependency-free.
--  Works with Python 2.6+, 3+ and PyPy.
+-  Works with Python 2.7+, 3+, PyPy and potentially other Python implementations.
 
 
 Installation
