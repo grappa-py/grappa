@@ -29,21 +29,32 @@ API is not stable yet and still prone to introduce breaking changes.
 In a nutshell
 -------------
 
-Just a small example of `grappa` capabilities:
+A small example demonstrating some `grappa` features:
 
 .. code-block:: python
 
     from grappa import should
 
     True | should.be.true
-    'bar' | should.be.equal.to('foo')
+    False | should.be.false
+    None | should.be.none
+
+    'bar' | should.be.equal.to('bar')
+    13.14 | should.be.lower.than(14)
     13.14 | should.be.higher.than(13)
+
+    'Hello grappa' | should.match('(\W)+ grappa$')
+    'Hello grappa' | should.contain('grappa') | should.contain('llo')
 
     {'foo': True} | should.be.a('dict')
     [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
     (lambda x: x) | should.not_be.have.type.of('lambda')
 
     {'foo': 'bar'} | should.have.key('foo').that.should.be.equal.to('bar')
+    (1, 2, 3, 4) | should.be.a(tuple) > should.have.index.at(3) > should.be.equal.to(4)
+
+    an_object | should.have.properties('foo', 'bar', 'baz')
+    an_object | should.implement.methods('foo', 'bar', 'baz')
 
     ({'bar': [1, 2, 3]}
         | should.have.key('bar')
@@ -52,9 +63,6 @@ Just a small example of `grappa` capabilities:
         > should.contain.item(3)
         > should.have.index.at(1)
         > should.be.equal.to(2))
-
-    an_object | should.have.properties('foo', 'bar', 'baz')
-    an_object | should.implement.methods('foo', 'bar', 'baz')
 
 See `documentation`_ for more examples.
 
