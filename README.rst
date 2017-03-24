@@ -22,9 +22,7 @@ To get started, take a look to the `documentation`_, `tutorial`_ and `assertion 
 Status
 ------
 
-``grappa`` is currently **beta quality** software and under active development and improvements.
-
-API is not stable yet and still prone to introduce breaking changes.
+``grappa`` is currently **beta quality** software and under active development.
 
 In a nutshell
 -------------
@@ -65,6 +63,11 @@ A small example demonstrating some `grappa` features:
         > should.be.equal.to(2))
 
 See `documentation`_ for more examples.
+
+Showcase
+--------
+
+[![asciicast](https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir.png)](https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir)
 
 Why grappa?
 -----------
