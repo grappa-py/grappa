@@ -87,11 +87,11 @@ class CodeReporter(BaseReporter):
 
             if line == trace.lineno:
                 if config.use_colors:
-                    head += Fore.RED + '>' + Style.RESET_ALL
+                    head += Fore.RED + '> ' + Style.RESET_ALL
                 else:
-                    head += '>'
+                    head += '> '
             else:
-                head += ' '
+                head += '  '
 
             buf.append(indent + head + code)
             return buf
