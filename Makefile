@@ -27,7 +27,7 @@ coverage:
 	@coverage report
 
 bump:
-	@bumpversion --current-version $(version) patch grappa/__init__.py
+	@bumpversion --commit --tag --current-version $(version) patch grappa/__init__.py
 
 history:
 	@git changelog --tag $(version)
