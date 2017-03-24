@@ -63,6 +63,7 @@ setup(
     name='grappa',
     version=version,
     author='Tomas Aparicio',
+    author_email='tomas@aparicio.me',
     description=(
         'Behavior-oriented, expressive, developer-friendly assertions library'
     ),
