@@ -27,18 +27,19 @@ class DiffReporter(BaseReporter):
         if differ:
             return error.operator.differ()
 
-        # Obtain subject/expected values
+        # Obtain subject value
         subject = str(
             self.from_operator(
                 'diff_subject',
                 self.from_operator('subject', self.ctx.subject)))
 
+        # Split subject by lines
+        subject = subject.splitlines(1)
+
+        # Obtain expected value
         expected = self.from_operator(
                     'diff_expected',
                     self.from_operator('expected', self.ctx.expected))
-
-        # Split subject
-        subject = subject.splitlines(1)
 
         # Get expected value, if needed
         if isinstance(expected, tuple) and len(expected) == 1:
@@ -50,8 +51,8 @@ class DiffReporter(BaseReporter):
         # Diff subject and expected values
         data = list(difflib.ndiff(subject, expected))
 
-        # Remove trailing line feed returned by ndiff
-        data = data[0:-1]
+        # Remove trailing line feed returned by ndiff, if present
+        data[-1] = data[-1].replace(os.linesep, '')
 
         # Normalize line separator with proper indent level
         data = [i.replace(os.linesep, '') for i in data]
