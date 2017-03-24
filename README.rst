@@ -67,7 +67,11 @@ See `documentation`_ for more examples.
 Showcase
 --------
 
-[![asciicast](https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir.png)](https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir)
+.. image:: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir.png
+   :width: 100%
+   :alt: showcase
+   :align: center
+   :target: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir?autoplay=1&speed=3&size=small
 
 Why grappa?
 -----------
