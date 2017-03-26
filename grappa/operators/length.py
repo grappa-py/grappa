@@ -69,12 +69,30 @@ class LengthOperator(Operator):
 
     def __init__(self, *args, **kw):
         Operator.__init__(self, *args, **kw)
-        self.ctx.length = True
+
+    def is_number(self, subject):
+        return isinstance(subject, (int, float))
+
+    def on_access(self, subject):
+        # If already a number, just continue with it
+        if self.is_number(subject):
+            self.ctx.length = False
+            return True, []
+
+        # Set original subject reference
+        try:
+            self.ctx.subject = len(subject)
+            self.ctx.length = False
+        except:
+            return False, ['cannot measure length of the given object']
+
+        return True, []
 
     def match(self, subject, expected):
         try:
-            return len(subject) == expected, [
-                'unexpected object length: {}'.format(len(subject))]
+            length = subject if self.is_number(subject) else len(subject)
+            return length == expected, [
+                'unexpected object length: {}'.format(length)]
         except TypeError:
             try:
                 return len([i for i in subject]) == expected

@@ -134,7 +134,7 @@ class AboveOperator(BelowOperator):
     )
 
     def match(self, subject, expected):
-        if self.ctx.length:
+        if self.ctx.length and not isinstance(subject, (int, float)):
             subject = len(subject)
 
         if not isinstance(subject, (int, float, complex)):
