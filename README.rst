@@ -14,10 +14,10 @@ lightweight assertion library for Python_.
 
 ``grappa`` comes with two declarative `assertion styles`_: ``expect`` and ``should``.
 
-It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction
-and improve human agility while testing and fixing software.
+It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction,
+provide better feedback and improve human speed and agility while identifying and fixing errors.
 
-To get started, take a look to the `showcase`_, `demo`_, `tutorial`_ and `documentation`_.
+To get started, take a look to the `showcase`_ code, `demo`_, `tutorial`_ and `documentation`_.
 
 Status
 ------
@@ -88,6 +88,7 @@ fun and easy to write but also more easy and pleasant to read or maintain by oth
 The Zen of grappa
 -----------------
 
+- Testing is about feedback: detailed, easy to understand, human-friendly is always better.
 - Frictionless testing: introducing self-declarative behavior testing patterns can make testing more fun for test writers and more enjoyable for test readers.
 - Expressivity is paramount: humans should easily understand what the code is doing.
 - Human time is expensive: any modern software should assist people to identify and understand errors easily.
