@@ -44,7 +44,7 @@ class MatchOperator(Operator):
     )
 
     # Disable diff report
-    show_diff = False
+    show_diff = True
 
     # Expected template message
     expected_message = Operator.Dsl.Message(

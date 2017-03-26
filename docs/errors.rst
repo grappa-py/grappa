@@ -4,8 +4,8 @@ Errors
 ``grappa`` comes with a built-in detailed, human-friendly `error reporting`_ system
 that aims to reduce friction and improve human agility while testing and fixing software.
 
-Errors Reporting
-----------------
+Error Reporting
+---------------
 
 Feedback while testing is key. Seeing errors in your tests is not a nice thing
 because informs you something is wrong with your code.
@@ -25,7 +25,7 @@ that informs the developer in an intuitive and more effective the following ques
 ``grappa`` provides intuitive error reporting for human friendly consumption,
 which includes a behavior-oriented
 
-Standard errors vs Grappa errors
+Standard errors vs grappa errors
 --------------------------------
 
 A typical assertion error report using ``nosetests``:
@@ -127,3 +127,17 @@ Additional error properties:
 - **__grappa__** ``bool`` - Error flag that indicates the error was originated by ``grappa``.
 - **error** ``Exception`` - Original exception error, if any.
 - **context** ``grappa.Context`` - Current test ``grappa`` context instance. Only for low-level debugging.
+
+
+Custom error messages
+---------------------
+
+You can include arbitrary custom messages that would be included in the error report providing additional context information.
+
+You must use the function form instead of ``|`` operator based composition:
+
+.. code-block:: python
+
+    should('foo', msg='additional error message').be.equal('bar')
+
+    expect('foo', msg='additional error message').to.equal('bar')

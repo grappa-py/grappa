@@ -9,6 +9,7 @@ Contents
    style
    errors
    operators
+   composition
    configuration
    plugins
    integrations

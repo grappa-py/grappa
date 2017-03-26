@@ -17,15 +17,15 @@ lightweight assertion library for Python_.
 It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction
 and improve human agility while testing and fixing software.
 
-To get started, take a look to the `documentation`_, `tutorial`_ and `assertion operators`_.
+To get started, take a look to the `showcase`_, `demo`_, `tutorial`_ and `documentation`_.
 
 Status
 ------
 
-``grappa`` is currently **beta quality** software and under active development.
+``grappa`` is currently **beta quality** software. Contributions and issue reporting is welcome.
 
-In a nutshell
--------------
+Showcase
+--------
 
 A small example demonstrating some `grappa` features:
 
@@ -42,7 +42,7 @@ A small example demonstrating some `grappa` features:
     13.14 | should.be.higher.than(13)
 
     'Hello grappa' | should.match('(\W)+ grappa$')
-    'Hello grappa' | should.contain('grappa') | should.contain('llo')
+    'Hello grappa' | should.contain('grappa') | should.contain('he')
 
     {'foo': True} | should.be.a('dict')
     [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
@@ -64,8 +64,8 @@ A small example demonstrating some `grappa` features:
 
 See `documentation`_ for more examples.
 
-Showcase
---------
+Demo
+----
 
 .. image:: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir.png
    :width: 100%
@@ -100,17 +100,18 @@ Features
 --------
 
 -  Behavior-oriented expressive fluent API.
--  Built-in assertion DSL with English semantics.
+-  Built-in assertion DSL with English lexicon and semantics.
 -  Supports both ``expect`` and ``should`` assertion styles.
 -  Full-featured built-in `assertion operators`_.
--  Human-friendly and detailed error reporting with embedded failing code.
--  Built-in expectations difference comparison on error.
--  Extensible assertions based on third-party plugins.
+-  Human-friendly and detailed `error reporting`_.
+-  Built-in expectations difference comparison between subject and expected values.
+-  Extensible assertions supporting third-party `plugins`_.
 -  Assertion chaining and composition.
 -  Composable assertion via logical operators such as ``and`` & ``or``.
 -  Testing framework agnostic. Works with ``unittest``, ``nosetests``, ``pytest``, ``behave`` ...
+-  Easy to hack via programmatic API.
 -  Lightweight and (almost) dependency-free.
--  Works with Python 2.7+, 3+, PyPy and potentially other Python implementations.
+-  Works with Python 2.7+, 3+, PyPy and potentially with other Python implementations.
 
 
 Installation
@@ -132,6 +133,7 @@ Or install the latest sources from Github:
 .. _Python: http://python.org
 .. _`documentation`: http://grappa.readthedocs.io
 .. _`tutorial`: http://grappa.readthedocs.io/en/latest/tutorial.html
+.. _`plugins`: http://grappa.readthedocs.io/en/latest/plugins.html
 .. _`error reporting`: http://grappa.readthedocs.io/en/latest/errors.html
 .. _`assertion styles`: http://grappa.readthedocs.io/en/latest/style.html
 .. _`assertion operators`: http://grappa.readthedocs.io/en/latest/operators.html

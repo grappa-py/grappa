@@ -193,4 +193,10 @@ More complex chained assertions:
         > should.be.equal.to(['foo', 'bar', 'baz']))
 
 
+How to compose assertions
+-------------------------
+
+See `composition`_ section.
+
 .. _installation: http://grappa.readthedocs.io/en/latest/intro.html#installation
+.. _composition: http://grappa.readthedocs.io/en/latest/composition.html
