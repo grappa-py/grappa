@@ -81,7 +81,7 @@ which
 that
 ^^^^
 
-Semantic chainable attributes to be used for multiple non-negative assertion composition/chaining.
+Semantic chainable attributes to be used for multiple non-negation assertions composition/chaining.
 
 Typically, you will use them when chaining in order to semantically describe your assertion concatenation.
 
@@ -393,6 +393,8 @@ Uses ``==`` built-in binary operator for the comparison.
  **Chained aliases**     ``value`` ``to`` ``of`` ``as`` ``data``
 -----------------------  ------------------------
  **Related operators**   contain_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -476,6 +478,8 @@ Supported type aliases:
  **Chained aliases**     ``type`` ``types`` ``to`` ``of``, ``equal``
 -----------------------  ------------------------
  **Related operators**   equal_ matches_ implements_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -564,6 +568,8 @@ Asserts if a given value or values can be found in a another object.
  **Chained aliases**     ``value`` ``string`` ``text`` ``item`` ``expression`` ``data``
 -----------------------  ------------------------
  **Related operators**   equal_ matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -612,6 +618,8 @@ Asserts if a given object implements an interface of methods.
  **Chained aliases**     ``interface`` ``method`` ``methods``
 -----------------------  ------------------------
  **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -666,6 +674,8 @@ Asserts that a given dictionary has a key or keys.
  **Related operators**   matches_ index_
 -----------------------  ------------------------
  **Yields subject**      The key value, if present.
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -706,6 +716,8 @@ Asserts that a given iterable has an item in a specific index.
  **Related operators**   property_ key_ contain_
 -----------------------  ------------------------
  **Yields subject**      Value at the selected index, if present.
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -754,6 +766,8 @@ Asserts that a given object has exact length.
  **Chained aliases**     ``of`` ``equal`` ``to``
 -----------------------  ------------------------
  **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -799,6 +813,8 @@ Asserts if a given string matches a given regular expression.
  **Chained aliases**     ``value`` ``string`` ``expression``, ``token``, ``to``, ``regex``, ``regexp``, ``word``, ``phrase``
 -----------------------  ------------------------
  **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -843,6 +859,8 @@ Asserts if a given string matches a given regular expression.
  **Chained aliases**     -
 -----------------------  ------------------------
  **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -892,6 +910,8 @@ Asserts if a given object has property or properties.
  **Related operators**   matches_
 -----------------------  ------------------------
  **Yields subject**      The attribute value, if present.
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -940,6 +960,8 @@ Asserts if a given function raises an exception.
  **Chained aliases**     ``to`` ``that`` ``are`` ``instance`` ``of``
 -----------------------  ------------------------
  **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -988,6 +1010,8 @@ Asserts if a given number is below to another number.
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ above_ above_or_equal_ below_or_equal_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -1045,6 +1069,8 @@ Asserts if a given number is above to another number.
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ below_ below_or_equal_ above_or_equal_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -1105,6 +1131,8 @@ Asserts if a given number is above to another number.
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ below_ below_or_equal_ above_or_equal_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -1169,6 +1197,8 @@ Asserts if a given number is above to another number.
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ below_ above_ below_or_equal_ above_or_equal_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -1230,6 +1260,8 @@ Asserts that a number is within a range.
  **Chained aliases**     ``to`` ``numbers`` ``range``
 -----------------------  ------------------------
  **Related operators**   below_ above_ above_or_equal_ below_or_equal_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -1274,6 +1306,8 @@ Asserts if a given value starts with a specific items.
  **Chained aliases**     ``by`` ``word`` ``number`` ``numbers`` ``item`` ``items`` ``value`` ``char`` ``letter`` ``character``
 -----------------------  ------------------------
  **Related operators**   ends_with_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
@@ -1327,6 +1361,8 @@ Asserts if a given value ends with a specific items.
  **Chained aliases**     ``by`` ``word`` ``number`` ``numbers`` ``item`` ``items`` ``value`` ``char`` ``letter`` ``character``
 -----------------------  ------------------------
  **Related operators**   ends_with_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
 =======================  ========================
 
 **Assertion form**:
