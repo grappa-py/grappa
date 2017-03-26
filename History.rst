@@ -1,5 +1,16 @@
+
 History
 =======
+
+v0.1.2 / 2017-03-26
+-------------------
+
+  * feat(docs): add matchers supported keyword arguments
+  * feat(docs): improve descriptions
+  * feat(operators): improve length operator for access based chaining
+  * fix(docs): update error custom message example
+  * feat(docs): improve documentation. adds operators composition section
+  * fix(setup.py): add author email
 
 v0.1.1 / 2017-03-23
 -------------------
