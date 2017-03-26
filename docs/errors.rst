@@ -134,10 +134,8 @@ Custom error messages
 
 You can include arbitrary custom messages that would be included in the error report providing additional context information.
 
-You must use the function form instead of ``|`` operator based composition:
-
 .. code-block:: python
 
-    should('foo', msg='additional error message').be.equal('bar')
+    'foo' | should.be.equal('bar', msg='additional error message')
 
-    expect('foo', msg='additional error message').to.equal('bar')
+    'foo' | expect.to.equal('bar', msg='additional error message')
