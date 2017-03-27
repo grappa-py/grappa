@@ -22,7 +22,7 @@ To get started, take a look to the `showcase`_ code, `tutorial`_, available `plu
 Status
 ------
 
-``grappa`` is currently **beta quality** software. Contributions and issue reporting is welcome.
+``grappa`` is currently **beta quality** software. Community contributions are very welcome.
 
 Showcase
 --------
