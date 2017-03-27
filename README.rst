@@ -17,7 +17,7 @@ lightweight assertion library for Python_.
 It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction,
 provide better feedback and improve human speed and agility while identifying and fixing errors.
 
-To get started, take a look to the `showcase`_ code, `demo`_, `tutorial`_ and `documentation`_.
+To get started, take a look to the `showcase`_ code, `tutorial`_, available `plugins`_ and `operators documentation`_.
 
 Status
 ------
@@ -133,6 +133,7 @@ Or install the latest sources from Github:
 
 .. _Python: http://python.org
 .. _`documentation`: http://grappa.readthedocs.io
+.. _`operators documentation`: http://grappa.readthedocs.io/en/latest/operators.html
 .. _`tutorial`: http://grappa.readthedocs.io/en/latest/tutorial.html
 .. _`plugins`: http://grappa.readthedocs.io/en/latest/plugins.html
 .. _`error reporting`: http://grappa.readthedocs.io/en/latest/errors.html
