@@ -10,7 +10,7 @@ About
 -----
 
 ``grappa`` is a behavior-oriented, self-declarative, expressive and developer-friendly
-lightweight assertion library for Python_.
+lightweight assertion library for Python_ that aims to make testing more productive and frictionless for humans.
 
 ``grappa`` comes with two declarative `assertion styles`_: ``expect`` and ``should``.
 
