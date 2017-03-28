@@ -7,6 +7,8 @@ Assertion Operators
     Operators documentation is still beta and might contain errors, missing information or incongruencies.
     Please, report an issue if you notice something wrong.
 
+Operator Types
+--------------
 
 ``grappa`` provides three different kind of assertion operators.
 
