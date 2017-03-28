@@ -19,6 +19,8 @@ provide better feedback and improve human speed and agility while identifying an
 
 To get started, take a look to the `showcase`_ code, `tutorial`_, available `plugins`_ and `operators documentation`_.
 
+For HTTP protocol assertions, see `grappa-http`_.
+
 Status
 ------
 
@@ -139,6 +141,7 @@ Or install the latest sources from Github:
 .. _`error reporting`: http://grappa.readthedocs.io/en/latest/errors.html
 .. _`assertion styles`: http://grappa.readthedocs.io/en/latest/style.html
 .. _`assertion operators`: http://grappa.readthedocs.io/en/latest/operators.html
+.. _`grappa-http`: https://github.com/grappa-py/http
 
 .. |Build Status| image:: https://travis-ci.org/grappa-py/grappa.svg?branch=master
    :target: https://travis-ci.org/grappa-py/grappa
