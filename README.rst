@@ -69,6 +69,10 @@ See `documentation`_ and `tutorial`_ for more examples.
     (lambda x: x) | should.not_have.type.of('generator')
 
     'foo' | should.pass_test(lambda x: x in 'foo bar')
+    'foo' | should.pass_function(lambda x: len(x) > 2)
+
+    (lambda: x) | should.raises(NameError)
+    (lambda: x) | should.do_not.raises(RuntimeError)
 
     {'foo': 'bar'} | should.have.key('foo').that.should.be.equal('bar')
     (1, 2, 3, 4) | should.be.a(tuple) > should.have.index.at(3) > should.be.equal.to(4)
@@ -96,7 +100,7 @@ See `error reporting`_ documentation for more details about how ``grappa`` error
 
     ======================================================================
     FAIL: tests.should_test.test_grappa_assert
-    ----------------------------------------------------------------------
+    ======================================================================
     Traceback (most recent call last):
     File ".pyenv/versions/3.6.0/lib/python3.6/site-packages/nose/case.py", line 198, in runTest
     self.test(*self.arg)

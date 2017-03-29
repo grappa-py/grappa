@@ -94,6 +94,21 @@ Negation assertions
 
     'foo' | expect.to_not.be.equal.to('bar')
 
+Testing exceptions
+------------------
+
+.. code-block:: python
+
+    (lambda: x) | should.raises(NameError)
+
+    (lambda: x) | expect.to.raises(NameError)
+
+.. code-block:: python
+
+    (lambda: x) | should.do_not.raises(RuntimeError)
+
+    (lambda: x) | expect.to_not.raises(RuntimeError)
+
 Featured assertions
 -------------------
 
