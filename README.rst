@@ -63,6 +63,7 @@ See `documentation`_ and `tutorial`_ for more examples.
     'foo' | should.be.a('string')
     {'foo': True} | should.be.a('dict')
     [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
+    iter([1, 2, 3]) | should.have.length.of(3)
 
     (lambda x: x) | should.be.callable
     (lambda x: x) | should.not_have.type.of('generator')
