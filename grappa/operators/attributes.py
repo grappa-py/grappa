@@ -26,7 +26,7 @@ def be(ctx):
 
 
 @attribute(operators=(
-    'not_to', 'to_not', 'does_not', 'do_not', '_not',
+    'not_to', 'to_not', 'does_not', 'do_not', '_not', 'not_satisfy',
     'not_have', 'not_has', 'have_not', 'has_not', 'dont', 'is_not',
 ))
 def not_be(ctx):
