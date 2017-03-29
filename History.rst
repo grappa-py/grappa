@@ -1,6 +1,19 @@
-
 History
 =======
+
+v0.1.3 / 2017-03-29
+-------------------
+
+  * feat(docs): add raise exception examples
+  * refactor(docs): update showcase example
+  * feat(reporter): normalize value output in subject/expect sections
+  * feat(docs): update examples and FAQs. feat(operators): add aliases for start/end operator
+  * feat(docs): add link to grappa-http plugin
+  * refactor(docs): add operators type section
+  * refactor(docs): add beta status documentation notice
+  * feat(docs): update description
+  * refactor(docs): update status description
+  * feat(docs): update links
 
 v0.1.2 / 2017-03-26
 -------------------
