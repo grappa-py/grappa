@@ -35,10 +35,16 @@ class BaseReporter(object):
         if not hasattr(value, '__len__'):
             return value
 
+        # Get output size
+        raw_size = self.from_operator('raw_size')
+
         if use_raw and self.from_operator('raw_mode'):
-            return self.indentify(value)
+            if raw_size:
+                return self.cut(self.indentify(value), size=raw_size)
+            else:
+                return self.indentify(value)
         else:
-            return self.linefy(self.cut(value))
+            return self.linefy(self.cut(value, size=size))
 
     def safe_length(self, value):
         try:
