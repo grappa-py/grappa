@@ -66,7 +66,7 @@ class StartWithOperator(StarEndBaseOpeartor):
     """
 
     # Operator keywords
-    operators = ('start_with', 'starts_with')
+    operators = ('start_with', 'starts_with', 'startswith')
 
     # Expected template message
     expected_message = Operator.Dsl.Message(
@@ -127,7 +127,7 @@ class EndWithOperator(StarEndBaseOpeartor):
     """
 
     # Operator keywords
-    operators = ('end_with', 'ends_with')
+    operators = ('end_with', 'ends_with', 'endswith')
 
     # Expected template message
     expected_message = Operator.Dsl.Message(

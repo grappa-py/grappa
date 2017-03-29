@@ -39,22 +39,43 @@ A small example demonstrating some `grappa` features:
     False | should.be.false
     None | should.be.none
 
+    '' | should.be.empty
+    [] | should.be.empty
+    'foo' | should.exists
+
+    3.14 | should.be.lower.than(4)
+    3.14 | should.be.higher.than(3)
+    3.14 | should.be.within(2, 4)
+
     'bar' | should.be.equal.to('bar')
-    13.14 | should.be.lower.than(14)
-    13.14 | should.be.higher.than(13)
+    [1, 2, 3] | should.be.equal.to([1, 2, 3])
+
+    'hello, grappa' | should.startswith('hello')
+    'hello, grappa' | should.endswith('grappa')
+    [1, 2, 3, 4] | should.startswith(1)
+    [1, 2, 3, 4] | should.endswith(4)
 
     'Hello grappa' | should.match('(\W)+ grappa$')
     'Hello grappa' | should.contain('grappa') | should.contain('he')
+    ['foo', 'bar'] | should.contain('foo') | should.do_not.contain('baz')
 
+    'foo' | should.be.a('string')
     {'foo': True} | should.be.a('dict')
     [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
-    (lambda x: x) | should.not_be.have.type.of('lambda')
 
-    {'foo': 'bar'} | should.have.key('foo').that.should.be.equal.to('bar')
+    (lambda x: x) | should.be.callable
+    (lambda x: x) | should.not_have.type.of('generator')
+
+    'foo' | should.pass_test(lambda x: x in 'foo bar')
+
+    {'foo': 'bar'} | should.have.key('foo').that.should.be.equal('bar')
     (1, 2, 3, 4) | should.be.a(tuple) > should.have.index.at(3) > should.be.equal.to(4)
 
     an_object | should.have.properties('foo', 'bar', 'baz')
     an_object | should.implement.methods('foo', 'bar', 'baz')
+
+    {'foo': True, 'bar': False} | should.all(should.have.key('foo'), should.have.key('bar'))
+    {'foo': True, 'bar': False} | should.any(should.have.key('foo'), should.have.key('baz'))
 
     ({'bar': [1, 2, 3]}
         | should.have.key('bar')
@@ -64,7 +85,7 @@ A small example demonstrating some `grappa` features:
         > should.have.index.at(1)
         > should.be.equal.to(2))
 
-See `documentation`_ for more examples.
+See `documentation`_ and `tutorial`_ for more examples.
 
 Demo
 ----

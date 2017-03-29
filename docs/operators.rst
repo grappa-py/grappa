@@ -1304,6 +1304,9 @@ Asserts that a number is within a range.
 start_with
 ^^^^^^^^^^
 
+startswith
+^^^^^^^^^^
+
 starts_with
 ^^^^^^^^^^^
 
@@ -1357,6 +1360,9 @@ Asserts if a given value starts with a specific items.
 
 
 end_with
+^^^^^^^^
+
+endswith
 ^^^^^^^^
 
 ends_with

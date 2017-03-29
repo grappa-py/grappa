@@ -53,8 +53,8 @@ Now, a ``grappa`` error report using ``nosetests``:
 .. code-block:: python
 
     def test_grappa_assertion():
-    x = [1, 2, 3]
-    x | should.be.have.length.of(4)
+        x = [1, 2, 3]
+        x | should.be.have.length.of(4)
 
 
 .. code-block:: bash

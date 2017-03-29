@@ -165,7 +165,7 @@ Using ``|`` for multiple assertions composition (equivalent to ``all``/``and`` c
 Chained assertions
 ------------------
 
-Using ``>`` operator for chained assertion instead of ``which``/``that`` operators:
+Using ``>`` operator for chained assertion instead of ``which``/``that`` operators for assertion composition:
 
 .. code-block:: python
 
@@ -196,7 +196,7 @@ More complex chained assertions:
 How to compose assertions
 -------------------------
 
-See `composition`_ section.
+See `operators composition`_ section.
 
 .. _installation: http://grappa.readthedocs.io/en/latest/intro.html#installation
-.. _composition: http://grappa.readthedocs.io/en/latest/composition.html
+.. _`operators composition`: http://grappa.readthedocs.io/en/latest/composition.html
