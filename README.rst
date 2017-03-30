@@ -72,7 +72,7 @@ See `documentation`_ and `tutorial`_ for more examples.
     'foo' | should.pass_function(lambda x: len(x) > 2)
 
     (lambda: x) | should.raises(NameError)
-    (lambda: x) | should.do_not.raises(RuntimeError)
+    (lambda: x) | should.does_not.raises(RuntimeError)
 
     {'foo': 'bar'} | should.have.key('foo').that.should.be.equal('bar')
     (1, 2, 3, 4) | should.be.a(tuple) > should.have.index.at(3) > should.be.equal.to(4)
@@ -94,7 +94,7 @@ See `documentation`_ and `tutorial`_ for more examples.
 
 Let's see how the error report looks like in ``grappa`` running in ``pytest``.
 
-See `error reporting`_ documentation for more details about how ``grappa`` error system works.
+See `error reporting`_ documentation for more details about how ``grappa`` error report system works.
 
 .. code-block:: python
 
