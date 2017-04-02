@@ -56,7 +56,7 @@ class LengthOperator(Operator):
         Operator.Dsl.Help(
             Operator.Dsl.Description(
                 'Object length is measured by using "len()" built-in',
-                'Python function or consuming an lazy iterable, such as a'
+                'Python function or consuming an lazy iterable, such as a',
                 'generator. Most built-in types and objects in Python',
                 'can be tested that way, such as str, list, tuple, dict...',
                 'as well as any object that implements "__len__()" method.'

@@ -62,8 +62,9 @@ See `documentation`_ and `tutorial`_ for more examples.
 
     'foo' | should.be.a('string')
     {'foo': True} | should.be.a('dict')
-    [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
+
     iter([1, 2, 3]) | should.have.length.of(3)
+    [1, 2, 3] | should.be.a('list') > should.have.length.of(3)
 
     (lambda x: x) | should.be.callable
     (lambda x: x) | should.not_have.type.of('generator')
@@ -132,11 +133,11 @@ See `error reporting`_ documentation for more details about how ``grappa`` error
       an object of type "list" with length 3
 
     Information
-      ▸ An empty object is typically tested via "len(x)"
-        built-in function. Most built-in types and objects in Python
-        can be tested that way, such as str, list, generator...
-        as well as any object that implements "__len__()" method
-        and returns "0" as length.
+      ▸ Object length is measured by using "len()" built-in
+        Python function or consuming an lazy iterable, such as a
+        generator. Most built-in types and objects in Python
+        can be tested that way, such as str, list, tuple, dict...
+        as well as any object that implements "__len__()" method.
         — Reference: https://docs.python.org/3/library/functions.html#len
 
     Where
