@@ -30,6 +30,7 @@ class ErrorTemplate(object):
 
     def map_iterable(self, content):
         margin = ' ' * 4
+
         if type(content[0]) is str:
             return ('\n' + margin).join(
                 '> ' + item for item in content if item

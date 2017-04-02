@@ -92,6 +92,11 @@ See `documentation`_ and `tutorial`_ for more examples.
         > should.have.index.at(1)
         > should.be.equal.to(2))
 
+    with should('foo'):
+        should.be.a(str)
+        should.have.length.of(3)
+        should.be.equal.to('foo')
+
 
 Let's see how the error report looks like in ``grappa`` running in ``pytest``.
 

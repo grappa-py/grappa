@@ -50,6 +50,7 @@ class Config(object):
     def __setattr__(self, name, value):
         self.opts[name] = value
 
+        # Configure logger level
         if name == 'debug':
             log.setLevel(logging.DEBUG if value is True
                          else logging.CRITICAL)
