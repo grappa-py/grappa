@@ -94,6 +94,21 @@ Negation assertions
 
     'foo' | expect.to_not.be.equal.to('bar')
 
+Context based assertion for DRYer code
+--------------------------------------
+
+.. code-block:: python
+
+    with should({'foo': 'bar'}):
+        should.be.a(dict)
+        should.have.length(1)
+        should.have.key('foo').that.should.be.equal.to('bar')
+
+    with expect({'foo': 'bar'}):
+        expect.to.be.a(dict)
+        expect.to.have.length(1)
+        expect.to.have.key('foo').to.be.equal('bar')
+
 Testing exceptions
 ------------------
 
