@@ -34,6 +34,9 @@ class EqualOperator(Operator):
     # Is the operator a keyword
     kind = Operator.Type.MATCHER
 
+    # Enable diff report
+    show_diff = True
+
     # Operator keywords
     operators = ('equal', 'same')
 
