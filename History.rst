@@ -1,6 +1,20 @@
 History
 =======
 
+v0.1.4 / 2017-04-27
+-------------------
+
+  * feat(reporters): match attribute expressions for proper code line reporting
+  * feat(equal): enable show_diff report in operator
+  * fix(index_test): bad file formatting
+  * refactor(index_test): add error test case
+  * refactor(index_test): remove commented code
+  * feat(docs): add context assertion example in tutorial
+  * feat(docs): add context manager example
+  * fix(docs): update error exception example
+  * refactor(docs): update showcase example
+  * feat(operators): add not_satisfy attribute operator
+
 v0.1.3 / 2017-03-29
 -------------------
 
