@@ -16,15 +16,6 @@ def be(ctx):
     ctx.negate = False
 
 
-# @attribute(operators=('that',))
-# def which(ctx):
-#     """
-#     Semantic attributes providing chainable declarative DSL
-#     for assertions chaning.
-#     """
-#     ctx.reset = True
-
-
 @attribute(operators=(
     'not_to', 'to_not', 'does_not', 'do_not', '_not', 'not_satisfy',
     'not_have', 'not_has', 'have_not', 'has_not', 'dont', 'is_not',

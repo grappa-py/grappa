@@ -31,13 +31,19 @@ class CodeReporter(BaseReporter):
     LINES = 8
     INDENT_SPACES = 4
 
+    # Regular expression for invokation based expressions
     PIPE_EXPR = re.compile(r'[\|][\s+]?(should|expect)[\.]')
     FN_CALL_EXPR = re.compile(r'(should|expect)[\s+]?[\(|\.]')
+
+    # Context manager based assertions that does not imply new test calls.
+    CONTEXT_EXPR = re.compile(
+        r'[\.](not)?[\_]?(have|has|be|to|that|satisfy|which|include)[\.]')
 
     def match_line(self, line):
         return any([
             CodeReporter.PIPE_EXPR.search(line),
             CodeReporter.FN_CALL_EXPR.match(line),
+            CodeReporter.CONTEXT_EXPR.match(line)
         ])
 
     def find_trace(self):
