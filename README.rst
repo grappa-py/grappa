@@ -168,7 +168,7 @@ Demo
 ----
 
 .. image:: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir.png
-   :width: 100%
+   :width: 900
    :alt: showcase
    :align: center
    :target: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir?autoplay=1&speed=3&size=small
