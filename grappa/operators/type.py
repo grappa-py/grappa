@@ -123,12 +123,15 @@ class TypeOperator(Operator):
     def match(self, value, expected):
         # Custom expectations yielded values
         self.value = type(value).__name__
-        self.expected = type(expected).__name__
+        self.expected = expected
 
         # Get type alias
         if type(expected) is str:
             self.expected = expected
             _expected = MAPPINGS.get(expected)
+
+            # Overwrite type value string
+            self.expected = _expected
 
             if not _expected:
                 raise ValueError('unsupported type alias: {}'.format(expected))
