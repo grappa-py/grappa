@@ -60,6 +60,18 @@ satisfies
 _is
 ^^^
 
+which
+^^^^^
+
+that
+^^^^
+
+that_is
+^^^^^^^
+
+which_is
+^^^^^^^^
+
 Semantic chainable attributes that defines non-negative assertions.
 
 Typically, you will use them implicitly in order to semantically describe your assertions.
@@ -79,37 +91,13 @@ Typically, you will use them implicitly in order to semantically describe your a
     'foo' | should.be.equal.to('bar')
     'foo' | should.have.length.of(3)
 
-.. code-block:: python
-
-    'foo' | expect.to.equal.to('bar')
-    'foo' | expect.to.have.length.of(3)
-
-which
-^^^^^
-
-that
-^^^^
-
-Semantic chainable attributes to be used for multiple non-negation assertions composition/chaining.
-
-Typically, you will use them when chaining in order to semantically describe your assertion concatenation.
-
-=======================  ========================
- **Type**                attribute
------------------------  ------------------------
- **Assertion mode**      positive
------------------------  ------------------------
- **Resets context**      yes
-=======================  ========================
-
-**Examples**:
-
-.. code-block:: python
-
     {'foo': 'bar'} | should.have.key('foo').which.should.be.equal.to('bar')
     {'foo': 'bar'} | should.have.key('foo').that.should.have.length.of(3)
 
 .. code-block:: python
+
+    'foo' | expect.to.equal.to('bar')
+    'foo' | expect.to.have.length.of(3)
 
     {'foo': 'bar'} | expect.to.have.key('foo').which.expect.to.be.equal('bar')
     {'foo': 'bar'} | expect.to.have.key('foo').which.expect.to.have.length.of(3)
@@ -148,11 +136,20 @@ has_not
 not_has
 ^^^^^^^
 
+that_not
+^^^^^^^^
+
+which_not
+^^^^^^^^^
+
 is_not
 ^^^^^^
 
 _not
 ^^^^
+
+not_satisfy
+^^^^^^^^^^^
 
 Semantic chainable attributes that defines negative assertions.
 
