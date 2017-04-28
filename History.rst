@@ -2,6 +2,12 @@
 History
 =======
 
+v0.1.6 / 2017-04-28
+-------------------
+
+* fix(type): expose proper type value if a type value is the expected value
+* fix(reporter): use search() instead of match() for line code matching. fix(reporters): escape underscore sequences
+
 v0.1.5 / 2017-04-28
 -------------------
 
