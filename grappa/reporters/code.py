@@ -37,14 +37,14 @@ class CodeReporter(BaseReporter):
 
     # Context manager based assertions that does not imply new test calls.
     CONTEXT_EXPR = re.compile(
-        r'[\.](not)?[\_]?(have|has|be|to|that|_is|is_not|'
-        r'satisfy|which|that_is|which_is|include)[\_]?(not)?[\.]')
+        r'[\.](not)?[\_]?(have|has|be|to|that|\_is|is\_not|'
+        r'satisfy|which|that\_is|which\_is|include)[\_]?(not)?[\.]')
 
     def match_line(self, line):
         return any([
             CodeReporter.PIPE_EXPR.search(line),
-            CodeReporter.FN_CALL_EXPR.match(line),
-            CodeReporter.CONTEXT_EXPR.match(line)
+            CodeReporter.FN_CALL_EXPR.search(line),
+            CodeReporter.CONTEXT_EXPR.search(line)
         ])
 
     def find_trace(self):
