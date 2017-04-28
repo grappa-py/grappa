@@ -37,8 +37,8 @@ class CodeReporter(BaseReporter):
 
     # Context manager based assertions that does not imply new test calls.
     CONTEXT_EXPR = re.compile(
-        r'[\.](not)?[\_]?(have|has|be|to|that|'
-        r'satisfy|which|include)[\_]?(not)?[\.]')
+        r'[\.](not)?[\_]?(have|has|be|to|that|_is|is_not|'
+        r'satisfy|which|that_is|which_is|include)[\_]?(not)?[\.]')
 
     def match_line(self, line):
         return any([
