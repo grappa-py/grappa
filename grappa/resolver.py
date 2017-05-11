@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import functools
 from .empty import empty
 from .assertion import AssertionProxy
+from .operator import OperatorTypes
 
 
 class OperatorResolver(object):
@@ -62,6 +64,26 @@ class OperatorResolver(object):
 
         return AssertionProxy(self, operator, wrapper)
 
+    def attribute_error_message(self, name):
+        def reducer(buf, operator):
+            name, op = operator
+            buf[op.kind].append(name)
+            return buf
+
+        operators = functools.reduce(
+            reducer, self.engine.operators.items(), {
+                OperatorTypes.ATTRIBUTE: [],
+                OperatorTypes.ACCESSOR: [],
+                OperatorTypes.MATCHER: []
+            })
+
+        values = ['  {}S:\n  - {}'.format(kind.upper(), '\n  - '.join(names))
+                  for kind, names in operators.items()]
+
+        return ('"{}" has no assertion operator called "{}"\n\n'
+                '  However, you can use one of the following:\n\n'
+                '{}\n').format(self.ctx.style, name, '\n\n'.join(values))
+
     def resolve(self, name):
         # Check if should stop the call chain
         if self.ctx.stop_chain:
@@ -71,11 +93,10 @@ class OperatorResolver(object):
 
         # Find an assertion operator by name
         operator = self.engine.find_operator(name)
+
+        # Raise attribute error
         if not operator:
-            raise AttributeError(
-                '"{}" has no assertion operator called "{}"'.format(
-                    self.ctx.style, name
-                ))
+            raise AttributeError(self.attribute_error_message(name))
 
         # Register attribute access
         self.engine.add_keyword(name)
