@@ -65,23 +65,44 @@ class OperatorResolver(object):
         return AssertionProxy(self, operator, wrapper)
 
     def attribute_error_message(self, name):
-        def reducer(buf, operator):
+        def reduce_operators(buf, operator):
+            columns = 4
             name, op = operator
-            buf[op.kind].append(name)
+            data = buf[op.kind]
+
+            if len(data[-1]) < columns:
+                data[-1].append(name)
+            else:
+                buf[op.kind].append([name])
+
             return buf
 
+        def calculate_space(name):
+            max_space = 20
+            spaces = max_space - len(name)
+            return ''.join([' ' for _ in range(spaces if spaces else 0)])
+
+        def spacer(names):
+            return ''.join([name + calculate_space(name) for name in names])
+
+        def join(names):
+            return '\n   '.join([spacer(line) for line in names])
+
+        # Reduce operators names and select them per type
         operators = functools.reduce(
-            reducer, self.engine.operators.items(), {
-                OperatorTypes.ATTRIBUTE: [],
-                OperatorTypes.ACCESSOR: [],
-                OperatorTypes.MATCHER: []
+            reduce_operators, self.engine.operators.items(), {
+                OperatorTypes.ATTRIBUTE: [[]],
+                OperatorTypes.ACCESSOR: [[]],
+                OperatorTypes.MATCHER: [[]]
             })
 
-        values = ['  {}S:\n  - {}'.format(kind.upper(), '\n  - '.join(names))
+        # Compose available operators message by type
+        values = ['  {}S:\n   {}'.format(kind.upper(), join(names))
                   for kind, names in operators.items()]
 
+        # Compose and return assertion message error
         return ('"{}" has no assertion operator called "{}"\n\n'
-                '  However, you can use one of the following:\n\n'
+                '  However, you can use one of the following operators:\n\n'
                 '{}\n').format(self.ctx.style, name, '\n\n'.join(values))
 
     def resolve(self, name):
