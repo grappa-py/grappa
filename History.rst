@@ -1,6 +1,11 @@
-
 History
 =======
+
+v0.1.7 / 2017-05-12
+-------------------
+
+  * feat(#33): show available operators on attribute error
+  * feat(#36): add allowed assertion attributes on error
 
 v0.1.6 / 2017-04-28
 -------------------
