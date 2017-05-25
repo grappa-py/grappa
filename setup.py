@@ -67,7 +67,7 @@ setup(
     description=(
         'Behavior-oriented, expressive, developer-friendly assertions library'
     ),
-    url='https://github.com/grappa-python/grappa',
+    url='https://github.com/grappa-py/grappa',
     license='MIT',
     long_description=readme + '\n\n' + history,
     py_modules=['grappa'],
