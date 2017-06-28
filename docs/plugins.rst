@@ -95,5 +95,5 @@ Alternatively, you can self-register your operator classes via ``register`` deco
     pass
 
 
-.. _http: https://github.com/grappa-python/http
-.. _server: https://github.com/grappa-python/server
+.. _http: https://github.com/grappa-py/http
+.. _server: https://github.com/grappa-py/server
