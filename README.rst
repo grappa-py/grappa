@@ -24,7 +24,7 @@ For HTTP protocol assertions, see `grappa-http`_.
 Status
 ------
 
-``grappa`` is currently **beta quality** software. Community contributions are very welcome.
+``grappa`` is **stable** software, however community contributions and bug reports are very welcome.
 
 Showcase
 --------
