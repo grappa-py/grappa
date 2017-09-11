@@ -24,7 +24,10 @@ For HTTP protocol assertions, see `grappa-http`_.
 Status
 ------
 
-``grappa`` is **stable** software, however community contributions and bug reports are very welcome.
+``grappa`` is considered **stable** software, however it's not mature, widely used software. 
+New features may be added from time to time or annoying bugs may be still experienced.
+
+Community contributions and bug reports are very welcome.
 
 Showcase
 --------
