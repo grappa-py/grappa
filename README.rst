@@ -21,10 +21,6 @@ To get started, take a look to the `showcase`_ code, `tutorial`_, available `plu
 
 For HTTP protocol assertions, see `grappa-http`_.
 
-.. raw:: html
-
-    <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/1MpD3pzt63uUeG43NP4tDHPY/grappa-py/grappa'>     <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/1MpD3pzt63uUeG43NP4tDHPY/grappa-py/grappa.svg' /></a>
-
 Status
 ------
 
