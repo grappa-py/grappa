@@ -958,7 +958,10 @@ raise_error
 raises_errors
 ^^^^^^^^^^^^^
 
-Asserts if a given function raises an exception.
+Asserts if a given function raises an exception. The function must be a zero
+arity function (no arguments). If you need to pass arguments into your function
+you can use ``functools.partial`` to create a zero arity function with your
+arguments
 
 =======================  ========================
  **Type**                matcher
