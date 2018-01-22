@@ -208,7 +208,7 @@ class Operator(object):
             return self.run_matcher(*args, **kw)
 
     def __enter__(self):
-        raise NotImplementedError('operator cannot be used like "with" statement')  # noqa
+        raise NotImplementedError('operator cannot be used as "with" statement')  # noqa
 
     def __exit__(self, etype, value, traceback):
         self.__enter__()
