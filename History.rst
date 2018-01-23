@@ -1,5 +1,27 @@
+
 History
 =======
+
+v0.1.8 / 2018-01-23
+-------------------
+
+  * Merge pull request #39 from dancingcactus/master
+  * Removes unused imports
+  * Allow partials to be used with raises operators
+  * fix(operator): minor type in exception message
+  * Merge pull request #38 from dancingcactus/master
+  * Updates the docs for Raises to encapsulate feedback from #37
+  * Update README.rst
+  * refactor(docs): remove codesponsor
+  * feat(docs): add sponsor ad
+  * feat(docs): update status note
+  * feat(docs): update status note
+  * Merge branch 'master' of https://github.com/grappa-py/grappa
+  * fix(docs): use proper organization name
+  * Update AUTHORS
+  * refactor(docs): import AUTHORS file
+  * feat: add AUTHORS file
+  * fix(setup.py): update package URL
 
 v0.1.7 / 2017-05-12
 -------------------
