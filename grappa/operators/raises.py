@@ -57,7 +57,7 @@ class RaisesOperator(Operator):
     )
 
     def match(self, fn, *errors):
-        if not any([inspect.isfunction(fn) or inspect.ismethod(fn)]):
+        if not callable(fn):
             return False, ['subject must be a function or method']
 
         try:
