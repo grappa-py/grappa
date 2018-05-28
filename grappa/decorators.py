@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 import functools
+import six
 from .engine import Engine
 from .operator import Operator
 
@@ -29,7 +30,7 @@ def operator(name=None, operators=None, aliases=None, kind=None):
 
     def decorator(fn):
         operator = Operator(fn=fn, aliases=aliases, kind=kind)
-        _name = name if isinstance(name, str) else fn.__name__
+        _name = name if isinstance(name, six.string_types) else fn.__name__
         operator.operators = (_name,)
 
         _operators = operators

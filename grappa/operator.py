@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 import functools
+import six
 
 from .log import log
 from .empty import empty
@@ -149,8 +150,8 @@ class Operator(object):
             # Enable diff comparison on error, if needed
             if not hasattr(self, 'show_diff'):
                 self.show_diff = all([
-                    isinstance(subject, str),
-                    all([isinstance(x, str) for x in expected]),
+                    isinstance(subject, six.string_types),
+                    all([isinstance(x, six.string_types) for x in expected]),
                 ])
 
             return result
