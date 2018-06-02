@@ -10,8 +10,9 @@ python:
   - pypy3
   - nightly
 
-allow_failures:
-  - python: nightly
+matrix:
+  allow_failures:
+    - python: nightly
 
 sudo: false
 
