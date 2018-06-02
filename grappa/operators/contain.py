@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+import six
 from ..operator import Operator
 
 
@@ -89,7 +90,7 @@ class ContainOperator(Operator):
         if len(subject) == 0:
             return False, 'empty item'
 
-        if isinstance(subject, str):
+        if isinstance(subject, six.string_types):
             if expected in subject:
                 return True, 'item {0!r} found'.format(expected)
             return False, 'item {0!r} not found'.format(expected)

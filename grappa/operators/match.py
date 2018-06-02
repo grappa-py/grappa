@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+import six
 
 from ..operator import Operator
 
@@ -58,11 +59,11 @@ class MatchOperator(Operator):
     )
 
     def match(self, subject, expected, *args):
-        if not isinstance(subject, str):
+        if not isinstance(subject, six.string_types):
             return False, ['subject must be a string, but got "{}"'.format(
                 type(subject))]
 
-        if not isinstance(expected, str):
+        if not isinstance(expected, six.string_types):
             return False, [
                 'value to match must be a string, but got "{}"'.format(
                     type(expected))

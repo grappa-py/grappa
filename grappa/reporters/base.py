@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import six
 from ..empty import empty
 
 
@@ -17,7 +18,7 @@ class BaseReporter(object):
         return str(value).replace(os.linesep, r'\n')
 
     def indentify(self, value):
-        if not isinstance(value, str):
+        if not isinstance(value, six.string_types):
             return value
 
         lines = value.split(os.linesep)
