@@ -46,7 +46,7 @@ class PresentOperator(Operator):
     information = (
         Operator.Dsl.Help(
             Operator.Dsl.Description(
-                'An present object is the oposite of an empty object.'
+                'An present object is the opposite of an empty object.'
             )
         ),
     )

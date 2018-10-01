@@ -51,7 +51,7 @@ class EqualOperator(Operator):
 
     # Subject message template
     subject_message = Operator.Dsl.Message(
-        'an value of type "{type}" with data "{value}"',
+        'a value of type "{type}" with data "{value}"',
     )
 
     def match(self, subject, expected):
