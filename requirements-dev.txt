@@ -7,3 +7,4 @@ Sphinx~=1.5.3
 sphinx-rtd-theme~=0.1.9
 python-coveralls~=2.9.0
 bumpversion~=0.5.3
+mock~=2.0.0
