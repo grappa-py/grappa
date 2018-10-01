@@ -52,7 +52,7 @@ class ContainOperator(Operator):
 
     # Subject template message
     subject_message = Operator.Dsl.Message(
-        'an value of type "{type}" with content "{value}"',
+        'a value of type "{type}" with content "{value}"',
     )
 
     # Stores types to normalize before the assertion

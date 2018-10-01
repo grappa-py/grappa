@@ -20,6 +20,7 @@ operators = (
     ('within',      'WithinOperator'),
     ('present',     'PresentOperator'),
     ('contain',     'ContainOperator'),
+    ('only',        'ContainOnlyOperator'),
     ('callable',    'CallableOperator'),
     ('property',    'PropertyOperator'),
     ('pass_test',   'PassTestOperator'),
