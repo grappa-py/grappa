@@ -34,7 +34,6 @@ class SubjectMessageReporter(BaseReporter):
         # Get expectation message, if present in the operator
         attribute = '{}_message'.format(self.attribute)
         text_message = self.from_operator(attribute, None)
-
         if text_message:
             # Check if message is present and is a negation expression
             if isinstance(text_message, Message):
@@ -44,7 +43,7 @@ class SubjectMessageReporter(BaseReporter):
             # Render template
             text_message = self.render_tmpl(
                 self.indentify(text_message),
-                self.normalize(value)
+                value
             )
 
         # Return template text message
