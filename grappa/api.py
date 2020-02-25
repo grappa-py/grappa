@@ -9,7 +9,7 @@ from .plugin import use
 # Expose config module as part of the public API
 from .config import config
 # Expose decorator for operators factory
-from .decorators import *  # noqa
+from .decorators import operator, register, attribute
 # Expose Operatocdr base class
 from .operator import Operator
 # Required to load built-in operators

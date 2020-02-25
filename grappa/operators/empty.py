@@ -60,7 +60,7 @@ class EmptyOperator(Operator):
     )
 
     def match(self, subject):
-        if subject is None or subject is 0:
+        if subject is None or subject is 0:  # noqa F632
             return True
 
         if subject in (True, False):

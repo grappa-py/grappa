@@ -12,22 +12,22 @@ class MatchOperator(Operator):
     Example::
 
         # Should style
-        'hello world' | should.match(r'Hello \w+')
+        'hello world' | should.match(r'Hello \\w+')
         'hello world' | should.match(r'hello [A-Z]+', re.I))
         'hello world' | should.match.expression(r'hello [A-Z]+', re.I))
 
         # Should style - negation form
-        'hello w0rld' | should.do_not.match(r'Hello \w+')
+        'hello w0rld' | should.do_not.match(r'Hello \\w+')
         'hello w0rld' | should.do_not.match(r'hello [A-Z]+', re.I))
         'hello world' | should.do_not.match.expression(r'hello [A-Z]+', re.I))
 
         # Expect style
-        'hello world' | expect.to.match(r'Hello \w+')
+        'hello world' | expect.to.match(r'Hello \\w+')
         'hello world' | expect.to.match(r'hello [A-Z]+', re.I))
         'hello world' | expect.to.match.expression(r'hello [A-Z]+', re.I))
 
         # Expect style - negation form
-        'hello w0rld' | expect.to_not.match(r'Hello \w+')
+        'hello w0rld' | expect.to_not.match(r'Hello \\w+')
         'hello w0rld' | expect.to_not.match(r'hello [A-Z]+', re.I))
         'hello world' | expect.to_not.match.expression(r'hello [A-Z]+', re.I))
     """

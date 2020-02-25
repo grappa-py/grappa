@@ -30,7 +30,7 @@ class BaseReporter(object):
 
         try:
             value = str(value)
-        except:
+        except:  # noqa E722
             value = value
 
         if not hasattr(value, '__len__'):
@@ -50,7 +50,7 @@ class BaseReporter(object):
     def safe_length(self, value):
         try:
             return len(value)
-        except:
+        except:  # noqa E722
             return '"unmeasurable"'
 
     def from_operator(self, name, defaults=None, operator=None):
