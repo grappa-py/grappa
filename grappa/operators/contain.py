@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import collections
+from six.moves import collections_abc
 import six
 from ..operator import Operator
 
@@ -57,9 +57,9 @@ class ContainOperator(Operator):
 
     # Stores types to normalize before the assertion
     NORMALIZE_TYPES = (
-        collections.Iterator,
-        collections.MappingView,
-        collections.Set
+        collections_abc.Iterator,
+        collections_abc.MappingView,
+        collections_abc.Set
     )
 
     def match(self, subject, *expected):
@@ -72,7 +72,7 @@ class ContainOperator(Operator):
         return self._matches(subject, *expected)
 
     def _is_not_a_sequence(self, value):
-        return not isinstance(value, collections.Sequence)
+        return not isinstance(value, collections_abc.Sequence)
 
     def _matches(self, subject, *expected):
         reasons = []

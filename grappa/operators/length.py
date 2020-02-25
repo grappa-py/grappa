@@ -83,7 +83,7 @@ class LengthOperator(Operator):
         try:
             self.ctx.subject = len(subject)
             self.ctx.length = False
-        except:
+        except Exception:
             return False, ['cannot measure length of the given object']
 
         return True, []

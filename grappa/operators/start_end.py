@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from six.moves import collections_abc
 
 from ..operator import Operator
 from ..constants import STR_TYPES
@@ -23,7 +24,7 @@ class StarEndBaseOpeartor(Operator):
         return self.matches(subject, *expected)
 
     def is_unordered_dict(self, subject):
-        if isinstance(subject, collections.Mapping):
+        if isinstance(subject, collections_abc.Mapping):
             if not hasattr(collections, 'OrderedDict'):
                 return True
             return not isinstance(subject, collections.OrderedDict)

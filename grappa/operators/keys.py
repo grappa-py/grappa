@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import collections
+from six.moves import collections_abc
 
 from ..operator import Operator
 
@@ -60,7 +60,7 @@ class KeysOperator(Operator):
         return self._matches(subject, (keys, kw))
 
     def _not_a_dict(self, value):
-        return not isinstance(value, collections.Mapping)
+        return not isinstance(value, collections_abc.Mapping)
 
     def _matches(self, subject, expected):
         args, kwargs = expected
