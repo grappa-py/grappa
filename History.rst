@@ -2,6 +2,19 @@
 History
 =======
 
+0.1.12 / 2020-02-26
+--------------------
+
+  * feat(version): bimp
+  * feat(setup): add python 3.7 & 3.8 classifiers
+  * Merge pull request #56 from jdlourenco/collections-abc-six
+  * update code according flake8 warnings and errors
+  * feat(requirements): bump flake8
+  * feat(travis): add python 3.7 & 3.8
+  * fix(travis): remove python 3.3 & 3.4
+  * change bump six to 0.14
+  * change use six.moves.collections_abc module for importing classes that moved to the collections.abc module on python3
+
 0.1.10 / 2018-10-02
 -------------------
 
