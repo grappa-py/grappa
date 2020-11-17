@@ -22,3 +22,11 @@ def test_negation_attributes(operator):
     assert getattr(should, operator)._ctx.negate
     assert isinstance(getattr(expect, operator), GrappaTest)
     assert getattr(expect, operator)._ctx.negate
+
+
+def test_negation_called_before_non_negation_attributes():
+    expect(False).to_not.have.true
+    expect(False).not_to.be.true
+
+    False | should.to_not.have.true
+    False | should.not_to.be.true
