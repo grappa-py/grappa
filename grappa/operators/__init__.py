@@ -27,6 +27,9 @@ operators = (
     ('implements',  'ImplementsOperator'),
     ('raises',      'RaisesOperator'),
 
+    ('been_called',      'BeenCalledOperator', 'BeenCalledTimesOperator', 'BeenCalledOnceOperator'),
+    ('been_called_with', 'BeenCalledWithOperator', 'BeenCalledOnceWithOperator'),
+
     ('bool',        'TrueOperator', 'FalseOperator'),
     ('start_end',   'StartWithOperator', 'EndWithOperator'),
 

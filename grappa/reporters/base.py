@@ -73,6 +73,9 @@ class BaseReporter(object):
         if '{length}' in tmpl:
             placeholders['length'] = self.safe_length(value)
 
+        if '{call_count}' in tmpl:
+            placeholders['call_count'] = value.call_count
+
         return tmpl.format(**placeholders)
 
     def run(self, error):
