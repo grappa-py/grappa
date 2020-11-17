@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from ..operator import Operator
 
+from .been_called import mock_implementation_validator
+
 class BeenCalledWithOperator(Operator):
     """
-    Asserts whether a MagicMock have been called with arguments or not.
+    Asserts whether a mock have been called with arguments or not.
     """
 
     # Is the operator a keyword
@@ -27,20 +29,18 @@ class BeenCalledWithOperator(Operator):
         'a mock that has been called at least once with arguments',
     )
 
+    @mock_implementation_validator
     def match(self, subject, *args):
-        if subject.__class__.__name__ == 'MagicMock':
-            try:
-                subject.assert_called_with(*args)
-                return True
-            except AssertionError as error:
-                return False, [ error.args[0] ]
-
-        return False, ['subject is not a MagicMock patch but a ' + subject.__class__.__name__]
+        try:
+            subject.assert_called_with(*args)
+            return True
+        except AssertionError as error:
+            return False, [ error.args[0] ]
 
 
 class BeenCalledOnceWithOperator(Operator):
     """
-    Asserts whether a MagicMock have been called once with arguments or not.
+    Asserts whether a mock have been called once with arguments or not.
     """
 
     # Is the operator a keyword
@@ -64,13 +64,10 @@ class BeenCalledOnceWithOperator(Operator):
         'a mock that has been called once with arguments',
     )
 
+    @mock_implementation_validator
     def match(self, subject, *args):
-        if subject.__class__.__name__ == 'MagicMock':
-            try:
-                subject.assert_called_once_with(*args)
-                return True
-            except AssertionError as error:
-                return False, [ error.args[0] ]
-
-        return False, ['subject is not a MagicMock patch but a ' + subject.__class__.__name__]
-
+        try:
+            subject.assert_called_once_with(*args)
+            return True
+        except AssertionError as error:
+            return False, [ error.args[0] ]
