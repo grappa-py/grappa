@@ -33,7 +33,7 @@ class ErrorReporter(object):
 
         # Flag error as grappa generated error
         err.__grappa__ = True
-        err.error = error
+        err.__cause__ = getattr(error, 'error', error)
         err.context = self.ctx
 
         return err
