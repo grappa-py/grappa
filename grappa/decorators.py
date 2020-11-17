@@ -77,6 +77,21 @@ def register(operator):
 
 
 def mock_implementation_validator(func):
+    """
+    Validate that a mock conform to the implementation required to run
+    have_been and have_been_with operators.
+
+    Otherwise returns a Grappa tuple with missing implementation reasons.
+
+    Arguments:
+        operator (Operator): a been_called or been_called_with operator.
+        subject: a mock whose implementation is to be validated.
+        *args: variadic arguments.
+        **kw: variadic keyword arguments.
+
+    Returns:
+        (function|tuple)
+    """
     @functools.wraps(func)
     def wrapper(operator, subject, *args, **kwargs):
         expect = TestProxy('expect')
@@ -106,6 +121,26 @@ def mock_implementation_validator(func):
         reasons = functools.reduce(validate_methods, expected_methods, reasons)
 
         if reasons:
+            operator.information = (
+                Operator.Dsl.Help(
+                    Operator.Dsl.Description(
+                        'Required implementation is based on unittest.mock.Mock class.', # noqa E501
+                        '',
+                        'Properties required',
+                        '    {}'.format(', '.join(expected_props)),
+                        'Methods required',
+                        '    {}'.format(', '.join(expected_methods)),
+                        '',
+                    ),
+                    Operator.Dsl.Reference(
+                        'https://docs.python.org/3/library/unittest.mock.html#the-mock-class', # noqa E501
+                    ),
+                    Operator.Dsl.Reference(
+                        'https://pypi.org/project/pytest-mock/',
+                    ),
+                ),
+            )
+
             reasons.insert(0, 'mock implementation is incomplete')
             return False, reasons
 
