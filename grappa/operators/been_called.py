@@ -1,41 +1,6 @@
 # -*- coding: utf-8 -*-
-import functools
-
+from ..decorators import mock_implementation_validator
 from ..operator import Operator
-from ..api import TestProxy
-
-def mock_implementation_validator(func):
-    @functools.wraps(func)
-    def wrapper(operator, subject, *args, **kwargs):
-        expect = TestProxy('expect')
-
-        def validate_properties(reasons, prop):
-            try:
-                expect(subject).to.have.property(prop)
-            except AssertionError:
-                reasons.append('a property named "{}" is expected'.format(prop))
-            return reasons
-
-        def validate_methods(reasons, method):
-            try:
-                expect(subject).to.implement.methods(method)
-            except AssertionError:
-                reasons.append('a method named "{}" is expected'.format(method))
-            return reasons
-
-        expected_properties = ('called', 'call_count')
-        reasons = functools.reduce(validate_properties, expected_properties, [])
-
-        expected_methods = ('assert_called_with', 'assert_called_once_with')
-        reasons = functools.reduce(validate_methods, expected_methods, reasons)
-
-        if reasons:
-            reasons.insert(0, 'mock implementation is incomplete')
-            return False, reasons
-        
-        return func(operator, subject, *args, **kwargs)
-
-    return wrapper
 
 
 class BeenCalledOperator(Operator):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from ..decorators import mock_implementation_validator
 from ..operator import Operator
 
-from .been_called import mock_implementation_validator
 
 class BeenCalledWithOperator(Operator):
     """
