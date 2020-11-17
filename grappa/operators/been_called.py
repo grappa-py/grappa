@@ -5,7 +5,26 @@ from ..operator import Operator
 
 class BeenCalledOperator(Operator):
     """
-    Asserts whether a mock have been called or not.
+    Asserts if a given mock subject have been called at least once.
+
+    Warning::
+
+        Piping style assertions is not yet supported.
+
+    Example::
+
+        # Should style
+        should(mock).have.been_called
+
+        # Should style - negation form
+        should(mock).have_not.been_called
+
+        # Expect style
+        expect(mock).to.have.been_called
+
+        # Expect style - negation form
+        expect(mock).to.have_not.been_called
+        expect(mock).to_not.have.been_called
     """
 
     # Is the operator a keyword
@@ -36,7 +55,26 @@ class BeenCalledOperator(Operator):
 
 class BeenCalledOnceOperator(Operator):
     """
-    Asserts whether a mock have been called once or not.
+    Asserts if a given mock subject have been called once.
+
+    Warning::
+
+        Piping style assertions is not yet supported.
+
+    Example::
+
+        # Should style
+        should(mock).have.been_called_once
+
+        # Should style - negation form
+        should(mock).have_not.been_called_once
+
+        # Expect style
+        expect(mock).to.have.been_called_once
+
+        # Expect style - negation form
+        expect(mock).to.have_not.been_called_once
+        expect(mock).to_not.have.been_called_once
     """
 
     # Is the operator a keyword
@@ -67,7 +105,26 @@ class BeenCalledOnceOperator(Operator):
 
 class BeenCalledTimesOperator(Operator):
     """
-    Asserts whether a mock have been called X times or not.
+    Asserts if a given mock subject have been called n times.
+
+    Warning::
+
+        Piping style assertions is not yet supported.
+
+    Example::
+
+        # Should style
+        should(mock).have.been_called_times(3)
+
+        # Should style - negation form
+        should(mock).have_not.been_called_times(3)
+
+        # Expect style
+        expect(mock).to.have.been_called_times(0)
+
+        # Expect style - negation form
+        expect(mock).to.have_not.been_called_times(1)
+        expect(mock).to_not.have.been_called_times(3)
     """
 
     # Is the operator a keyword

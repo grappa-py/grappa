@@ -5,7 +5,27 @@ from ..operator import Operator
 
 class BeenCalledWithOperator(Operator):
     """
-    Asserts whether a mock have been called with arguments or not.
+    Asserts if a given mock subject have been called at least once
+    with specified arguments.
+
+    Warning::
+
+        Piping style assertions is not yet supported.
+
+    Example::
+
+        # Should style
+        should(mock).have.been_called_with('foo')
+
+        # Should style - negation form
+        should(mock).have_not.been_called_with('foo', 10)
+
+        # Expect style
+        expect(mock).to.have.been_called_with('foo')
+
+        # Expect style - negation form
+        expect(mock).to.have_not.been_called_with('foo', True, 150)
+        expect(mock).to_not.have.been_called_with('foo')
     """
 
     # Is the operator a keyword
@@ -40,7 +60,27 @@ class BeenCalledWithOperator(Operator):
 
 class BeenCalledOnceWithOperator(Operator):
     """
-    Asserts whether a mock have been called once with arguments or not.
+    Asserts if a given mock subject have been called once
+    with specified arguments.
+
+    Warning::
+
+        Piping style assertions is not yet supported.
+
+    Example::
+
+        # Should style
+        should(mock).have.been_called_once_with('foo')
+
+        # Should style - negation form
+        should(mock).have_not.been_called_once_with('foo', 10)
+
+        # Expect style
+        expect(mock).to.have.been_called_once_with('foo')
+
+        # Expect style - negation form
+        expect(mock).to.have_not.been_called_once_with('foo', True, 150)
+        expect(mock).to_not.have.been_called_once_with('foo')
     """
 
     # Is the operator a keyword
