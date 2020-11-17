@@ -74,7 +74,7 @@ class BaseReporter(object):
             placeholders['length'] = self.safe_length(value)
 
         if '{call_count}' in tmpl:
-            placeholders['call_count'] = value.call_count
+            placeholders['call_count'] = getattr(value, 'call_count', 0)
 
         return tmpl.format(**placeholders)
 
