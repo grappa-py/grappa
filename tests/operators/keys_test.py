@@ -27,3 +27,17 @@ def test_expect_keys(should):
 
     with pytest.raises(AssertionError):
         should({'foo': 'bar'}).have.key('foo').which.should.be.equal.to('pepe')
+
+
+def test_not_expected_keys(should):
+    {'foo': 'bar'} | should.not_have.key('foobar')
+
+    {'foo': 'bar', 'fuu': True} | should.not_have.key('foobar')
+
+    {'foo': 'bar', 'fuu': True} | should.not_have.keys('foobar', 'fuubar')
+
+    with pytest.raises(AssertionError):
+        {'foo': 'bar', 'fuu': True} | should.not_have.key('foo')
+
+    with pytest.raises(AssertionError):
+        {'foo': 'bar', 'fuu': True} | should.not_have.keys('foo', 'fuu')

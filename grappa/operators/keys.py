@@ -52,7 +52,10 @@ class KeysOperator(Operator):
             self.ctx.subject = [obj[x] for x in obj if x in keys]
 
         if len(keys) == 1 and len(self.ctx.subject):
-            self.ctx.subject = self.ctx.subject[0]
+            if isinstance(self.ctx.subject, list):
+                self.ctx.subject = self.ctx.subject[0]
+            else:
+                self.ctx.subject = list(self.ctx.subject.keys())[0]
 
     def match(self, subject, *keys, **kw):
         if self._not_a_dict(subject):
