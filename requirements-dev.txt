@@ -1,6 +1,7 @@
 coveralls~=1.1
 flake8~=3.7.9
 pytest~=3.0.3
+pytest-mock~=3.2.0
 pytest-cov~=2.4.0
 pytest-flakes~=1.0.1
 Sphinx~=1.5.3
