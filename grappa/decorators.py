@@ -81,22 +81,26 @@ def mock_implementation_validator(func):
     def wrapper(operator, subject, *args, **kwargs):
         expect = TestProxy('expect')
 
-        def validate_properties(reasons, prop):
+        propery_reason_template = 'a property named "{}" is expected'
+
+        def validate_props(reasons, prop):
             try:
                 expect(subject).to.have.property(prop)
             except AssertionError:
-                reasons.append('a property named "{}" is expected'.format(prop))
+                reasons.append(propery_reason_template.format(prop))
             return reasons
+
+        method_reason_template = 'a method named "{}" is expected'
 
         def validate_methods(reasons, method):
             try:
                 expect(subject).to.implement.methods(method)
             except AssertionError:
-                reasons.append('a method named "{}" is expected'.format(method))
+                reasons.append(method_reason_template.format(method))
             return reasons
 
-        expected_properties = ('called', 'call_count')
-        reasons = functools.reduce(validate_properties, expected_properties, [])
+        expected_props = ('called', 'call_count')
+        reasons = functools.reduce(validate_props, expected_props, [])
 
         expected_methods = ('assert_called_with', 'assert_called_once_with')
         reasons = functools.reduce(validate_methods, expected_methods, reasons)
@@ -104,7 +108,7 @@ def mock_implementation_validator(func):
         if reasons:
             reasons.insert(0, 'mock implementation is incomplete')
             return False, reasons
-        
+
         return func(operator, subject, *args, **kwargs)
 
     return wrapper

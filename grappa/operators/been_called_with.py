@@ -35,7 +35,7 @@ class BeenCalledWithOperator(Operator):
             subject.assert_called_with(*args)
             return True
         except AssertionError as error:
-            return False, [ error.args[0] ]
+            return False, [error.args[0]]
 
 
 class BeenCalledOnceWithOperator(Operator):
@@ -70,4 +70,4 @@ class BeenCalledOnceWithOperator(Operator):
             subject.assert_called_once_with(*args)
             return True
         except AssertionError as error:
-            return False, [ error.args[0] ]
+            return False, [error.args[0]]
