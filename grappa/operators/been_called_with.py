@@ -54,14 +54,14 @@ class BeenCalledOnceWithOperator(Operator):
 
     # Error message templates
     expected_message = Operator.Dsl.Message(
-        'a mock that has been called only one time with arguments',
-        'a mock that has not been called or has been called more than one time with arguments',
+        'a mock that has been called once with arguments',
+        'a mock that has not been called once with arguments',
     )
 
     # Subject message template
     subject_message = Operator.Dsl.Message(
-        'a mock that has not been called or has been called more than one time with arguments',
-        'a mock that has been called only one time with arguments',
+        'a mock that has been called {call_count} time(s) with arguments',
+        'a mock that has been called once with arguments',
     )
 
     def match(self, subject, *args):
