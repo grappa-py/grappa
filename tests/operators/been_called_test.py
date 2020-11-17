@@ -124,3 +124,62 @@ def test_been_called_once_with(expect, mocker):
 
     with pytest.raises(AssertionError):
         expect(mock_called_several_times).to.have.been_called_once
+
+
+def test_been_called_with_a_spy(expect, mocker):
+    spy = mocker.spy(os.path, 'basename')
+    os.path.basename('/home/log.txt')
+
+    expect(spy).to.have.been_called
+    expect(spy).to.have.been_called_once
+    expect(spy).to.have.been_called_times(1)
+    expect(spy).to.have.been_called_with('/home/log.txt')
+    expect(spy).to.have.been_called_once_with('/home/log.txt')
+
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called
+
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_once
+
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_times(1)
+
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_with('/home/log.txt')
+
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_once_with('/home/log.txt')
+
+
+def test_been_called_with_a_stub(expect, mocker):
+    def foo(on_something):
+        on_something()
+
+    stub = mocker.stub('on_something_stub')
+    foo(stub)
+
+    expect(stub).to.have.been_called
+    # stubs are function like spies, we do not need to test everything again
+
+
+def test_been_called_with_an_incompatible_object(expect, mocker):
+    def foo():
+        pass
+
+    foo()
+
+    with pytest.raises(AssertionError):
+        expect(foo).to.have.been_called
+
+    with pytest.raises(AssertionError):
+        expect(foo).to.have.been_called_once
+
+    with pytest.raises(AssertionError):
+        expect(foo).to.have.been_called_times(1)
+
+    with pytest.raises(AssertionError):
+        expect(foo).to.have.been_called_with('something')
+
+    with pytest.raises(AssertionError):
+        expect(foo).to.have.been_called_once_with('something')
