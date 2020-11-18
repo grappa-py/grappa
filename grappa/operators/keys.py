@@ -57,50 +57,26 @@ class KeysOperator(Operator):
             else:
                 self.ctx.subject = list(self.ctx.subject.keys())[0]
 
-    def match(self, subject, *keys, **kw):
-        if self._not_a_dict(subject):
+    def match(self, subject, *keys):
+        if not isinstance(subject, collections_abc.Mapping):
             return False, ['subject is not a dict type']
-        return self._matches(subject, (keys, kw))
-
-    def _not_a_dict(self, value):
-        return not isinstance(value, collections_abc.Mapping)
-
-    def _matches(self, subject, expected):
-        args, kwargs = expected
 
         reasons = []
-        for name in args:
-            has_key, reason = self._has_key(subject, name)
-            if not has_key:
-                return False, [reason]
-            else:
-                reasons.append(reason)
 
-        for name, value in kwargs.items():
-            has_key, reason = self._has_key(subject, name, value)
+        if isinstance(keys[0], tuple) or isinstance(keys[0], list) or isinstance(keys[0], set):
+            keys = list(keys[0])
+
+        for name in keys:
+            if name in subject:
+                has_key = True
+                reason = 'key {0!r} found'.format(name)
+            else:
+                has_key = False
+                reason = 'key {0!r} not found'.format(name)
+
             if not has_key:
                 return False, [reason]
-            else:
-                reasons.append(reason)
+
+            reasons.append(reason)
 
         return True, reasons
-
-    def _has_key(self, subject, name, *args):
-        if args:
-            expected_value = args[0]
-
-            try:
-                value = subject[name]
-            except KeyError:
-                return False, 'key {0!r} {1!r} not found'.format(
-                    name, expected_value)
-            else:
-                result, _ = expected_value._match(value)
-                reason_message = 'not found' if not result else 'found'
-                return result, 'key {0!r} {1!r} {2}'.format(
-                    name, expected_value, reason_message)
-
-        if name in subject:
-            return True, 'key {0!r} found'.format(name)
-
-        return False, 'key {0!r} not found'.format(name)
