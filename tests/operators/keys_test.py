@@ -1,7 +1,7 @@
 import pytest
 
 
-def test_expect_keys(should):
+def test_expect_key(should):
     {'foo': 'bar'} | should.have.key('foo')
     {'foo': 'bar'} | should.have.key('foo') > should.be.equal.to('bar')
     'bar' | should.be.equal.to('bar')
@@ -29,15 +29,58 @@ def test_expect_keys(should):
         should({'foo': 'bar'}).have.key('foo').which.should.be.equal.to('pepe')
 
 
-def test_not_expected_keys(should):
+def test_not_expect_key(should):
     {'foo': 'bar'} | should.not_have.key('foobar')
 
     {'foo': 'bar', 'fuu': True} | should.not_have.key('foobar')
 
-    {'foo': 'bar', 'fuu': True} | should.not_have.keys('foobar', 'fuubar')
-
     with pytest.raises(AssertionError):
         {'foo': 'bar', 'fuu': True} | should.not_have.key('foo')
 
+
+def test_expect_keys(should):
+    myDict = {'foo': 'bar', 'fuu': 'bor', 'fii': True}
+
+    myDict | should.have.keys('foo', 'fii')
+
+    myDict | should.have.keys(('foo', 'fii'))
+
+    myDict | should.have.keys(['foo', 'fii'])
+
+    myDict | should.have.keys({'foo', 'fii'})
+
     with pytest.raises(AssertionError):
-        {'foo': 'bar', 'fuu': True} | should.not_have.keys('foo', 'fuu')
+        myDict | should.not_have.keys('foo', 'fii')
+
+    with pytest.raises(AssertionError):
+        myDict | should.not_have.keys(('foo', 'fii'))
+
+    with pytest.raises(AssertionError):
+        myDict | should.not_have.keys(['foo', 'fii'])
+
+    with pytest.raises(AssertionError):
+        myDict | should.not_have.keys({'foo', 'fii'})
+
+
+def test_not_expect_keys(should):
+    myDict = {'foo': 'bar', 'fuu': 'bor', 'fii': True}
+
+    myDict | should.not_have.keys('bar', 'bor')
+
+    myDict | should.not_have.keys(('bar', 'bor'))
+
+    myDict | should.not_have.keys(['bar', 'bor'])
+
+    myDict | should.not_have.keys({'bar', 'bor'})
+
+    with pytest.raises(AssertionError):
+        myDict | should.have.keys('bar', 'bor')
+
+    with pytest.raises(AssertionError):
+        myDict | should.have.keys(('bar', 'bor'))
+
+    with pytest.raises(AssertionError):
+        myDict | should.have.keys(['bar', 'bor'])
+
+    with pytest.raises(AssertionError):
+        myDict | should.have.keys({'bar', 'bor'})
