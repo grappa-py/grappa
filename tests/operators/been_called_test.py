@@ -27,6 +27,8 @@ def test_been_called(expect, mocker):
     with pytest.raises(AssertionError):
         expect(mock_called_several_times).to.have_not.been_called
 
+    mocker.stopall()
+
 
 def test_been_called_times(expect, mocker):
     mock_called = mocker.patch('os.remove')
@@ -47,6 +49,8 @@ def test_been_called_times(expect, mocker):
     with pytest.raises(AssertionError):
         expect(mock_not_called).to.have.been_called_times(3)
 
+    mocker.stopall()
+
 
 def test_been_called_with(expect, mocker):
     mock_called = mocker.patch('os.remove')
@@ -63,6 +67,8 @@ def test_been_called_with(expect, mocker):
 
     with pytest.raises(AssertionError):
         expect(mock_not_called).to.have.been_called_with('/home/log.txt')
+
+    mocker.stopall()
 
 
 def test_been_called_once(expect, mocker):
@@ -90,6 +96,8 @@ def test_been_called_once(expect, mocker):
     with pytest.raises(AssertionError):
         expect(mock_called_several_times).to.have.been_called_once
 
+    mocker.stopall()
+
 
 def test_been_called_once_with(expect, mocker):
     mock_called = mocker.patch('os.remove')
@@ -115,6 +123,8 @@ def test_been_called_once_with(expect, mocker):
 
     with pytest.raises(AssertionError):
         expect(mock_called_several_times).to.have.been_called_once
+
+    mocker.stopall()
 
 
 def test_been_called_with_a_spy(expect, mocker):
@@ -142,6 +152,8 @@ def test_been_called_with_a_spy(expect, mocker):
     with pytest.raises(AssertionError):
         expect(spy).to.have_not.been_called_once_with('/home/log.txt')
 
+    mocker.stopall()
+
 
 def test_been_called_with_a_stub(expect, mocker):
     def foo(on_something):
@@ -152,6 +164,8 @@ def test_been_called_with_a_stub(expect, mocker):
 
     expect(stub).to.have.been_called
     # stubs are function like spies, we do not need to test everything again
+
+    mocker.stopall()
 
 
 def test_been_called_with_an_incompatible_object(expect, mocker):
