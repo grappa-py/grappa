@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from array import array
 from six.moves import collections_abc
 
 from ..operator import Operator
@@ -16,6 +17,7 @@ class KeysOperator(Operator):
         {'foo': True, 'bar': False} | should.have.keys(('bar', 'foo'))
         {'foo': True, 'bar': False} | should.have.keys(['bar', 'foo'])
         {'foo': True, 'bar': False} | should.have.keys({'bar', 'foo'})
+        {1: True, 2: False} | should.have.keys(array('i', [1, 2]))
 
         # Should style - negation form
         {'bar': True} | should.not_have.key('foo')
@@ -23,6 +25,7 @@ class KeysOperator(Operator):
         {'baz': True, 'bar': False} | should.not_have.keys(('bar', 'foo'))
         {'baz': True, 'bar': False} | should.not_have.keys(['bar', 'foo'])
         {'baz': True, 'bar': False} | should.not_have.keys({'bar', 'foo'})
+        {10: True, 2: False} | should.not_have.keys(array('i', [1, 2]))
 
         # Expect style
         {'foo': True} | expect.to.have.key('foo')
@@ -30,6 +33,7 @@ class KeysOperator(Operator):
         {'foo': True, 'bar': False} | expect.to.have.keys(('bar', 'foo'))
         {'foo': True, 'bar': False} | expect.to.have.keys(['bar', 'foo'])
         {'foo': True, 'bar': False} | expect.to.have.keys({'bar', 'foo'})
+        {1: True, 2: False} | expect.to.have.keys(array('i', [1, 2]))
 
         # Expect style - negation form
         {'bar': True} | expect.to_not.have.key('foo')
@@ -37,6 +41,7 @@ class KeysOperator(Operator):
         {'baz': True, 'bar': False} | expect.to_not.have.keys(('bar', 'foo'))
         {'baz': True, 'bar': False} | expect.to_not.have.keys(['bar', 'foo'])
         {'baz': True, 'bar': False} | expect.to_not.have.keys({'bar', 'foo'})
+        {10: True, 2: False} | expect.to_not.have.keys(array('i', [1, 2]))
     """
 
     # Is the operator a keyword
@@ -74,9 +79,9 @@ class KeysOperator(Operator):
             return False, ['subject is not a dict type']
 
         reasons = []
-        keys0_type = type(keys[0])
+        list_types = (tuple, list, set, array)
 
-        if keys0_type is tuple or keys0_type is list or keys0_type is set:
+        if type(keys[0]) in list_types:
             keys = list(keys[0])
 
         for name in keys:
