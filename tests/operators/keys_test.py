@@ -1,4 +1,5 @@
 import pytest
+from array import array
 
 
 def test_expect_key(should):
@@ -32,55 +33,65 @@ def test_expect_key(should):
 def test_not_expect_key(should):
     {'foo': 'bar'} | should.not_have.key('foobar')
 
-    {'foo': 'bar', 'fuu': True} | should.not_have.key('foobar')
+    {'foo': 'bar', 'fuu': 'bor'} | should.not_have.key('foobar')
 
     with pytest.raises(AssertionError):
-        {'foo': 'bar', 'fuu': True} | should.not_have.key('foo')
+        {'foo': 'bar', 'fuu': 'bor'} | should.not_have.key('foo')
 
 
 def test_expect_keys(should):
-    myDict = {'foo': 'bar', 'fuu': 'bor', 'fii': True}
+    myDict = {'foo': 'bar', 'fuu': 'bor'}
 
-    myDict | should.have.keys('foo', 'fii')
+    myDict | should.have.keys('foo', 'fuu')
 
-    myDict | should.have.keys(('foo', 'fii'))
+    myDict | should.have.keys(('foo', 'fuu'))
 
-    myDict | should.have.keys(['foo', 'fii'])
+    myDict | should.have.keys(['foo', 'fuu'])
 
-    myDict | should.have.keys({'foo', 'fii'})
+    myDict | should.have.keys({'foo', 'fuu'})
 
-    with pytest.raises(AssertionError):
-        myDict | should.not_have.keys('foo', 'fii')
-
-    with pytest.raises(AssertionError):
-        myDict | should.not_have.keys(('foo', 'fii'))
+    {1: 'bar', 2: 'bor'} | should.have.keys(array('i', [1, 2]))
 
     with pytest.raises(AssertionError):
-        myDict | should.not_have.keys(['foo', 'fii'])
+        myDict | should.not_have.keys('foo', 'fuu')
 
     with pytest.raises(AssertionError):
-        myDict | should.not_have.keys({'foo', 'fii'})
+        myDict | should.not_have.keys(('foo', 'fuu'))
+
+    with pytest.raises(AssertionError):
+        myDict | should.not_have.keys(['foo', 'fuu'])
+
+    with pytest.raises(AssertionError):
+        myDict | should.not_have.keys({'foo', 'fuu'})
+
+    with pytest.raises(AssertionError):
+        {1: 'bar', 2: 'bor'} | should.not_have.keys(array('i', [1, 2]))
 
 
 def test_not_expect_keys(should):
-    myDict = {'foo': 'bar', 'fuu': 'bor', 'fii': True}
+    myDict = {'foo': 'baz', 'fuu': 'boz'}
 
-    myDict | should.not_have.keys('bar', 'bor')
+    myDict | should.not_have.keys('foo', 'bar')
 
-    myDict | should.not_have.keys(('bar', 'bor'))
+    myDict | should.not_have.keys(('foo', 'bar'))
 
-    myDict | should.not_have.keys(['bar', 'bor'])
+    myDict | should.not_have.keys(['foo', 'bar'])
 
-    myDict | should.not_have.keys({'bar', 'bor'})
+    myDict | should.not_have.keys({'foo', 'bar'})
 
-    with pytest.raises(AssertionError):
-        myDict | should.have.keys('bar', 'bor')
-
-    with pytest.raises(AssertionError):
-        myDict | should.have.keys(('bar', 'bor'))
+    {1: 'baz', 2: 'boz'} | should.not_have.keys(array('i', [1, 5]))
 
     with pytest.raises(AssertionError):
-        myDict | should.have.keys(['bar', 'bor'])
+        myDict | should.have.keys('foo', 'bar')
 
     with pytest.raises(AssertionError):
-        myDict | should.have.keys({'bar', 'bor'})
+        myDict | should.have.keys(('foo', 'bar'))
+
+    with pytest.raises(AssertionError):
+        myDict | should.have.keys(['foo', 'bar'])
+
+    with pytest.raises(AssertionError):
+        myDict | should.have.keys({'foo', 'bar'})
+
+    with pytest.raises(AssertionError):
+        {1: 'baz', 2: 'boz'} | should.have.keys(array('i', [1, 5]))
