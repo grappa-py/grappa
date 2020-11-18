@@ -18,6 +18,8 @@ jobs:
         exclude:
           - os: macos-latest
             python-version: pypy2
+          - os: ubuntu-latest
+            python-version: pypy2
 
     runs-on: ${{ matrix.os }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
