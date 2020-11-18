@@ -81,7 +81,7 @@ class KeysOperator(Operator):
         reasons = []
         list_types = (tuple, list, set, array)
 
-        if type(keys[0]) in list_types:
+        if isinstance(keys[0], list_types):
             keys = list(keys[0])
 
         for name in keys:
