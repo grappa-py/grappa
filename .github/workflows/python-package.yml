@@ -18,6 +18,8 @@ jobs:
         include:
           - os: ubuntu-latest
             python-version: 3.10-dev
+            env:
+              ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     runs-on: ${{ matrix.os }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
