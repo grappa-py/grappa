@@ -13,18 +13,30 @@ class KeysOperator(Operator):
         # Should style
         {'foo': True} | should.have.key('foo')
         {'foo': True, 'bar': False} | should.have.keys('bar', 'foo')
+        {'foo': True, 'bar': False} | should.have.keys(('bar', 'foo'))
+        {'foo': True, 'bar': False} | should.have.keys(['bar', 'foo'])
+        {'foo': True, 'bar': False} | should.have.keys({'bar', 'foo'})
 
         # Should style - negation form
         {'bar': True} | should.not_have.key('foo')
         {'baz': True, 'bar': False} | should.not_have.keys('bar', 'foo')
+        {'baz': True, 'bar': False} | should.not_have.keys(('bar', 'foo'))
+        {'baz': True, 'bar': False} | should.not_have.keys(['bar', 'foo'])
+        {'baz': True, 'bar': False} | should.not_have.keys({'bar', 'foo'})
 
         # Expect style
         {'foo': True} | expect.to.have.key('foo')
         {'foo': True, 'bar': False} | expect.to.have.keys('bar', 'foo')
+        {'foo': True, 'bar': False} | expect.to.have.keys(('bar', 'foo'))
+        {'foo': True, 'bar': False} | expect.to.have.keys(['bar', 'foo'])
+        {'foo': True, 'bar': False} | expect.to.have.keys({'bar', 'foo'})
 
         # Expect style - negation form
         {'bar': True} | expect.to_not.have.key('foo')
         {'baz': True, 'bar': False} | expect.to_not.have.keys('bar', 'foo')
+        {'baz': True, 'bar': False} | expect.to_not.have.keys(('bar', 'foo'))
+        {'baz': True, 'bar': False} | expect.to_not.have.keys(['bar', 'foo'])
+        {'baz': True, 'bar': False} | expect.to_not.have.keys({'bar', 'foo'})
     """
 
     # Is the operator a keyword
@@ -62,8 +74,9 @@ class KeysOperator(Operator):
             return False, ['subject is not a dict type']
 
         reasons = []
+        keys0_type = type(keys[0])
 
-        if isinstance(keys[0], tuple) or isinstance(keys[0], list) or isinstance(keys[0], set):
+        if keys0_type is tuple or keys0_type is list or keys0_type is set:
             keys = list(keys[0])
 
         for name in keys:
