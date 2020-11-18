@@ -64,6 +64,8 @@ class KeysOperator(Operator):
         'an object of type "{type}" with value "{value}"',
     )
 
+    LIST_TYPES = (tuple, list, set, array)
+
     def after_success(self, obj, *keys):
         if not self.ctx.negate:
             self.ctx.subject = [obj[x] for x in obj if x in keys]
@@ -79,9 +81,8 @@ class KeysOperator(Operator):
             return False, ['subject is not a dict type']
 
         reasons = []
-        list_types = (tuple, list, set, array)
 
-        if isinstance(keys[0], list_types):
+        if len(keys) == 1 and isinstance(keys[0], self.LIST_TYPES):
             keys = list(keys[0])
 
         for name in keys:

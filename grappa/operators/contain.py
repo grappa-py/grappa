@@ -65,7 +65,9 @@ class ContainOperator(Operator):
         array
     )
 
-    def match(self, subject, *expected):
+    LIST_TYPES = (tuple, list, set, array)
+
+    def match(self, subject, *values):
         if isinstance(subject, self.NORMALIZE_TYPES):
             subject = list(subject)
         elif isinstance(subject, collections_abc.Mapping):
@@ -74,13 +76,13 @@ class ContainOperator(Operator):
         if not isinstance(subject, collections_abc.Sequence):
             return False, ['is not a valid sequence type']
 
-        return self._matches(subject, *expected)
-
-    def _matches(self, subject, *expected):
         reasons = []
 
-        for expected_item in expected:
-            matches_any, reason = self._matches_any(expected_item, subject)
+        if len(values) == 1 and isinstance(values[0], self.LIST_TYPES):
+            values = list(values[0])
+
+        for value in values:
+            matches_any, reason = self._matches_any(value, subject)
             reasons.append(reason)
 
             if not matches_any:
