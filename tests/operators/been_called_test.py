@@ -1,5 +1,4 @@
 import os
-import platform
 import pytest
 
 
@@ -119,39 +118,29 @@ def test_been_called_once_with(expect, mocker):
 
 
 def test_been_called_with_a_spy(expect, mocker):
-    spy = mocker.spy(os.path, 'basename')
-    os.path.basename('/home/log.txt')
+    spy = mocker.spy(os.path, 'join')
+    os.path.join('home', 'log.txt')
 
     expect(spy).to.have.been_called
     expect(spy).to.have.been_called_once
     expect(spy).to.have.been_called_times(1)
-    expect(spy).to.have.been_called_with('/home/log.txt')
-
-    # TODO: on PyPy2, need to investigate why called once assertion
-    #       fails indicating that the spy has been called 3 times
-    #       instead of 1
-    implementation = platform.python_implementation()
-    major = platform.python_version_tuple()[0]
-
-    if implementation != 'PyPy' and major != '2':
-        expect(spy).to.have.been_called_once_with('/home/log.txt')
+    expect(spy).to.have.been_called_with('home', 'log.txt')
+    expect(spy).to.have.been_called_once_with('home', 'log.txt')
 
     with pytest.raises(AssertionError):
         expect(spy).to.have_not.been_called
 
     with pytest.raises(AssertionError):
-        expect(spy).to.have_not.been_called_with('/home/log.txt')
+        expect(spy).to.have_not.been_called_with('home', 'log.txt')
 
-    # If previous called once assertion failed, these ones will fail to fail
-    if implementation != 'PyPy' and major != '2':
-        with pytest.raises(AssertionError):
-            expect(spy).to.have_not.been_called_once
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_once
 
-        with pytest.raises(AssertionError):
-            expect(spy).to.have_not.been_called_times(1)
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_times(1)
 
-        with pytest.raises(AssertionError):
-            expect(spy).to.have_not.been_called_once_with('/home/log.txt')
+    with pytest.raises(AssertionError):
+        expect(spy).to.have_not.been_called_once_with('home', 'log.txt')
 
 
 def test_been_called_with_a_stub(expect, mocker):
