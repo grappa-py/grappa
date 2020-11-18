@@ -15,13 +15,16 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: [2.7, 3.5, 3.6, 3.7, 3.8, 3.9, pypy3]
+        experimental: [false]
         include:
           - os: ubuntu-latest
             python-version: 3.10-dev
+            experimental: true
             env:
               ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
 
     steps:
