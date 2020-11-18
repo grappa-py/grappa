@@ -3,8 +3,8 @@ import pytest
 
 
 def test_been_called(expect, mocker):
-    mock_called = mocker.patch('os.remove')
-    os.remove('/home/log.txt')
+    mock_called = mocker.patch('os.path.join')
+    os.path.join('home', 'log.txt')
 
     expect(mock_called).to.have.been_called
 
@@ -29,10 +29,10 @@ def test_been_called(expect, mocker):
 
 
 def test_been_called_times(expect, mocker):
-    mock_called = mocker.patch('os.remove')
-    os.remove('/home/log.txt')
-    os.remove('/home/log.txt')
-    os.remove('/home/log.txt')
+    mock_called = mocker.patch('os.path.join')
+    os.path.join('home', 'log.txt')
+    os.path.join('home', 'log.txt')
+    os.path.join('home', 'log.txt')
 
     expect(mock_called).to.have.been_called_times(3)
 
@@ -49,25 +49,25 @@ def test_been_called_times(expect, mocker):
 
 
 def test_been_called_with(expect, mocker):
-    mock_called = mocker.patch('os.remove')
-    os.remove('/home/log.txt')
+    mock_called = mocker.patch('os.path.join')
+    os.path.join('home', 'log.txt')
 
-    expect(mock_called).to.have.been_called_with('/home/log.txt')
+    expect(mock_called).to.have.been_called_with('home', 'log.txt')
 
     with pytest.raises(AssertionError):
-        expect(mock_called).to.have_not.been_called_with('/home/log.txt')
+        expect(mock_called).to.have_not.been_called_with('home', 'log.txt')
 
     mock_not_called = mocker.patch('os.rmdir')
 
-    expect(mock_not_called).to.have_not.been_called_with('/home/log.txt')
+    expect(mock_not_called).to.have_not.been_called_with('home', 'log.txt')
 
     with pytest.raises(AssertionError):
-        expect(mock_not_called).to.have.been_called_with('/home/log.txt')
+        expect(mock_not_called).to.have.been_called_with('home', 'log.txt')
 
 
 def test_been_called_once(expect, mocker):
-    mock_called = mocker.patch('os.remove')
-    os.remove('/home/log.txt')
+    mock_called = mocker.patch('os.path.join')
+    os.path.join('home', 'log.txt')
 
     expect(mock_called).to.have.been_called_once
 
@@ -92,13 +92,13 @@ def test_been_called_once(expect, mocker):
 
 
 def test_been_called_once_with(expect, mocker):
-    mock_called = mocker.patch('os.remove')
-    os.remove('/home/log.txt')
+    mock_called = mocker.patch('os.path.join')
+    os.path.join('home', 'log.txt')
 
-    expect(mock_called).to.have.been_called_once_with('/home/log.txt')
+    expect(mock_called).to.have.been_called_once_with('home', 'log.txt')
 
     with pytest.raises(AssertionError):
-        expect(mock_called).to.have_not.been_called_once_with('/home/log.txt')
+        expect(mock_called).to_not.been_called_once_with('home', 'log.txt')
 
     mock_not_called = mocker.patch('os.rmdir')
 
@@ -118,20 +118,26 @@ def test_been_called_once_with(expect, mocker):
 
 
 def test_been_called_with_a_spy(expect, mocker):
-    spy = mocker.spy(os.path, 'join')
-    os.path.join('home', 'log.txt')
+    class Foo():
+        def bar(self, string, padding):
+            return string.zfill(padding)
+
+    foo = Foo()
+    spy = mocker.spy(foo, 'bar')
+
+    expect(foo.bar('foo', 5)).to.be('00foo')
 
     expect(spy).to.have.been_called
     expect(spy).to.have.been_called_once
     expect(spy).to.have.been_called_times(1)
-    expect(spy).to.have.been_called_with('home', 'log.txt')
-    expect(spy).to.have.been_called_once_with('home', 'log.txt')
+    expect(spy).to.have.been_called_with('foo', 5)
+    expect(spy).to.have.been_called_once_with('foo', 5)
 
     with pytest.raises(AssertionError):
         expect(spy).to.have_not.been_called
 
     with pytest.raises(AssertionError):
-        expect(spy).to.have_not.been_called_with('home', 'log.txt')
+        expect(spy).to.have_not.been_called_with('foo', 5)
 
     with pytest.raises(AssertionError):
         expect(spy).to.have_not.been_called_once
@@ -140,18 +146,36 @@ def test_been_called_with_a_spy(expect, mocker):
         expect(spy).to.have_not.been_called_times(1)
 
     with pytest.raises(AssertionError):
-        expect(spy).to.have_not.been_called_once_with('home', 'log.txt')
+        expect(spy).to.have_not.been_called_once_with('foo', 5)
 
 
 def test_been_called_with_a_stub(expect, mocker):
-    def foo(on_something):
-        on_something()
+    def foo(bar):
+        bar('test')
 
-    stub = mocker.stub('on_something_stub')
+    stub = mocker.stub('bar_stub')
     foo(stub)
 
     expect(stub).to.have.been_called
-    # stubs are function like spies, we do not need to test everything again
+    expect(stub).to.have.been_called_once
+    expect(stub).to.have.been_called_times(1)
+    expect(stub).to.have.been_called_with('test')
+    expect(stub).to.have.been_called_once_with('test')
+
+    with pytest.raises(AssertionError):
+        expect(stub).to.have_not.been_called
+
+    with pytest.raises(AssertionError):
+        expect(stub).to.have_not.been_called_with('test')
+
+    with pytest.raises(AssertionError):
+        expect(stub).to.have_not.been_called_once
+
+    with pytest.raises(AssertionError):
+        expect(stub).to.have_not.been_called_times(1)
+
+    with pytest.raises(AssertionError):
+        expect(stub).to.have_not.been_called_once_with('test')
 
 
 def test_been_called_with_an_incompatible_object(expect, mocker):
