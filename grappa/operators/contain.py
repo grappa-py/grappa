@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from array import array
 from six.moves import collections_abc
 import six
+
 from ..operator import Operator
 
 
@@ -59,20 +61,20 @@ class ContainOperator(Operator):
     NORMALIZE_TYPES = (
         collections_abc.Iterator,
         collections_abc.MappingView,
-        collections_abc.Set
+        collections_abc.Set,
+        array
     )
 
     def match(self, subject, *expected):
         if isinstance(subject, self.NORMALIZE_TYPES):
             subject = list(subject)
+        elif isinstance(subject, collections_abc.Mapping):
+            subject = list(subject.values())
 
-        if self._is_not_a_sequence(subject):
+        if not isinstance(subject, collections_abc.Sequence):
             return False, ['is not a valid sequence type']
 
         return self._matches(subject, *expected)
-
-    def _is_not_a_sequence(self, value):
-        return not isinstance(value, collections_abc.Sequence)
 
     def _matches(self, subject, *expected):
         reasons = []
