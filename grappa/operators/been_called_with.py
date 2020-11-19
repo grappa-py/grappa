@@ -50,9 +50,9 @@ class BeenCalledWithOperator(Operator):
     )
 
     @mock_implementation_validator
-    def match(self, subject, *args):
+    def match(self, subject, *args, **kwargs):
         try:
-            subject.assert_called_with(*args)
+            subject.assert_called_with(*args, **kwargs)
             return True
         except AssertionError as error:
             return False, error.args[0].splitlines()
@@ -105,9 +105,9 @@ class BeenCalledOnceWithOperator(Operator):
     )
 
     @mock_implementation_validator
-    def match(self, subject, *args):
+    def match(self, subject, *args, **kwargs):
         try:
-            subject.assert_called_once_with(*args)
+            subject.assert_called_once_with(*args, **kwargs)
             return True
         except AssertionError as error:
             return False, error.args[0].splitlines()
