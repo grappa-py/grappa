@@ -5,10 +5,10 @@ def test_implements(should):
     class foo(object):
         foo = None
 
-        def bar():
+        def bar(self):
             pass
 
-        def baz():
+        def baz(self):
             pass
 
     foo | should.implements.methods('bar', 'baz')
@@ -16,3 +16,6 @@ def test_implements(should):
 
     with pytest.raises(AssertionError):
         foo | should.implement.methods('foo', 'faa')
+
+    with pytest.raises(AssertionError):
+        foo | should.implements.methods(2, False)
