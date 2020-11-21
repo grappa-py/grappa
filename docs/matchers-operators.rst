@@ -1,384 +1,9 @@
-Assertion Operators
-===================
+Matchers Operators
+==================
 
-.. admonition:: Beta documentation
-    :class: error
-
-    Operators documentation is still beta and might contain errors, missing information or incongruencies.
-    Please, report an issue if you notice something wrong.
-
-Operator Types
---------------
-
-``grappa`` provides three different kind of assertion operators.
-
-**Attributes**
-
-Operators that only provides DSL attributes without internal assertion logic.
-
-Example operators: to_, be_ not_be_, which_ ...
-
-**Accessors**
-
-Operators that do not accept expectation arguments but performs assertion logic.
-
-Example operators: none_, true_, false_, empty_, callable_ ...
-
-**Matchers**
-
-Operators that does accept expectation arguments and therefore are callable.
+These operators does accept expectation arguments and therefore are callable.
 
 Example operators: equal_, within_, start_with_, match_, type_ ...
-
-Attributes
-----------
-
-be
-^^
-
-to
-^^
-
-has
-^^^
-
-have
-^^^^
-
-do
-^^
-
-include
-^^^^^^^
-
-satisfy
-^^^^^^^
-
-satisfies
-^^^^^^^^^
-
-_is
-^^^
-
-which
-^^^^^
-
-that
-^^^^
-
-that_is
-^^^^^^^
-
-which_is
-^^^^^^^^
-
-Semantic chainable attributes that defines non-negative assertions.
-
-Typically, you will use them implicitly in order to semantically describe your assertions.
-
-=======================  ========================
- **Type**                attribute
------------------------  ------------------------
- **Assertion mode**      positive
------------------------  ------------------------
- **Resets context**      no
-=======================  ========================
-
-**Examples**:
-
-.. code-block:: python
-
-    'foo' | should.be.equal.to('bar')
-    'foo' | should.have.length.of(3)
-
-    {'foo': 'bar'} | should.have.key('foo').which.should.be.equal.to('bar')
-    {'foo': 'bar'} | should.have.key('foo').that.should.have.length.of(3)
-
-.. code-block:: python
-
-    'foo' | expect.to.equal.to('bar')
-    'foo' | expect.to.have.length.of(3)
-
-    {'foo': 'bar'} | expect.to.have.key('foo').which.expect.to.be.equal('bar')
-    {'foo': 'bar'} | expect.to.have.key('foo').which.expect.to.have.length.of(3)
-
-
-not_be
-^^^^^^
-
-not_present
-^^^^^^^^^^^
-
-not_to
-^^^^^^
-
-to_not
-^^^^^^
-
-does_not
-^^^^^^^^
-
-do_not
-^^^^^^
-
-dont
-^^^^
-
-have_not
-^^^^^^^^
-
-not_have
-^^^^^^^^
-
-has_not
-^^^^^^^
-
-not_has
-^^^^^^^
-
-that_not
-^^^^^^^^
-
-which_not
-^^^^^^^^^
-
-is_not
-^^^^^^
-
-_not
-^^^^
-
-not_satisfy
-^^^^^^^^^^^
-
-Semantic chainable attributes that defines negative assertions.
-
-Typically, you will use them implicitly in order to semantically describe your assertions.
-
-=======================  ========================
- **Type**                attribute
------------------------  ------------------------
- **Assertion mode**      negation
------------------------  ------------------------
- **Resets context**      no
-=======================  ========================
-
-**Examples**:
-
-.. code-block:: python
-
-    'foo' | should.not_be.equal.to('bar')
-    'foo' | should.have_not.length.of(3)
-
-.. code-block:: python
-
-    'foo' | expect.to_not.equal.to('bar')
-    'foo' | expect.to.not_have.length.of(3)
-
-
-Accessors
----------
-
-true
-^^^^
-
-Asserts if a given subject is `True` value.
-
-=======================  ========================
- **Type**                accessor
------------------------  ------------------------
- **Related operators**   false_
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    'foo' | should.be.true
-
-.. code-block:: python
-
-    'foo' | expect.to.be.true
-
-**Negation form**:
-
-.. code-block:: python
-
-    'foo' | should.not_be.true
-
-.. code-block:: python
-
-    'foo' | expect.to_not.be.true
-
-
-false
-^^^^^
-
-Asserts if a given subject is `False` value.
-
-=======================  ========================
- **Type**                accessor
------------------------  ------------------------
- **Related operators**   true_
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    'foo' | should.be.false
-
-.. code-block:: python
-
-    'foo' | expect.to.be.false
-
-**Negation form**:
-
-.. code-block:: python
-
-    'foo' | should.not_be.false
-
-.. code-block:: python
-
-    'foo' | expect.to_not.be.false
-
-
-callable
-^^^^^^^^
-
-Asserts if a given subject is a callable type or an object that
-implements ``__call__()`` magic method.
-
-=======================  ========================
- **Type**                accessor
------------------------  ------------------------
- **Related operators**   implements_
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    (lambda x: x) | should.be.callable
-
-.. code-block:: python
-
-    (lambda x: x) | expect.to.be.callable
-
-**Negation form**:
-
-.. code-block:: python
-
-    None | should.not_be.callable
-
-.. code-block:: python
-
-    None | expect.to_not.be.callable
-
-
-empty
-^^^^^
-
-Asserts if a given subject is an empty object.
-
-A subject is considered empty if it's ``None``, ``0`` or ``len(subject)``
-is equals to ``0``.
-
-=======================  ========================
- **Type**                accessor
------------------------  ------------------------
- **Related operators**   present_ none_
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    [] | should.be.empty
-
-.. code-block:: python
-
-    tuple() | expect.to.be.empty
-
-**Negation form**:
-
-.. code-block:: python
-
-    [1, 2, 3] | should.not_be.empty
-
-.. code-block:: python
-
-    (1, 2, 3) | expect.to_not.be.empty
-
-
-none
-^^^^
-
-Asserts if a given subject is ``None``.
-
-=======================  ========================
- **Type**                accessor
------------------------  ------------------------
- **Related operators**   present_ empty_
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    None | should.be.none
-
-.. code-block:: python
-
-    None | expect.to.be.none
-
-**Negation form**:
-
-.. code-block:: python
-
-    'foo' | should.not_be.none
-
-.. code-block:: python
-
-    'foo' | expect.to_not.be.none
-
-
-exists
-^^^^^^
-
-present
-^^^^^^^
-
-Asserts if a given subject is not ``None`` or a negative value
-if evaluated via logical unary operator.
-
-This operator is the opposite of empty_.
-
-=======================  ========================
- **Type**                accessor
------------------------  ------------------------
- **Related operators**   none_ empty_
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    'foo' | should.be.present
-
-.. code-block:: python
-
-    'foo' | expect.to.be.present
-
-**Negation form**:
-
-.. code-block:: python
-
-    '' | should.not_be.present
-
-.. code-block:: python
-
-    False | expect.to_not.be.present
 
 Matchers
 --------
@@ -394,8 +19,6 @@ Performs a strict equality comparison between ``x`` and ``y`` values.
 Uses ``==`` built-in binary operator for the comparison.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``value`` ``to`` ``of`` ``as`` ``data``
 -----------------------  ------------------------
  **Related operators**   contain_
@@ -431,18 +54,286 @@ Uses ``==`` built-in binary operator for the comparison.
     'foo' | expect.to_not.equal.to('foo')
     'foo' | expect.to_not.equal.to.value('foo')
 
-a
-^
 
-an
-^^
+contain
+^^^^^^^
 
-type
+contains
+^^^^^^^^
+
+includes
+^^^^^^^^
+
+Asserts if a given value or values can be found in a another object.
+
+=======================  ========================
+ **Chained aliases**     ``value`` ``string`` ``text`` ``item`` ``expression`` ``data``
+-----------------------  ------------------------
+ **Related operators**   equal_ matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    'foo bar' | should.contain('bar')
+    ['foo', 'bar'] | should.contain('bar')
+    ['foo', 'bar'] | should.contain('foo', 'bar')
+    [{'foo': True}, 'bar'] | should.contain({'foo': True})
+
+.. code-block:: python
+
+    'foo bar' | expect.to.contain('bar')
+    ['foo', 'bar'] | expect.to.contain('bar')
+    ['foo', 'bar'] | expect.to.contain('foo', 'bar')
+    [{'foo': True}, 'bar'] | expect.to.contain({'foo': True})
+
+**Negation form**:
+
+.. code-block:: python
+
+    'foo bar' | should.do_not.contain('bar')
+    ['foo', 'bar'] | should.do_not.contain('baz')
+
+.. code-block:: python
+
+    'foo bar' | expect.to_not.contain('bar')
+    ['foo', 'bar'] | expect.to_not.contain('baz')
+
+
+key
+^^^
+
+keys
 ^^^^
 
-types
+Asserts that a given dictionary has a key or keys.
+
+=======================  ========================
+ **Chained aliases**     ``present`` ``equal`` ``to``
+-----------------------  ------------------------
+ **Related operators**   matches_ index_
+-----------------------  ------------------------
+ **Yields subject**      The key value, if present.
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    {'foo': True} | should.have.key('foo')
+    {'foo': True, 'bar': False} | should.have.keys('bar', 'foo')
+
+.. code-block:: python
+
+    {'foo': True} | expect.to.have.key('foo')
+    {'foo': True, 'bar': False} | expect.to.have.keys('bar', 'foo')
+
+**Negation form**:
+
+.. code-block:: python
+
+    {'bar': True} | should.not_have.key('foo')
+    {'baz': True, 'bar': False} | should.not_have.keys('bar', 'foo')
+
+.. code-block:: python
+
+    {'bar': True} | expect.to_not.have.key('foo')
+    {'baz': True, 'bar': False} | expect.to_not.have.keys('bar', 'foo')
+
+
+index
 ^^^^^
 
+Asserts that a given iterable has an item in a specific index.
+
+=======================  ========================
+ **Chained aliases**     ``present`` ``exists`` ``at``
+-----------------------  ------------------------
+ **Related operators**   property_ key_ contain_
+-----------------------  ------------------------
+ **Yields subject**      Value at the selected index, if present.
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    [1, 2, 3] | should.have.index(2)
+    [1, 2, 3] | should.have.index(1)
+    [1, 2, 3] | should.have.index.at(1)
+    [1, 2, 3] | should.have.index.present(1)
+    [1, 2, 3] | should.have.index.at(1).equal.to(2)
+    [1, 2, 3] | should.have.index.at(1) > should.be.equal.to(2)
+
+.. code-block:: python
+
+    [1, 2, 3] | expect.to.have.index(2)
+    [1, 2, 3] | expect.to.have.index.at(1)
+    [1, 2, 3] | expect.to.have.index.at(1).equal.to(2)
+    [1, 2, 3] | expect.to.have.index.at(1) > expect.be.equal.to(2)
+
+**Negation form**:
+
+.. code-block:: python
+
+    [1, 2, 3] | should.not_have.index(4)
+    [1, 2, 3] | should.not_have.index.at(4)
+    [1, 2, 3] | should.not_have.index.at(1).to_not.equal.to(5)
+
+.. code-block:: python
+
+    [1, 2, 3] | expect.to_not.have.index(2)
+    [1, 2, 3] | expect.to_not.have.index.at(1)
+    [1, 2, 3] | expect.to_not.have.index.at(1).equal.to(2)
+
+length
+^^^^^^
+
+size
+^^^^
+
+Asserts that a given object has exact length.
+
+=======================  ========================
+ **Chained aliases**     ``of`` ``equal`` ``to``
+-----------------------  ------------------------
+ **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    'foo' | should.have.length(3)
+    [1, 2, 3] | should.have.length.of(3)
+    iter([1, 2, 3]) | should.have.length.equal.to(3)
+
+.. code-block:: python
+
+    'foo' | expect.to.have.length(3)
+    [1, 2, 3] | expect.to.have.length.of(3)
+    iter([1, 2, 3]) | expect.to.have.length.equal.to(3)
+
+**Negation form**:
+
+.. code-block:: python
+
+    'foobar' | should.not_have.length(3)
+    [1, 2, 3, 4] | should.not_have.length.of(3)
+    iter([1, 2, 3, 4]) | should.not_have.length.equal.to(3)
+
+.. code-block:: python
+
+    'foobar' | expect.to_not.have.length(3)
+    [1, 2, 3, 4] | expect.to_not.have.length.of(3)
+    iter([1, 2, 3, 4]) | expect.to_not.have.length.equal.to(3)
+
+
+match
+^^^^^
+
+matches
+^^^^^^^
+
+Asserts if a given string matches a given regular expression.
+
+=======================  ========================
+ **Chained aliases**     ``value`` ``string`` ``expression``, ``token``, ``to``, ``regex``, ``regexp``, ``word``, ``phrase``
+-----------------------  ------------------------
+ **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    'hello world' | should.match(r'Hello \w+')
+    'hello world' | should.match(r'hello [A-Z]+', re.I))
+    'hello world' | should.match.expression(r'hello [A-Z]+', re.I))
+
+.. code-block:: python
+
+    'hello world' | expect.to.match(r'Hello \w+')
+    'hello world' | expect.to.match(r'hello [A-Z]+', re.I))
+    'hello world' | expect.to.match.expression(r'hello [A-Z]+', re.I))
+
+**Negation form**:
+
+.. code-block:: python
+
+    'hello w0rld' | should.do_not.match(r'Hello \w+')
+    'hello w0rld' | should.do_not.match(r'hello [A-Z]+', re.I))
+    'hello world' | should.do_not.match.expression(r'hello [A-Z]+', re.I))
+
+.. code-block:: python
+
+    'hello w0rld' | expect.to_not.match(r'Hello \w+')
+    'hello w0rld' | expect.to_not.match(r'hello [A-Z]+', re.I))
+    'hello world' | expect.to_not.match.expression(r'hello [A-Z]+', re.I))
+
+pass_test
+^^^^^^^^^
+
+pass_function
+^^^^^^^^^^^^^
+
+Asserts if a given string matches a given regular expression.
+
+=======================  ========================
+ **Chained aliases**     -
+-----------------------  ------------------------
+ **Related operators**   matches_
+-----------------------  ------------------------
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    'foo' | should.pass_test(lambda x: len(x) > 2)
+    [1, 2, 3] | should.pass_function(lambda x: 2 in x)
+
+.. code-block:: python
+
+    'foo' | expect.to.pass_test(lambda x: len(x) > 2)
+    [1, 2, 3] | expect.to.pass_function(lambda x: 2 in x)
+
+**Negation form**:
+
+.. code-block:: python
+
+    'foo' | should.do_not.pass_test(lambda x: len(x) > 3)
+    [1, 2, 3] | should.do_not.pass_function(lambda x: 5 in x)
+
+.. code-block:: python
+
+    'foo' | expect.to_not.pass_test(lambda x: len(x) > 3)
+    [1, 2, 3] | expect.to_not.pass_function(lambda x: 5 in x)
+
+
+Objects
+-------
+
+a
+^
+an
+^^
+type
+^^^^
+types
+^^^^^
 instance
 ^^^^^^^^
 
@@ -479,8 +370,6 @@ Supported type aliases:
 - coroutinefunction
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``type`` ``types`` ``to`` ``of``, ``equal``
 -----------------------  ------------------------
  **Related operators**   equal_ matches_ implements_
@@ -557,70 +446,38 @@ Supported type aliases:
     'foo' | expect.to.not_to.be.types('string', 'int')
 
 
-contain
-^^^^^^^
+property
+^^^^^^^^^
+properties
+^^^^^^^^^^
+attribute
+^^^^^^^^^
+attributes
+^^^^^^^^^^
 
-contains
-^^^^^^^^
-
-includes
-^^^^^^^^
-
-Asserts if a given value or values can be found in a another object.
+Asserts if a given object has property or properties.
 
 =======================  ========================
- **Type**                matcher
+ **Chained aliases**     ``present`` ``equal`` ``to``
 -----------------------  ------------------------
- **Chained aliases**     ``value`` ``string`` ``text`` ``item`` ``expression`` ``data``
+ **Related operators**   matches_
 -----------------------  ------------------------
- **Related operators**   equal_ matches_
+ **Yields subject**      The attribute value, if present.
 -----------------------  ------------------------
  **Optional keywords**   ``msg: str``
 =======================  ========================
 
-**Assertion form**:
-
-.. code-block:: python
-
-    'foo bar' | should.contain('bar')
-    ['foo', 'bar'] | should.contain('bar')
-    ['foo', 'bar'] | should.contain('foo', 'bar')
-    [{'foo': True}, 'bar'] | should.contain({'foo': True})
-
-.. code-block:: python
-
-    'foo bar' | expect.to.contain('bar')
-    ['foo', 'bar'] | expect.to.contain('bar')
-    ['foo', 'bar'] | expect.to.contain('foo', 'bar')
-    [{'foo': True}, 'bar'] | expect.to.contain({'foo': True})
-
-**Negation form**:
-
-.. code-block:: python
-
-    'foo bar' | should.do_not.contain('bar')
-    ['foo', 'bar'] | should.do_not.contain('baz')
-
-.. code-block:: python
-
-    'foo bar' | expect.to_not.contain('bar')
-    ['foo', 'bar'] | expect.to_not.contain('baz')
-
 
 implements
 ^^^^^^^^^^
-
 implement
 ^^^^^^^^^
-
 interface
 ^^^^^^^^^
 
 Asserts if a given object implements an interface of methods.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``interface`` ``method`` ``methods``
 -----------------------  ------------------------
  **Related operators**   matches_
@@ -663,263 +520,6 @@ Asserts if a given object implements an interface of methods.
     Foo() | expect.to_not.implement.interface('bar', 'baz')
     Foo() | expect.to_not.satisfy.interface('bar', 'baz')
 
-
-key
-^^^
-
-keys
-^^^^
-
-Asserts that a given dictionary has a key or keys.
-
-=======================  ========================
- **Type**                matcher
------------------------  ------------------------
- **Chained aliases**     ``present`` ``equal`` ``to``
------------------------  ------------------------
- **Related operators**   matches_ index_
------------------------  ------------------------
- **Yields subject**      The key value, if present.
------------------------  ------------------------
- **Optional keywords**   ``msg: str``
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    {'foo': True} | should.have.key('foo')
-    {'foo': True, 'bar': False} | should.have.keys('bar', 'foo')
-
-.. code-block:: python
-
-    {'foo': True} | expect.to.have.key('foo')
-    {'foo': True, 'bar': False} | expect.to.have.keys('bar', 'foo')
-
-**Negation form**:
-
-.. code-block:: python
-
-    {'bar': True} | should.not_have.key('foo')
-    {'baz': True, 'bar': False} | should.not_have.keys('bar', 'foo')
-
-.. code-block:: python
-
-    {'bar': True} | expect.to_not.have.key('foo')
-    {'baz': True, 'bar': False} | expect.to_not.have.keys('bar', 'foo')
-
-
-index
-^^^^^
-
-Asserts that a given iterable has an item in a specific index.
-
-=======================  ========================
- **Type**                matcher
------------------------  ------------------------
- **Chained aliases**     ``present`` ``exists`` ``at``
------------------------  ------------------------
- **Related operators**   property_ key_ contain_
------------------------  ------------------------
- **Yields subject**      Value at the selected index, if present.
------------------------  ------------------------
- **Optional keywords**   ``msg: str``
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    [1, 2, 3] | should.have.index(2)
-    [1, 2, 3] | should.have.index(1)
-    [1, 2, 3] | should.have.index.at(1)
-    [1, 2, 3] | should.have.index.present(1)
-    [1, 2, 3] | should.have.index.at(1).equal.to(2)
-    [1, 2, 3] | should.have.index.at(1) > should.be.equal.to(2)
-
-.. code-block:: python
-
-    [1, 2, 3] | expect.to.have.index(2)
-    [1, 2, 3] | expect.to.have.index.at(1)
-    [1, 2, 3] | expect.to.have.index.at(1).equal.to(2)
-    [1, 2, 3] | expect.to.have.index.at(1) > expect.be.equal.to(2)
-
-**Negation form**:
-
-.. code-block:: python
-
-    [1, 2, 3] | should.not_have.index(4)
-    [1, 2, 3] | should.not_have.index.at(4)
-    [1, 2, 3] | should.not_have.index.at(1).to_not.equal.to(5)
-
-.. code-block:: python
-
-    [1, 2, 3] | expect.to_not.have.index(2)
-    [1, 2, 3] | expect.to_not.have.index.at(1)
-    [1, 2, 3] | expect.to_not.have.index.at(1).equal.to(2)
-
-length
-^^^^^^
-
-size
-^^^^
-
-Asserts that a given object has exact length.
-
-=======================  ========================
- **Type**                matcher
------------------------  ------------------------
- **Chained aliases**     ``of`` ``equal`` ``to``
------------------------  ------------------------
- **Related operators**   matches_
------------------------  ------------------------
- **Optional keywords**   ``msg: str``
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    'foo' | should.have.length(3)
-    [1, 2, 3] | should.have.length.of(3)
-    iter([1, 2, 3]) | should.have.length.equal.to(3)
-
-.. code-block:: python
-
-    'foo' | expect.to.have.length(3)
-    [1, 2, 3] | expect.to.have.length.of(3)
-    iter([1, 2, 3]) | expect.to.have.length.equal.to(3)
-
-**Negation form**:
-
-.. code-block:: python
-
-    'foobar' | should.not_have.length(3)
-    [1, 2, 3, 4] | should.not_have.length.of(3)
-    iter([1, 2, 3, 4]) | should.not_have.length.equal.to(3)
-
-.. code-block:: python
-
-    'foobar' | expect.to_not.have.length(3)
-    [1, 2, 3, 4] | expect.to_not.have.length.of(3)
-    iter([1, 2, 3, 4]) | expect.to_not.have.length.equal.to(3)
-
-
-match
-^^^^^
-
-matches
-^^^^^^^
-
-Asserts if a given string matches a given regular expression.
-
-=======================  ========================
- **Type**                matcher
------------------------  ------------------------
- **Chained aliases**     ``value`` ``string`` ``expression``, ``token``, ``to``, ``regex``, ``regexp``, ``word``, ``phrase``
------------------------  ------------------------
- **Related operators**   matches_
------------------------  ------------------------
- **Optional keywords**   ``msg: str``
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    'hello world' | should.match(r'Hello \w+')
-    'hello world' | should.match(r'hello [A-Z]+', re.I))
-    'hello world' | should.match.expression(r'hello [A-Z]+', re.I))
-
-.. code-block:: python
-
-    'hello world' | expect.to.match(r'Hello \w+')
-    'hello world' | expect.to.match(r'hello [A-Z]+', re.I))
-    'hello world' | expect.to.match.expression(r'hello [A-Z]+', re.I))
-
-**Negation form**:
-
-.. code-block:: python
-
-    'hello w0rld' | should.do_not.match(r'Hello \w+')
-    'hello w0rld' | should.do_not.match(r'hello [A-Z]+', re.I))
-    'hello world' | should.do_not.match.expression(r'hello [A-Z]+', re.I))
-
-.. code-block:: python
-
-    'hello w0rld' | expect.to_not.match(r'Hello \w+')
-    'hello w0rld' | expect.to_not.match(r'hello [A-Z]+', re.I))
-    'hello world' | expect.to_not.match.expression(r'hello [A-Z]+', re.I))
-
-pass_test
-^^^^^^^^^
-
-pass_function
-^^^^^^^^^^^^^
-
-Asserts if a given string matches a given regular expression.
-
-=======================  ========================
- **Type**                matcher
------------------------  ------------------------
- **Chained aliases**     -
------------------------  ------------------------
- **Related operators**   matches_
------------------------  ------------------------
- **Optional keywords**   ``msg: str``
-=======================  ========================
-
-**Assertion form**:
-
-.. code-block:: python
-
-    'foo' | should.pass_test(lambda x: len(x) > 2)
-    [1, 2, 3] | should.pass_function(lambda x: 2 in x)
-
-.. code-block:: python
-
-    'foo' | expect.to.pass_test(lambda x: len(x) > 2)
-    [1, 2, 3] | expect.to.pass_function(lambda x: 2 in x)
-
-**Negation form**:
-
-.. code-block:: python
-
-    'foo' | should.do_not.pass_test(lambda x: len(x) > 3)
-    [1, 2, 3] | should.do_not.pass_function(lambda x: 5 in x)
-
-.. code-block:: python
-
-    'foo' | expect.to_not.pass_test(lambda x: len(x) > 3)
-    [1, 2, 3] | expect.to_not.pass_function(lambda x: 5 in x)
-
-
-property
-^^^^^^^^^
-
-properties
-^^^^^^^^^^
-
-attribute
-^^^^^^^^^
-
-attributes
-^^^^^^^^^^
-
-Asserts if a given object has property or properties.
-
-=======================  ========================
- **Type**                matcher
------------------------  ------------------------
- **Chained aliases**     ``present`` ``equal`` ``to``
------------------------  ------------------------
- **Related operators**   matches_
------------------------  ------------------------
- **Yields subject**      The attribute value, if present.
------------------------  ------------------------
- **Optional keywords**   ``msg: str``
-=======================  ========================
-
 **Assertion form**:
 
 .. code-block:: python
@@ -949,12 +549,13 @@ Asserts if a given object has property or properties.
     Foo() | expect.to_not.have.properties.present.equal.to('bar', 'baz')
 
 
+Exceptions
+----------
+
 raises
 ^^^^^^
-
 raise_error
 ^^^^^^^^^^^
-
 raises_errors
 ^^^^^^^^^^^^^
 
@@ -964,8 +565,6 @@ you can use ``functools.partial`` to create a zero arity function with your
 arguments
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``to`` ``that`` ``are`` ``instance`` ``of``
 -----------------------  ------------------------
  **Related operators**   matches_
@@ -1002,20 +601,19 @@ arguments
     fn | expect.to_not.raise_error(AttributeError, ValueError)
 
 
+Numbers
+-------
+
 below
 ^^^^^
-
 lower
 ^^^^^
-
 less
 ^^^^
 
 Asserts if a given number is below to another number.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ above_ above_or_equal_ below_or_equal_
@@ -1066,15 +664,12 @@ Asserts if a given number is below to another number.
 
 above
 ^^^^^
-
 higher
 ^^^^^^
 
 Asserts if a given number is above to another number.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ below_ below_or_equal_ above_or_equal_
@@ -1125,18 +720,14 @@ Asserts if a given number is above to another number.
 
 least
 ^^^^^
-
 above_or_equal
 ^^^^^^^^^^^^^^
-
 higher_or_equal
 ^^^^^^^^^^^^^^^
 
 Asserts if a given number is above to another number.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ below_ below_or_equal_ above_or_equal_
@@ -1191,18 +782,14 @@ Asserts if a given number is above to another number.
 
 most
 ^^^^
-
 below_or_equal
 ^^^^^^^^^^^^^^
-
 lower_or_equal
 ^^^^^^^^^^^^^^^
 
 Asserts if a given number is above to another number.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``of`` ``to`` ``than`` ``number``
 -----------------------  ------------------------
  **Related operators**   within_ below_ above_ below_or_equal_ above_or_equal_
@@ -1257,15 +844,12 @@ Asserts if a given number is above to another number.
 
 within
 ^^^^^^
-
 between
 ^^^^^^^
 
 Asserts that a number is within a range.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``to`` ``numbers`` ``range``
 -----------------------  ------------------------
  **Related operators**   below_ above_ above_or_equal_ below_or_equal_
@@ -1301,20 +885,19 @@ Asserts that a number is within a range.
     5 | expect.to_not.be.between(2, 5)
     4.5 | expect.to_not.be.within(4, 5)
 
+Ranges
+------
+
 start_with
 ^^^^^^^^^^
-
 startswith
 ^^^^^^^^^^
-
 starts_with
 ^^^^^^^^^^^
 
 Asserts if a given value starts with a specific items.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``by`` ``word`` ``number`` ``numbers`` ``item`` ``items`` ``value`` ``char`` ``letter`` ``character``
 -----------------------  ------------------------
  **Related operators**   ends_with_
@@ -1361,18 +944,14 @@ Asserts if a given value starts with a specific items.
 
 end_with
 ^^^^^^^^
-
 endswith
 ^^^^^^^^
-
 ends_with
 ^^^^^^^^^
 
 Asserts if a given value ends with a specific items.
 
 =======================  ========================
- **Type**                matcher
------------------------  ------------------------
  **Chained aliases**     ``by`` ``word`` ``number`` ``numbers`` ``item`` ``items`` ``value`` ``char`` ``letter`` ``character``
 -----------------------  ------------------------
  **Related operators**   ends_with_

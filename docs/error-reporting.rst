@@ -1,18 +1,12 @@
-Errors
-======
-
-``grappa`` comes with a built-in detailed, human-friendly `error reporting`_ system
-that aims to reduce friction and improve human agility while testing and fixing software.
-
 Error Reporting
----------------
+===============
 
 Feedback while testing is key. Seeing errors in your tests is not a nice thing
 because informs you something is wrong with your code.
 This can even introduce frustration and FUD to developers.
 
-``grappa`` tries to mitigate this by providing a human friendly error reporting
-that informs the developer in an intuitive and more effective the following questions:
+``grappa`` comes with a built-in detailed and **human friendly** error reporting
+to intuitively and effectively help the developer answer the following questions:
 
 - what test failed
 - what are the reasons of the failure

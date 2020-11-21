@@ -17,7 +17,7 @@ lightweight assertion library for Python_ that aims to make testing more product
 It also comes with a detailed, human-friendly `error reporting`_ system that aims to reduce friction,
 provide better feedback and improve human speed and agility while identifying and fixing errors.
 
-To get started, take a look to the `showcase`_ code, `tutorial`_, available `plugins`_ and `operators documentation`_.
+To get started, take a look to the `showcase`_ code, `getting started`_, available `plugins`_ and operators documentation (`accessors`_, `attributes`_, `matchers`_).
 
 For HTTP protocol assertions, see `grappa-http`_.
 
@@ -33,7 +33,7 @@ Showcase
 --------
 
 A small example demonstrating some `grappa` features.
-See `documentation`_ and `tutorial`_ for more examples.
+See `documentation`_ and `getting started`_ for more examples.
 
 .. code-block:: python
 
@@ -105,26 +105,11 @@ Let's see how the error report looks like in ``grappa`` running in ``pytest``.
 
 See `error reporting`_ documentation for more details about how ``grappa`` error report system works.
 
-.. code-block:: python
+.. code-block:: bash
 
     ======================================================================
     FAIL: tests.should_test.test_grappa_assert
     ======================================================================
-    Traceback (most recent call last):
-    File ".pyenv/versions/3.6.0/lib/python3.6/site-packages/nose/case.py", line 198, in runTest
-    self.test(*self.arg)
-    File "grappa/tests/should_test.py", line 16, in test_grappa_assert
-    x | should.be.have.length.of(4)
-    File "grappa/grappa/test.py", line 248, in __ror__
-    return self.__overload__(value)
-    File "grappa/grappa/test.py", line 236, in __overload__
-    return self.__call__(subject, overload=True)
-    File "grappa/grappa/test.py", line 108, in __call__
-    return self._trigger() if overload else Test(subject)
-    File "grappa/grappa/test.py", line 153, in _trigger
-    raise err
-    AssertionError: Oops! Something went wrong!
-
     The following assertion was not satisfied
       subject "[1, 2, 3]" should be have length of "4"
 
@@ -167,14 +152,6 @@ See `error reporting`_ documentation for more details about how ``grappa`` error
     21|      False | should.be.false | should.be.equal.to(False)
     22|      False | should.be.false | should.not_be.equal.to(True)
 
-Demo
-----
-
-.. image:: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir.png
-   :width: 900
-   :alt: showcase
-   :align: center
-   :target: https://asciinema.org/a/d6yd2475m41thdku7d3ntkeir?autoplay=1&speed=3&size=small
 
 Why grappa?
 -----------
@@ -206,7 +183,7 @@ Features
 -  Behavior-oriented expressive fluent API.
 -  Built-in assertion DSL with English lexicon and semantics.
 -  Supports both ``expect`` and ``should`` assertion styles.
--  Full-featured built-in `assertion operators`_.
+-  Full-featured built-in `accessors`_, `attributes`_ and `matchers`_ operators.
 -  Human-friendly and detailed `error reporting`_.
 -  Built-in expectations difference comparison between subject and expected values.
 -  Extensible assertions supporting third-party `plugins`_.
@@ -236,12 +213,13 @@ Or install the latest sources from Github:
 
 .. _Python: http://python.org
 .. _`documentation`: http://grappa.readthedocs.io
-.. _`operators documentation`: http://grappa.readthedocs.io/en/latest/operators.html
-.. _`tutorial`: http://grappa.readthedocs.io/en/latest/tutorial.html
+.. _`accessors`: http://grappa.readthedocs.io/en/latest/accessors-operators.html
+.. _`attributes`: http://grappa.readthedocs.io/en/latest/attributes-operators.html
+.. _`matchers`: http://grappa.readthedocs.io/en/latest/matchers-operators.html
+.. _`getting started`: http://grappa.readthedocs.io/en/latest/getting-started.html
 .. _`plugins`: http://grappa.readthedocs.io/en/latest/plugins.html
-.. _`error reporting`: http://grappa.readthedocs.io/en/latest/errors.html
+.. _`error reporting`: http://grappa.readthedocs.io/en/latest/error-reporting.html
 .. _`assertion styles`: http://grappa.readthedocs.io/en/latest/style.html
-.. _`assertion operators`: http://grappa.readthedocs.io/en/latest/operators.html
 .. _`grappa-http`: https://github.com/grappa-py/http
 
 .. |Build Status| image:: https://travis-ci.org/grappa-py/grappa.svg?branch=master

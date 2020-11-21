@@ -1,10 +1,20 @@
-Tutorial
-========
+Getting started
+===============
 
-Installing grappa
------------------
+Installation
+------------
 
-Please, see installation_ section.
+Using ``pip`` package manager:
+
+.. code-block:: bash
+
+    pip install --upgrade grappa
+
+Or install the latest sources from Github:
+
+.. code-block:: bash
+
+    pip install -e git+git://github.com/grappa-py/grappa.git#egg=grappa
 
 
 Importing grappa
