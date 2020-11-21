@@ -125,7 +125,7 @@ with some additional properties that provides context data from ``grappa`` for f
 Additional error properties:
 
 - **__grappa__** ``bool`` - Error flag that indicates the error was originated by ``grappa``.
-- **error** ``Exception`` - Original exception error, if any.
+- **__cause__** ``Exception`` - Original exception error, if any. Python >= 3.5 uses this property to enhance traceback.
 - **context** ``grappa.Context`` - Current test ``grappa`` context instance. Only for low-level debugging.
 
 
