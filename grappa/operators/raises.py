@@ -55,6 +55,14 @@ class RaisesOperator(Operator):
         'an object of type "{type}" with reference "{value}"',
     )
 
+    def after_success(self, obj, *keys):
+        message = getattr(self.value, 'message', None)
+
+        if not message:
+            message = ' '.join([str(item) for item in self.value.args])
+
+        self.ctx.subject = message
+
     def match(self, fn, *errors):
         if not callable(fn):
             return False, ['subject must be a function or method']
@@ -64,11 +72,6 @@ class RaisesOperator(Operator):
         except Exception as err:
             self.value = err
 
-            # If no errors present, just raise the exception
-            if not errors:
-                return True, []
-
-            # Otherwise match errors
             return isinstance(err, *errors), ['invalid raised exception']
         else:
             return False, ['did not raise any exception']
