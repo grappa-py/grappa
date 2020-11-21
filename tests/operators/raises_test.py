@@ -63,7 +63,7 @@ def test_raises_custom_exception_message_redirection(should):
         message = 'foo'
 
         def __init__(self, *args):
-            super().__init__(self.message, *args)
+            super(CustomException, self).__init__(self.message, *args)
 
     def custom_error():
         raise CustomException('bar')
