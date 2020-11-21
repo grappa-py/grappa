@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from array import array
 from six.moves import collections_abc
 
 from ..operator import Operator
@@ -13,18 +14,34 @@ class KeysOperator(Operator):
         # Should style
         {'foo': True} | should.have.key('foo')
         {'foo': True, 'bar': False} | should.have.keys('bar', 'foo')
+        {'foo': True, 'bar': False} | should.have.keys(('bar', 'foo'))
+        {'foo': True, 'bar': False} | should.have.keys(['bar', 'foo'])
+        {'foo': True, 'bar': False} | should.have.keys({'bar', 'foo'})
+        {1: True, 2: False} | should.have.keys(array('i', [1, 2]))
 
         # Should style - negation form
         {'bar': True} | should.not_have.key('foo')
         {'baz': True, 'bar': False} | should.not_have.keys('bar', 'foo')
+        {'baz': True, 'bar': False} | should.not_have.keys(('bar', 'foo'))
+        {'baz': True, 'bar': False} | should.not_have.keys(['bar', 'foo'])
+        {'baz': True, 'bar': False} | should.not_have.keys({'bar', 'foo'})
+        {10: True, 2: False} | should.not_have.keys(array('i', [1, 2]))
 
         # Expect style
         {'foo': True} | expect.to.have.key('foo')
         {'foo': True, 'bar': False} | expect.to.have.keys('bar', 'foo')
+        {'foo': True, 'bar': False} | expect.to.have.keys(('bar', 'foo'))
+        {'foo': True, 'bar': False} | expect.to.have.keys(['bar', 'foo'])
+        {'foo': True, 'bar': False} | expect.to.have.keys({'bar', 'foo'})
+        {1: True, 2: False} | expect.to.have.keys(array('i', [1, 2]))
 
         # Expect style - negation form
         {'bar': True} | expect.to_not.have.key('foo')
         {'baz': True, 'bar': False} | expect.to_not.have.keys('bar', 'foo')
+        {'baz': True, 'bar': False} | expect.to_not.have.keys(('bar', 'foo'))
+        {'baz': True, 'bar': False} | expect.to_not.have.keys(['bar', 'foo'])
+        {'baz': True, 'bar': False} | expect.to_not.have.keys({'bar', 'foo'})
+        {10: True, 2: False} | expect.to_not.have.keys(array('i', [1, 2]))
     """
 
     # Is the operator a keyword
@@ -47,57 +64,38 @@ class KeysOperator(Operator):
         'an object of type "{type}" with value "{value}"',
     )
 
+    LIST_TYPES = (tuple, list, set, array)
+
     def after_success(self, obj, *keys):
         if not self.ctx.negate:
             self.ctx.subject = [obj[x] for x in obj if x in keys]
 
         if len(keys) == 1 and len(self.ctx.subject):
-            self.ctx.subject = self.ctx.subject[0]
+            if isinstance(self.ctx.subject, list):
+                self.ctx.subject = self.ctx.subject[0]
+            else:
+                self.ctx.subject = list(self.ctx.subject.keys())[0]
 
-    def match(self, subject, *keys, **kw):
-        if self._not_a_dict(subject):
+    def match(self, subject, *keys):
+        if not isinstance(subject, collections_abc.Mapping):
             return False, ['subject is not a dict type']
-        return self._matches(subject, (keys, kw))
-
-    def _not_a_dict(self, value):
-        return not isinstance(value, collections_abc.Mapping)
-
-    def _matches(self, subject, expected):
-        args, kwargs = expected
 
         reasons = []
-        for name in args:
-            has_key, reason = self._has_key(subject, name)
-            if not has_key:
-                return False, [reason]
-            else:
-                reasons.append(reason)
 
-        for name, value in kwargs.items():
-            has_key, reason = self._has_key(subject, name, value)
+        if len(keys) == 1 and isinstance(keys[0], self.LIST_TYPES):
+            keys = list(keys[0])
+
+        for name in keys:
+            if name in subject:
+                has_key = True
+                reason = 'key {0!r} found'.format(name)
+            else:
+                has_key = False
+                reason = 'key {0!r} not found'.format(name)
+
             if not has_key:
                 return False, [reason]
-            else:
-                reasons.append(reason)
+
+            reasons.append(reason)
 
         return True, reasons
-
-    def _has_key(self, subject, name, *args):
-        if args:
-            expected_value = args[0]
-
-            try:
-                value = subject[name]
-            except KeyError:
-                return False, 'key {0!r} {1!r} not found'.format(
-                    name, expected_value)
-            else:
-                result, _ = expected_value._match(value)
-                reason_message = 'not found' if not result else 'found'
-                return result, 'key {0!r} {1!r} {2}'.format(
-                    name, expected_value, reason_message)
-
-        if name in subject:
-            return True, 'key {0!r} found'.format(name)
-
-        return False, 'key {0!r} not found'.format(name)

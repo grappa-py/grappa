@@ -6,13 +6,16 @@ python:
   - "3.6"
   - "3.7"
   - "3.8"
-  - pypy
+  - "3.9"
   - pypy3
   - nightly
 
-matrix:
+jobs:
   allow_failures:
     - python: nightly
+  include:
+    - python: pypy
+      env: CRYPTOGRAPHY_ALLOW_OPENSSL_102=true
 
 sudo: false
 

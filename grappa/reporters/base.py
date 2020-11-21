@@ -24,7 +24,7 @@ class BaseReporter(object):
         lines = value.split(os.linesep)
         return '\n    '.join(lines)
 
-    def normalize(self, value, size=20, use_raw=True):
+    def normalize(self, value, size=50, use_raw=True):
         if value is None:
             return value
 
@@ -72,6 +72,9 @@ class BaseReporter(object):
 
         if '{length}' in tmpl:
             placeholders['length'] = self.safe_length(value)
+
+        if '{call_count}' in tmpl:
+            placeholders['call_count'] = getattr(value, 'call_count', 0)
 
         return tmpl.format(**placeholders)
 

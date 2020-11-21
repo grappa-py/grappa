@@ -2,6 +2,7 @@
 import inspect
 import functools
 import six
+from .api import TestProxy
 from .engine import Engine
 from .operator import Operator
 
@@ -73,3 +74,76 @@ def register(operator):
     """
     Engine.register(operator)
     return operator
+
+
+def mock_implementation_validator(func):
+    """
+    Validate that a mock conform to the implementation required to run
+    have_been and have_been_with operators.
+
+    Otherwise returns a Grappa tuple with missing implementation reasons.
+
+    Arguments:
+        operator (Operator): a been_called or been_called_with operator.
+        subject: a mock whose implementation is to be validated.
+        *args: variadic arguments.
+        **kw: variadic keyword arguments.
+
+    Returns:
+        (function|tuple)
+    """
+    @functools.wraps(func)
+    def wrapper(operator, subject, *args, **kwargs):
+        expect = TestProxy('expect')
+
+        propery_reason_template = 'a property named "{}" is expected'
+
+        def validate_props(reasons, prop):
+            try:
+                expect(subject).to.have.property(prop)
+            except AssertionError:
+                reasons.append(propery_reason_template.format(prop))
+            return reasons
+
+        method_reason_template = 'a method named "{}" is expected'
+
+        def validate_methods(reasons, method):
+            try:
+                expect(subject).to.implement.methods(method)
+            except AssertionError:
+                reasons.append(method_reason_template.format(method))
+            return reasons
+
+        expected_props = ('called', 'call_count')
+        reasons = functools.reduce(validate_props, expected_props, [])
+
+        expected_methods = ('assert_called_with', 'assert_called_once_with')
+        reasons = functools.reduce(validate_methods, expected_methods, reasons)
+
+        if reasons:
+            operator.information = (
+                Operator.Dsl.Help(
+                    Operator.Dsl.Description(
+                        'Required implementation is based on unittest.mock.Mock class.', # noqa E501
+                        '',
+                        'Properties required',
+                        '    {}'.format(', '.join(expected_props)),
+                        'Methods required',
+                        '    {}'.format(', '.join(expected_methods)),
+                        '',
+                    ),
+                    Operator.Dsl.Reference(
+                        'https://docs.python.org/3/library/unittest.mock.html#the-mock-class', # noqa E501
+                    ),
+                    Operator.Dsl.Reference(
+                        'https://pypi.org/project/pytest-mock/',
+                    ),
+                ),
+            )
+
+            reasons.insert(0, 'mock implementation is incomplete')
+            return False, reasons
+
+        return func(operator, subject, *args, **kwargs)
+
+    return wrapper

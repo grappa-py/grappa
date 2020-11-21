@@ -92,13 +92,17 @@ class ImplementsOperator(Operator):
             return False, ['methods to implement cannot be empty']
 
         def validate(reasons, method):
-            if not hasattr(cls, method):
-                reasons.append('object does not have property "{}"'.format(
-                    method
-                ))
-            elif not self.has_method(cls, method):
-                reasons.append('object does not implement method "{}"'.format(
-                    method
+            try:
+                if not hasattr(cls, method):
+                    template = 'object does not have property "{}"'
+                    reasons.append(template.format(method))
+                elif not self.has_method(cls, method):
+                    template = 'object does not implement method "{}"'
+                    reasons.append(template.format(method))
+            except Exception:
+                template = '"{}" is a "{}" but it must be a string'
+                reasons.append(template.format(
+                    method, method.__class__.__name__
                 ))
             return reasons
 
