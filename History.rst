@@ -2,6 +2,13 @@
 History
 =======
 
+1.0.0 / 2020-11-21
+------------------
+
+  * feat: major version v1
+  * fix: #53, #55, #48, #59 (credits to @sgissinger)
+  * feat: added mock call operators (credits to @sgissinger)
+
 0.1.12 / 2020-02-26
 --------------------
 
