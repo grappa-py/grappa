@@ -2,6 +2,13 @@
 History
 =======
 
+1.0.1 / 2020-11-21
+-------------
+
+  * Merge pull request #65 from sgissinger/master
+  * 2.7 correction (maybe)
+  * fixes #54 add message redirection to exceptions
+
 1.0.0 / 2020-11-21
 ------------------
 
