@@ -8,6 +8,63 @@ History
   * feat: major version v1
   * fix: #53, #55, #48, #59 (credits to @sgissinger)
   * feat: added mock call operators (credits to @sgissinger)
+  * make github actions fail on every flake8
+  * pass flake8
+  * enforce implements operator
+  * missing kwargs argument
+  * add contain tests
+  * normalize code between contain and key and add lists expectations to contain
+  * improve been_called_with reasons when false
+  * use os.path.join instead of remove and Foo class for spy tests
+  * os.path.basename not a good candidate to count mock calls because it seems to call itself
+  * missing experimental for pypy2
+  * re-try to use pypy2 on github actions
+  * skip tests which does not work on pypy2
+  * add contain tests
+  * contain now supports dicts and arrays. Partially fix #59
+  * use isinstance
+  * improve keys operator tests and add array tests
+  * keys operator now supports arrays
+  * set env var in step only
+  * allow errors on 3.10-dev builds
+  * allow insecure commands for github action nightly
+  * upgrade action version
+  * run 3.10-dev on ubuntu only
+  * add python 3.10 nightly to github action pipeline
+  * set 50 chars to normalization size
+  * flake8 correction and docstrings upgrade
+  * add key operator tests
+  * key operator simplified and works with tuples, lists and sets. fixes #48 ?
+  * do not upgrade pip on github actions
+  * try to use pypy only on ubuntu for github actions
+  * use only include for pypy
+  * add python 3.9, prefer jobs over matrix, add pypy env var in travis ci
+  * add mocker stop all
+  * add python 3.9 to github actions
+  * pypy2 does not seem to work in github actions like it does in TravisCI
+  * exclude pypy2 on ubuntu
+  * exclude macos pypy2 from ci matrix
+  * use pypy2 instead
+  * add pypy to github actions
+  * Create python-package.yml
+  * added mock impl validator docstring and error tips
+  * added explicit docstrings to have_been operators
+  * use pytest-mock 2.0.0 for python 2.7
+  * make flake8 pass
+  * set exception __cause__ to get direct causes when internal exceptions occurs
+  * move mock implementation to decorators module
+  * add tests using pytest-mock spies and stubs which are basic funcs
+  * do not rely explicitly on MagicMock but test needed implementation
+  * better get attribute handling
+  * better called once messages
+  * add been_called operator tests
+  * add been_called operators
+  * missing end line
+  * fixes #55 should.not_have.key(...)
+  * once negated a sentence stays negated
+  * make accessor be called
+  * fix(Makefile): lovely tabs
+  * fix(Makefile): use twine for publishing
 
 0.1.12 / 2020-02-26
 --------------------
