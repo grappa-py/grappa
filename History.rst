@@ -13,8 +13,8 @@ History
 ------------------
 
   * feat: major version v1
-  * fix: #53, #55, #48, #59 (credits to @sgissinger)
-  * feat: added mock call operators (credits to @sgissinger)
+  * fix: #53, #55, #48, #59 (credits to sgissinger)
+  * feat: added mock call operators (credits to sgissinger)
   * make github actions fail on every flake8
   * pass flake8
   * enforce implements operator

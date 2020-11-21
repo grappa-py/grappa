@@ -70,6 +70,7 @@ setup(
     url='https://github.com/grappa-py/grappa',
     license='MIT',
     long_description=readme + '\n\n' + history,
+    long_description_content_type='text/x-rst',
     py_modules=['grappa'],
     zip_safe=False,
     tests_require=tests_require,
