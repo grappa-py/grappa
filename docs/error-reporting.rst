@@ -130,4 +130,4 @@ You can include arbitrary custom messages that would be included in the error re
 
     'foo' | should.be.equal('bar', msg='additional error message')
 
-    'foo' | expect.to.equal('bar', msg='additional error message')
+    expect('foo').to.equal('bar', msg='additional error message')
