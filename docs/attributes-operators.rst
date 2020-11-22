@@ -46,8 +46,6 @@ Typically, you will use them implicitly in order to semantically describe your a
  **Resets context**      no
 =======================  ========================
 
-**Examples**:
-
 .. code-block:: python
 
     'foo' | should.be.equal.to('bar')
@@ -58,11 +56,11 @@ Typically, you will use them implicitly in order to semantically describe your a
 
 .. code-block:: python
 
-    'foo' | expect.to.equal.to('bar')
-    'foo' | expect.to.have.length.of(3)
+    expect('foo').to.equal.to('bar')
+    expect('foo').to.have.length.of(3)
 
-    {'foo': 'bar'} | expect.to.have.key('foo').which.expect.to.be.equal('bar')
-    {'foo': 'bar'} | expect.to.have.key('foo').which.expect.to.have.length.of(3)
+    expect({'foo': 'bar'}).to.have.key('foo').which.expect.to.be.equal('bar')
+    expect({'foo': 'bar'}).to.have.key('foo').which.expect.to.have.length.of(3)
 
 
 Negation
@@ -111,8 +109,6 @@ Typically, you will use them implicitly in order to semantically describe your a
  **Resets context**      no
 =======================  ========================
 
-**Examples**:
-
 .. code-block:: python
 
     'foo' | should.not_be.equal.to('bar')
@@ -120,5 +116,5 @@ Typically, you will use them implicitly in order to semantically describe your a
 
 .. code-block:: python
 
-    'foo' | expect.to_not.equal.to('bar')
-    'foo' | expect.to.not_have.length.of(3)
+    expect('foo').to_not.equal.to('bar')
+    expect('foo').to.not_have.length.of(3)
