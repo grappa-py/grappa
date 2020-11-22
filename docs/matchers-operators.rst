@@ -916,7 +916,7 @@ arguments
  **Chained aliases**     ``to`` ``that`` ``are`` ``instance`` ``of``
 -----------------------  ------------------------
  **Related operators**   matches_
- ----------------------  ------------------------
+-----------------------  ------------------------
  **Yields subject**      Message of the exception, if present or joined exception arguments.
 -----------------------  ------------------------
  **Optional keywords**   ``msg: str``
@@ -929,12 +929,16 @@ arguments
     fn | should.raise_error()
     fn | should.raise_error(ValueError)
     fn | should.raise_error(AttributeError, ValueError)
+    fn | should.raise_error(ValueError) > should.equal('File not found')
+    fn | should.raise_error(ValueError) > should.contain('not found')
 
 .. code-block:: python
 
     fn | expect.to.raise_error()
     fn | expect.to.raise_error(ValueError)
     fn | expect.to.raise_error(AttributeError, ValueError)
+    fn | expect.to.raise_error(ValueError) > should.equal('File not found')
+    fn | expect.to.raise_error(ValueError) > should.contain('not found')
 
 **Negation form**:
 
