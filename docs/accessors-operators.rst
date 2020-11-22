@@ -193,3 +193,6 @@ This operator is the opposite of empty_.
 .. code-block:: python
 
     False | expect.to_not.be.present
+
+
+.. _`implements`: http://grappa.readthedocs.io/en/latest/matchers-operators.html#implements
