@@ -994,3 +994,110 @@ Asserts if a given subject is valid when passed to a predicate function.
 
     'foo' | expect.to_not.pass_test(lambda x: len(x) > 3)
     [1, 2, 3] | expect.to_not.pass_function(lambda x: 5 in x)
+
+Mocks
+-----
+
+Required implementation of a mock subject is based on `unittest.mock.Mock`_ class.
+
+To be compatible with ``grappa``, mocks must only implement:
+
+- **called**: a boolean property which indicates whether the mock has been called, or not.
+- **call_count**: an integer property which indicates the number of times the mock has been called.
+- **assert_called_with(*args, **kwargs)**: a function which raises an ``AssertionError`` when the mock has not been called with given arguments.
+- **assert_called_once_with(*args, **kwargs)**: a function which raises an ``AssertionError`` when the mock has not been called with given arguments.
+
+
+.. warning::
+
+    Mock matchers are not (yet) compatible with piping (|) assertion style.
+
+
+been_called
+^^^^^^^^^^^
+
+Asserts if a given mock subject have been called at least once.
+
+=======================  ========================
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+.. code-block:: python
+
+    expect(mock).to.have.been_called
+
+    expect(mock).to.have_not.been_called
+
+
+been_called_once
+^^^^^^^^^^^^^^^^
+
+Asserts if a given mock subject have been called only once.
+
+=======================  ========================
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+.. code-block:: python
+
+    expect(mock).to.have.been_called_once
+
+    expect(mock).to.have_not.been_called_once
+
+
+been_called_times
+^^^^^^^^^^^^^^^^^
+
+Asserts if a given mock subject have been called n times.
+
+=======================  ========================
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+**Assertion form**:
+
+.. code-block:: python
+
+    expect(mock).to.have.been_called_times(0)
+
+    expect(mock).to.have_not.been_called_times(3)
+
+
+
+been_called_with
+^^^^^^^^^^^^^^^^
+
+Asserts if a given mock subject have been called at least once
+with specified arguments.
+
+=======================  ========================
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+.. code-block:: python
+
+    expect(mock).to.have.been_called_with('foo')
+    expect(mock).to.have.been_called_with('foo', True, 150)
+
+    expect(mock).to.have_not.been_called_with('bar', False)
+
+
+been_called_once_with
+^^^^^^^^^^^^^^^^^^^^^
+
+Asserts if a given mock subject have been called only once
+with specified arguments.
+
+=======================  ========================
+ **Optional keywords**   ``msg: str``
+=======================  ========================
+
+.. code-block:: python
+
+    expect(mock).to.have.been_called_once_with('foo')
+    expect(mock).to.have.been_called_once_with('foo', True, 150)
+
+    expect(mock).to.have_not.been_called_once_with('bar', False)
+
+
+.. _`unittest.mock.Mock`: https://docs.python.org/3/library/unittest.mock.html#the-mock-class
