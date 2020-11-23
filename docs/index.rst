@@ -5,10 +5,12 @@ Contents
    :maxdepth: 2
 
    intro
-   tutorial
+   getting-started
    style
-   errors
-   operators
+   error-reporting
+   attributes-operators
+   accessors-operators
+   matchers-operators
    composition
    configuration
    plugins

@@ -13,9 +13,8 @@ Can I extend ``grappa`` with other assertion operators?
 
 Of course you can. ``grappa`` is an extensible modular testing library.
 
-See `creating your custom operators` documentation section.
+See `creating your custom operator`_ documentation section.
 
-.. _`creating your custom operator`: http://grappa.readthedocs.io/en/latest/plugins.html#creating-operators
 
 Why use ``grappa`` instead of traditional Python assertions?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -31,3 +30,6 @@ It certainly is, but comes with several benefits that you won't have without it,
 - ``grappa`` does type validation under the hood to ensure your providing a valid type.
 - ``grappa`` is an extensible assertion layer that can be used in a lot of ways, such as for HTTP protocol testing.
 - First-class support for Python data structures assertions and access.
+
+
+.. _`creating your custom operator`: http://grappa.readthedocs.io/en/latest/plugins.html#creating-operators

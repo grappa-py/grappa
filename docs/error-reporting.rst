@@ -1,18 +1,12 @@
-Errors
-======
-
-``grappa`` comes with a built-in detailed, human-friendly `error reporting`_ system
-that aims to reduce friction and improve human agility while testing and fixing software.
-
 Error Reporting
----------------
+===============
 
 Feedback while testing is key. Seeing errors in your tests is not a nice thing
 because informs you something is wrong with your code.
 This can even introduce frustration and FUD to developers.
 
-``grappa`` tries to mitigate this by providing a human friendly error reporting
-that informs the developer in an intuitive and more effective the following questions:
+``grappa`` provides a detailed and **human friendly** behavior-oriented error reporting
+to intuitively and effectively help the developer answer the following questions:
 
 - what test failed
 - what are the reasons of the failure
@@ -22,8 +16,6 @@ that informs the developer in an intuitive and more effective the following ques
 - how to solve the error
 - additional information about the how the assertion works
 
-``grappa`` provides intuitive error reporting for human friendly consumption,
-which includes a behavior-oriented
 
 Standard errors vs grappa errors
 --------------------------------
@@ -125,7 +117,7 @@ with some additional properties that provides context data from ``grappa`` for f
 Additional error properties:
 
 - **__grappa__** ``bool`` - Error flag that indicates the error was originated by ``grappa``.
-- **error** ``Exception`` - Original exception error, if any.
+- **__cause__** ``Exception`` - Original exception error, if any. Python >= 3.5 uses this property to enhance traceback.
 - **context** ``grappa.Context`` - Current test ``grappa`` context instance. Only for low-level debugging.
 
 
@@ -138,4 +130,4 @@ You can include arbitrary custom messages that would be included in the error re
 
     'foo' | should.be.equal('bar', msg='additional error message')
 
-    'foo' | expect.to.equal('bar', msg='additional error message')
+    expect('foo').to.equal('bar', msg='additional error message')
