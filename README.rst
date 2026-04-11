@@ -1,9 +1,3 @@
-.. image:: http://i.imgur.com/kKZPYut.jpg
-   :width: 100%
-   :alt: grappa logo
-   :align: center
-
-
 |Build Status| |PyPI| |Coverage Status| |Documentation Status| |Stability| |Quality| |Versions| |SayThanks|
 
 About
